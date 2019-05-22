@@ -32,6 +32,10 @@ export default class Home extends Component {
       <div>
         <h1>Home</h1>
         <GenericButton
+          handleClick={() => this.alertText()}
+          buttonName="Hello World"
+        />
+        <GenericButton
           handleClick={() => this.alertNumber()}
           buttonName="Number Alerter"
         />
