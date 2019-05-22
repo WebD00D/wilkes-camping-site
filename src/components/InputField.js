@@ -5,7 +5,8 @@ export default class InputField extends Component {
     super(props);
 
     this.state = {
-      value: ''
+      value: '',
+      name: 'Hello',
     };
   }
 
