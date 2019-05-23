@@ -5,6 +5,7 @@ import './App.css';
 
 import Home from './views/Home';
 import Campsite from './views/Campsite';
+import Signup from './views/Signup';
 
 function App() {
   return (
@@ -17,10 +18,14 @@ function App() {
           <li>
             <Link to="/campsite">Campsite</Link>
           </li>
+          <li>
+            <Link to="/ signup">Sign Up</Link>
+          </li>
         </ul>
 
         <Route path="/" exact component={Home} />
         <Route path="/campsite" exact component={Campsite} />
+        <Route path="/signup" exact component={Signup} />
       </div>
     </Router>
   );
