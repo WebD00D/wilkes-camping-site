@@ -28,7 +28,7 @@ export default class InputField extends Component {
           onChange={e => this.setValue(e.target.value)}
           type={this.props.inputType}
         />
-        <button onClick={() => this.signInUser()}>Sign In</button>
+        {/* <button onClick={() => this.signInUser()}>Sign In</button> */}
       </div>
     );
   }
