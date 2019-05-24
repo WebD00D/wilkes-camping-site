@@ -5,6 +5,7 @@ import InputField from '../components/InputField';
 import NameDisplay from '../components/NameDisplay';
 import GenericButton from '../components/GenericButton';
 
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -24,13 +25,21 @@ export default class Home extends Component {
   }
 
   alertText() {
-    alert('Some text')
+    alert('Some text');
+  }
+
+  updateRating(rating) {
+    this.setState({
+      currentRating: rating
+    });
   }
 
   render() {
     return (
       <div>
         <h1>Home</h1>
+       
+        {/* 
         <GenericButton
           handleClick={() => this.alertText()}
           buttonName="Hello World"
@@ -42,8 +51,8 @@ export default class Home extends Component {
         <GenericButton
           handleClick={() => this.alertText()}
           buttonName="Text Alerter"
-        />
-        
+        /> */}
+
         {/* <NameDisplay
           handleClick={() => this.clearName()}
           displayName={this.state.name}
