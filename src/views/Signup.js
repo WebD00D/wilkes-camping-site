@@ -9,16 +9,48 @@ export default class Signup extends Component {
     };
   }
 
+  handleAuth(authenticated) {
+    this.setState({
+      authenticated: true
+    });
+  }
+
+  // cannot get this to actually change state - get errors 
+
+
+  // sortFunction( ) {
+  //     if ({authenticated: true}) {
+  //       return (
+  //         alert("You are already signed up!")
+  //       );
+  //     }
+
+  //     if ({authenticated: false}) {
+  //       return (
+  //         alert("Please Sign Up")
+  //       )
+  //     }
+  // };
+
+  // change this to mirror rating page -- two functions referenced in two if statements inside function
+  //    if parametes reference boolean props value
+
+  // why will only one run?
+
   render() {
     return (
       <div>
         <h1>sign up here</h1>
-        <InputField labelName="Email" inputType="email" />
-        <InputField labelName="Password" inputType="password" />
+        <button onClick={ this.handleAuth }>Sign Up</button>
       </div>
-    );
+    )
   }
 }
+
+{/* <button onClick={() => this.setState({ renderNewRating: true })}>
+            {' '}
+            Rate this campsite{' '}
+          </button> */}
 
 // 1. Create a signup handler function which will fire when a button "Sign up" is clicked.
 // 2. When the handler function runs, it should set a state property of "authenticated" to true.
