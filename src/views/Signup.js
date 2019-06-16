@@ -5,32 +5,33 @@ export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: false
+      authenticated: false,
+      name: 'Bob'
     };
+
+    this.handleAuth = this.handleAuth.bind(this);
+    this.sortFunction = this.sortFunction.bind(this);
   }
 
-  handleAuth(authenticated) {
+  handleAuth() {
     this.setState({
       authenticated: true
     });
   }
 
-  // cannot get this to actually change state - get errors 
+  // cannot get this to actually change state - get errors
 
+  sortFunction() {
+    const { authenticated, name } = this.state;
 
-  // sortFunction( ) {
-  //     if ({authenticated: true}) {
-  //       return (
-  //         alert("You are already signed up!")
-  //       );
-  //     }
+    if (authenticated) {
+      return <div>You are already signed up!</div>;
+    }
 
-  //     if ({authenticated: false}) {
-  //       return (
-  //         alert("Please Sign Up")
-  //       )
-  //     }
-  // };
+    if (!authenticated) {
+      return <div>Please sign up</div>;
+    }
+  }
 
   // change this to mirror rating page -- two functions referenced in two if statements inside function
   //    if parametes reference boolean props value
@@ -40,17 +41,20 @@ export default class Signup extends Component {
   render() {
     return (
       <div>
+        {this.sortFunction()}
         <h1>sign up here</h1>
-        <button onClick={ this.handleAuth }>Sign Up</button>
+        <button onClick={this.handleAuth}>Sign Up</button>
       </div>
-    )
+    );
   }
 }
 
-{/* <button onClick={() => this.setState({ renderNewRating: true })}>
+{
+  /* <button onClick={() => this.setState({ renderNewRating: true })}>
             {' '}
             Rate this campsite{' '}
-          </button> */}
+          </button> */
+}
 
 // 1. Create a signup handler function which will fire when a button "Sign up" is clicked.
 // 2. When the handler function runs, it should set a state property of "authenticated" to true.

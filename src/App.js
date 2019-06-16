@@ -10,6 +10,7 @@ import Login from './views/Login';
 import NewPost from './views/NewPost';
 import EditPost from './views/EditPost';
 import Profile from './views/Profile';
+import DataSandbox from './views/DataSandbox';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
           <li>
             <Link to="/Profile">Profile</Link>
           </li>
+          <li>
+            <Link to="/database">Data Store</Link>
+          </li>
         </ul>
 
         <Route path="/" exact component={Home} />
@@ -46,6 +50,7 @@ function App() {
         <Route path="/newpost" exact component={NewPost} />
         <Route path="/editpost" exact component={EditPost} />
         <Route path="/profile" exact component={Profile} />
+        <Route path="/database" exact component={DataSandbox} />
       </div>
     </Router>
   );
