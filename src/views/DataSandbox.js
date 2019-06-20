@@ -36,26 +36,26 @@ export default class Login extends Component {
       });
   }
 
-  addCampsite() {
-    const { name, state, numberOfSpots } = this.state;
+  // addCampsite() {
+  //   const { name, state, numberOfSpots } = this.state;
 
-    // TODO: Save this campsite to the database..
-    const updates = {};
+  //   // TODO: Save this campsite to the database..
+  //   const updates = {};
 
-    const uniqueId = Date.now();
-    updates[`/campsites/${uniqueId}/name`] = name;
-    updates[`/campsites/${uniqueId}/state`] = state;
-    updates[`/campsites/${uniqueId}/spotCount`] = numberOfSpots;
+  //   const uniqueId = Date.now();
+  //   updates[`/campsites/${uniqueId}/name`] = name;
+  //   updates[`/campsites/${uniqueId}/state`] = state;
+  //   updates[`/campsites/${uniqueId}/spotCount`] = numberOfSpots;
 
-    firebase
-      .database()
-      .ref()
-      .update(updates)
-      .then(() => {
-        // Make a call to Firebase to get new records..
-        this.getCampsites();
-      });
-  }
+  //   firebase
+  //     .database()
+  //     .ref()
+  //     .update(updates)
+  //     .then(() => {
+  //       // Make a call to Firebase to get new records..
+  //       this.getCampsites();
+  //     });
+  // }
 
   renderCampsites() {
     const { campsites } = this.state;
@@ -66,15 +66,15 @@ export default class Login extends Component {
       campsites &&
       Object.keys(campsites).map(c => {
         const campsite = campsites[c];
-        console.log('SINGLE CAMPSITE', campsite);
+        // console.log('SINGLE CAMPSITE', campsite);
 
         return (
           <div>
             <h3>{campsite.name}</h3>
             <p>{campsite.state}</p>
-            {campsite.spotCount ? (
+            {/* {campsite.spotCount ? (
               <p># of spots: {campsite.spotCount}</p>
-            ) : null}
+            ) : null} */}
 
             <hr />
           </div>

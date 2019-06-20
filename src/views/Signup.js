@@ -13,7 +13,7 @@ export default class Signup extends Component {
 
     this.state = {
       // authenticated: false,
-      users: [],
+      // users: [],
       name: '',
       age: ''
     };
@@ -63,7 +63,7 @@ export default class Signup extends Component {
       users &&
       Object.keys(users).map(c => {
         const user = users[c];
-        console.log('SINGLE USER', user);
+        console.log('SINGLE USER', user)
 
         return (
           <div>
@@ -80,9 +80,9 @@ export default class Signup extends Component {
   render() {
     return (
        <div>
+         <h1>sign up here</h1>
          {this.renderUser()}
-        {/* <h1>sign up here</h1>
-        <button onClick={this.handleAuth}>Sign Up</button> */}
+       {/* <button onClick={this.handleAuth}>Sign Up</button> */}
       </div> 
     );
   }
@@ -107,3 +107,35 @@ export default class Signup extends Component {
 // 1. Create a signup handler function which will fire when a button "Sign up" is clicked.
 // 2. When the handler function runs, it should set a state property of "authenticated" to true.
 // 3. If authenticated is true, don't display the form, show a message that says "you are signed up!"
+
+
+
+
+// addUser() {
+//   const {name, age} = this.state;
+
+//   const updates = {};
+
+//   const uniqueId = Date.now();
+//   updates['/users/${uniqueId}/name'] = name;
+//   updates['/users/${uniqueId}/age'] = age;
+
+//   firebase 
+//     .database()
+//     ref()
+//     .update(updates)
+//     .then(() => {
+//       this.getUser();
+//     });
+// }
+
+// <label>Add User</label>
+// <input 
+//   onChange={e => this.setState({ name: e.target.value })}
+//   placeholder="name"
+// />
+// <input
+//   onChange={e => this.setState({ age: e.target.value })}
+//   placeholder="age"
+// />
+// <button onClick={() => this.addUser()}>Add User</button>
