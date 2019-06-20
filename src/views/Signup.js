@@ -1,60 +1,108 @@
 import React, { Component } from 'react';
 import InputField from '../components/InputField';
+import firebase from '../datastore';
 
 export default class Signup extends Component {
   constructor(props) {
     super(props);
+
+    // this.handleAuth = this.handleAuth.bind(this);
+    // this.sortFunction = this.sortFunction.bind(this);
+
+    this.getUsers = this.getUsers.bind(this);
+
     this.state = {
-      authenticated: false,
-      name: 'Bob'
+      // authenticated: false,
+      users: [],
+      name: '',
+      age: ''
     };
-
-    this.handleAuth = this.handleAuth.bind(this);
-    this.sortFunction = this.sortFunction.bind(this);
   }
 
-  handleAuth() {
-    this.setState({
-      authenticated: true
-    });
+  // handleAuth() {
+  //   this.setState({
+  //     authenticated: true
+  //   });
+  // }
+
+  // sortFunction() {
+  //   const { authenticated, name } = this.state;
+
+  //   if (authenticated) {
+  //     return <div>You are already signed up!</div>;
+  //   }
+
+  //   if (!authenticated) {
+  //     return <div>Please sign up</div>;
+  //   }
+  // }
+
+  componentDidMount() {
+    this.getUsers();
   }
 
-  // cannot get this to actually change state - get errors
-
-  sortFunction() {
-    const { authenticated, name } = this.state;
-
-    if (authenticated) {
-      return <div>You are already signed up!</div>;
-    }
-
-    if (!authenticated) {
-      return <div>Please sign up</div>;
-    }
+  getUsers() {
+    firebase
+      .database()
+      .ref('/users')
+      .once('value')
+      .then(snapshot => {
+        // console.log('user', snapshot.val());
+        this.setState({
+          users: snapshot.val()
+        });
+      });
   }
 
-  // change this to mirror rating page -- two functions referenced in two if statements inside function
-  //    if parametes reference boolean props value
+  renderUser() {
+    const { users } = this.state;
 
-  // why will only one run?
+    let userEls;
+
+    userEls =
+      users &&
+      Object.keys(users).map(c => {
+        const user = users[c];
+        console.log('SINGLE USER', user);
+
+        return (
+          <div>
+            <h3>{users.name}</h3>
+            <p>{users.age}</p>
+            
+          </div>
+        );
+      });
+
+    return userEls;
+  }
 
   render() {
     return (
-      <div>
-        {this.sortFunction()}
-        <h1>sign up here</h1>
-        <button onClick={this.handleAuth}>Sign Up</button>
-      </div>
+       <div>
+         {this.renderUser()}
+        {/* <h1>sign up here</h1>
+        <button onClick={this.handleAuth}>Sign Up</button> */}
+      </div> 
     );
   }
 }
 
-{
+
+
+
+
+
+
+
+
+
+// {
   /* <button onClick={() => this.setState({ renderNewRating: true })}>
             {' '}
             Rate this campsite{' '}
           </button> */
-}
+// }
 
 // 1. Create a signup handler function which will fire when a button "Sign up" is clicked.
 // 2. When the handler function runs, it should set a state property of "authenticated" to true.
