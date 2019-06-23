@@ -10,10 +10,15 @@ export default class Signup extends Component {
     // this.sortFunction = this.sortFunction.bind(this);
 
     this.getUsers = this.getUsers.bind(this);
+    this.renderUser = this.renderUser.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
 
     this.state = {
       // authenticated: false,
-      // users: [],
+      name: null,
+      email: null,
+      password: null,
+      users: [],
       name: '',
       age: ''
     };
@@ -56,6 +61,7 @@ export default class Signup extends Component {
 
   renderUser() {
     const { users } = this.state;
+    console.log('users', users);
 
     let userEls;
 
@@ -63,42 +69,84 @@ export default class Signup extends Component {
       users &&
       Object.keys(users).map(c => {
         const user = users[c];
-        console.log('SINGLE USER', user)
+        console.log('SINGLE USER', user);
 
         return (
-          <div>
-            <h3>{users.name}</h3>
-            <p>{users.age}</p>
-            
+          <div key={c}>
+            <h3>{user.name}</h3>
+            <p>{user.age}</p>
           </div>
         );
       });
 
+    console.log('user els', userEls);
+
     return userEls;
+  }
+
+  
+
+  handleSignup() {
+    const { email, password, name } = this.state;
+
+    // TODO: VAlidate form fields aka check for empties
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(u => {
+        console.log('the new user!', u.user.uid);
+
+        // Now want to save that user to the database..
+
+        // store the email and name
+
+        const userUpdates = {};
+        userUpdates[`users/${u.user.uid}/name`] = name;
+        userUpdates[`users/${u.user.uid}/email`] = email;
+
+        firebase
+          .database()
+          .ref()
+          .update(userUpdates)
+          .then(() => {
+            this.getUsers();
+          });
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+        // ..
+      });
   }
 
   render() {
     return (
-       <div>
-         <h1>sign up here</h1>
-         {this.renderUser()}
-       {/* <button onClick={this.handleAuth}>Sign Up</button> */}
-      </div> 
+      <div>
+        <h1>sign up here</h1>
+
+        <label>name</label>
+        <input onChange={e => this.setState({ name: e.target.value })} />
+        <label>email</label>
+        <input onChange={e => this.setState({ email: e.target.value })} />
+        <label>password</label>
+        <input
+          type="password"
+          onChange={e => this.setState({ password: e.target.value })}
+        />
+        <button onClick={() => this.handleSignup()}>Sign me up</button>
+
+        {this.renderUser()}
+        {/* <button onClick={this.handleAuth}>Sign Up</button> */}
+      </div>
     );
   }
 }
 
-
-
-
-
-
-
-
-
-
 // {
-  /* <button onClick={() => this.setState({ renderNewRating: true })}>
+/* <button onClick={() => this.setState({ renderNewRating: true })}>
             {' '}
             Rate this campsite{' '}
           </button> */
@@ -107,9 +155,6 @@ export default class Signup extends Component {
 // 1. Create a signup handler function which will fire when a button "Sign up" is clicked.
 // 2. When the handler function runs, it should set a state property of "authenticated" to true.
 // 3. If authenticated is true, don't display the form, show a message that says "you are signed up!"
-
-
-
 
 // addUser() {
 //   const {name, age} = this.state;
@@ -120,7 +165,7 @@ export default class Signup extends Component {
 //   updates['/users/${uniqueId}/name'] = name;
 //   updates['/users/${uniqueId}/age'] = age;
 
-//   firebase 
+//   firebase
 //     .database()
 //     ref()
 //     .update(updates)
@@ -130,7 +175,7 @@ export default class Signup extends Component {
 // }
 
 // <label>Add User</label>
-// <input 
+// <input
 //   onChange={e => this.setState({ name: e.target.value })}
 //   placeholder="name"
 // />
