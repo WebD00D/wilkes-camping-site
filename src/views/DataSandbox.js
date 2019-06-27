@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import firebase from '../datastore';
+import firebase from "../datastore";
 
-import InputField from '../components/InputField';
+import InputField from "../components/InputField";
 
 export default class Login extends Component {
   constructor(props) {
@@ -14,8 +14,8 @@ export default class Login extends Component {
     this.state = {
       campsites: [],
       numberOfSpots: 0,
-      name: '',
-      state: ''
+      name: "",
+      state: ""
     };
   }
 
@@ -26,36 +26,36 @@ export default class Login extends Component {
   getCampsites() {
     firebase
       .database()
-      .ref('/campsites')
-      .once('value')
+      .ref("/campsites")
+      .once("value")
       .then(snapshot => {
-        console.log('campsites', snapshot.val());
+        console.log("campsites", snapshot.val());
         this.setState({
           campsites: snapshot.val()
         });
       });
   }
 
-  // addCampsite() {
-  //   const { name, state, numberOfSpots } = this.state;
+  addCampsite() {
+    const { name, state, numberOfSpots } = this.state;
 
-  //   // TODO: Save this campsite to the database..
-  //   const updates = {};
+    // TODO: Save this campsite to the database..
+    const updates = {};
 
-  //   const uniqueId = Date.now();
-  //   updates[`/campsites/${uniqueId}/name`] = name;
-  //   updates[`/campsites/${uniqueId}/state`] = state;
-  //   updates[`/campsites/${uniqueId}/spotCount`] = numberOfSpots;
+    const uniqueId = Date.now();
+    updates[`/campsites/${uniqueId}/name`] = name;
+    updates[`/campsites/${uniqueId}/state`] = state;
+    updates[`/campsites/${uniqueId}/spotCount`] = numberOfSpots;
 
-  //   firebase
-  //     .database()
-  //     .ref()
-  //     .update(updates)
-  //     .then(() => {
-  //       // Make a call to Firebase to get new records..
-  //       this.getCampsites();
-  //     });
-  // }
+    firebase
+      .database()
+      .ref()
+      .update(updates)
+      .then(() => {
+        // Make a call to Firebase to get new records..
+        this.getCampsites();
+      });
+  }
 
   renderCampsites() {
     const { campsites } = this.state;

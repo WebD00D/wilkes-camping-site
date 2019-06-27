@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import InputField from '../components/InputField';
-import firebase from '../datastore';
+import React, { Component } from "react";
+import InputField from "../components/InputField";
+import firebase from "../datastore";
+import { validate } from "@babel/types";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class Signup extends Component {
     // this.sortFunction = this.sortFunction.bind(this);
 
     this.getUsers = this.getUsers.bind(this);
+    this.addUser = this.addUser.bind(this);
     this.renderUser = this.renderUser.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
 
@@ -19,8 +21,7 @@ export default class Signup extends Component {
       email: null,
       password: null,
       users: [],
-      name: '',
-      age: ''
+      age: ""
     };
   }
 
@@ -49,8 +50,8 @@ export default class Signup extends Component {
   getUsers() {
     firebase
       .database()
-      .ref('/users')
-      .once('value')
+      .ref("/users")
+      .once("value")
       .then(snapshot => {
         // console.log('user', snapshot.val());
         this.setState({
@@ -61,7 +62,7 @@ export default class Signup extends Component {
 
   renderUser() {
     const { users } = this.state;
-    console.log('users', users);
+    console.log("users", users);
 
     let userEls;
 
@@ -69,7 +70,7 @@ export default class Signup extends Component {
       users &&
       Object.keys(users).map(c => {
         const user = users[c];
-        console.log('SINGLE USER', user);
+        console.log("SINGLE USER", user);
 
         return (
           <div key={c}>
@@ -79,23 +80,48 @@ export default class Signup extends Component {
         );
       });
 
-    console.log('user els', userEls);
+    console.log("user els", userEls);
 
     return userEls;
   }
 
-  
+  addUser() {
+    const { name, age } = this.state;
+
+    const updates = {};
+
+    const uniqueId = Date.now();
+    updates["/users/${uniqueId}/name"] = name;
+    updates["/users/${uniqueId}/age"] = age;
+
+    firebase
+      .database()
+      .ref()
+      .update(updates)
+      .then(() => {
+        this.getUser();
+      });
+  }
 
   handleSignup() {
     const { email, password, name } = this.state;
+    const errors = validate(this.state.email, this.state.password);
 
     // TODO: VAlidate form fields aka check for empties
+
+    validate((email, password, name) => {
+      return {
+        email: email.length === 0,
+        password: password.length === 0,
+        name: name.length === 0
+      };
+    });
 
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(u => {
-        console.log('the new user!', u.user.uid);
+        console.log("the new user!", u.user.uid);
 
         // Now want to save that user to the database..
 
@@ -137,6 +163,16 @@ export default class Signup extends Component {
           onChange={e => this.setState({ password: e.target.value })}
         />
         <button onClick={() => this.handleSignup()}>Sign me up</button>
+        <label>Add User</label>
+        <input
+          onChange={e => this.setState({ name: e.target.value })}
+          placeholder="name"
+        />
+        <input
+          onChange={e => this.setState({ age: e.target.value })}
+          placeholder="age"
+        />
+        <button onClick={() => this.addUser()}>Add User</button>
 
         {this.renderUser()}
         {/* <button onClick={this.handleAuth}>Sign Up</button> */}
@@ -155,32 +191,3 @@ export default class Signup extends Component {
 // 1. Create a signup handler function which will fire when a button "Sign up" is clicked.
 // 2. When the handler function runs, it should set a state property of "authenticated" to true.
 // 3. If authenticated is true, don't display the form, show a message that says "you are signed up!"
-
-// addUser() {
-//   const {name, age} = this.state;
-
-//   const updates = {};
-
-//   const uniqueId = Date.now();
-//   updates['/users/${uniqueId}/name'] = name;
-//   updates['/users/${uniqueId}/age'] = age;
-
-//   firebase
-//     .database()
-//     ref()
-//     .update(updates)
-//     .then(() => {
-//       this.getUser();
-//     });
-// }
-
-// <label>Add User</label>
-// <input
-//   onChange={e => this.setState({ name: e.target.value })}
-//   placeholder="name"
-// />
-// <input
-//   onChange={e => this.setState({ age: e.target.value })}
-//   placeholder="age"
-// />
-// <button onClick={() => this.addUser()}>Add User</button>
