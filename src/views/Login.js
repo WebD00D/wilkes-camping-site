@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import InputField from '../components/InputField';
 
+import { VALIDATE_FIELDS } from '../utils/index'
+
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -9,6 +11,7 @@ export default class Login extends Component {
     }
 
     render(){
+
         return (
             <div>
                 <h1>Log In</h1>
