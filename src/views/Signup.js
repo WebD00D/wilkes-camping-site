@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import InputField from '../components/InputField';
-import firebase from '../datastore';
+import React, { Component } from "react";
+import InputField from "../components/InputField";
+import firebase from "../datastore";
 
-import { VALIDATE_FIELDS, SAY_MY_NAME } from '../utils/index';
+import { VALIDATE_FIELDS, SAY_MY_NAME } from "../utils/index";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class Signup extends Component {
       email: null,
       password: null,
       users: [],
-      age: ''
+      age: ""
     };
   }
 
@@ -51,8 +51,8 @@ export default class Signup extends Component {
   getUsers() {
     firebase
       .database()
-      .ref('/users')
-      .once('value')
+      .ref("/users")
+      .once("value")
       .then(snapshot => {
         // console.log('user', snapshot.val());
         this.setState({
@@ -63,7 +63,7 @@ export default class Signup extends Component {
 
   renderUser() {
     const { users } = this.state;
-    console.log('users', users);
+    console.log("users", users);
 
     let userEls;
 
@@ -71,7 +71,7 @@ export default class Signup extends Component {
       users &&
       Object.keys(users).map(c => {
         const user = users[c];
-        console.log('SINGLE USER', user);
+        console.log("SINGLE USER", user);
 
         return (
           <div key={c}>
@@ -81,7 +81,7 @@ export default class Signup extends Component {
         );
       });
 
-    console.log('user els', userEls);
+    console.log("user els", userEls);
 
     return userEls;
   }
@@ -113,9 +113,9 @@ export default class Signup extends Component {
       { email: email },
       { password: password },
       { name: name },
-      { age: -1}
+      { age: -1 }
     ]);
-    console.log('validated fields', validatedFields);
+    console.log("validated fields", validatedFields);
 
     return;
 
@@ -123,7 +123,7 @@ export default class Signup extends Component {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(u => {
-        console.log('the new user!', u.user.uid);
+        console.log("the new user!", u.user.uid);
 
         // Now want to save that user to the database..
 

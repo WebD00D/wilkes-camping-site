@@ -1,16 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
-import Home from './views/Home';
-import Campsite from './views/Campsite';
-import Signup from './views/Signup';
-import Login from './views/Login';
-import NewPost from './views/NewPost';
-import EditPost from './views/EditPost';
-import Profile from './views/Profile';
-import DataSandbox from './views/DataSandbox';
+import Home from "./views/Home";
+import Campsite from "./views/Campsite";
+import Signup from "./views/Signup";
+import Login from "./views/Login";
+import NewPost from "./views/NewPost";
+import EditPost from "./views/EditPost";
+import Profile from "./views/Profile";
+import DataSandbox from "./views/DataSandbox";
+import Numbers from "./views/Numbers";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           <li>
             <Link to="/database">Data Store</Link>
           </li>
+          <li>
+            <Link to="/Numbers">Numbers</Link>
+          </li>
         </ul>
 
         <Route path="/" exact component={Home} />
@@ -51,6 +55,7 @@ function App() {
         <Route path="/editpost" exact component={EditPost} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/database" exact component={DataSandbox} />
+        <Route path="/numbers" exact component={Numbers} />
       </div>
     </Router>
   );

@@ -6,7 +6,8 @@ export const VALIDATE_FIELDS = fieldsArray => {
     const k = Object.keys(singleField);
     const keyName = k[0];
     const keyValue = singleField[keyName];
-    validationObject[keyName] = keyValue.length > 0 || typeof keyValue === 'number' && keyValue > 0 
+    validationObject[keyName] =
+      keyValue.length > 0 || (typeof keyValue === "number" && keyValue > 0);
   });
 
   return validationObject;
@@ -22,4 +23,8 @@ export const VALIDATE_SIGNUP_FIELDS = (email, password, name) => {
 
 export const sayMyName = name => {
   return `my name is ${name}`;
+};
+
+export const MULT_NUMBER = number => {
+  return `${number * 7}`;
 };
