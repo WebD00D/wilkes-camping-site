@@ -56,8 +56,7 @@ export default class Numbers extends Component {
   clickCounter() {
     const { clicksPerSession } = this.state;
 
-    let clicksOnPage;
-    clicksOnPage = this.setState({ clicksPerSession: clicksPerSession + 1 });
+    this.setState({ clicksPerSession: clicksPerSession + 1 });
     console.log("this session", clicksPerSession);
     return clicksPerSession;
   }

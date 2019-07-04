@@ -108,7 +108,6 @@ export default class Signup extends Component {
     const { email, password, name } = this.state;
 
     // TODO: VAlidate form fields aka check for empties
-
     const validatedFields = VALIDATE_FIELDS([
       { email: email },
       { password: password },
@@ -117,7 +116,6 @@ export default class Signup extends Component {
     ]);
     console.log("validated fields", validatedFields);
 
-    return;
 
     firebase
       .auth()
@@ -154,7 +152,6 @@ export default class Signup extends Component {
     return (
       <div>
         <h1>sign up here</h1>
-
         <label>name</label>
         <input onChange={e => this.setState({ name: e.target.value })} />
         <label>email</label>
