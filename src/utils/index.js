@@ -7,7 +7,7 @@ export const VALIDATE_FIELDS = fieldsArray => {
     const keyName = k[0];
     const keyValue = singleField[keyName];
     validationObject[keyName] =
-      keyValue.length > 0 || (typeof keyValue === 'number' && keyValue > 0);
+      keyValue.length > 0 || (typeof keyValue === "number" && keyValue > 0);
   });
 
   return validationObject;
@@ -32,7 +32,7 @@ export const MULT_NUMBER = number => {
 export const SET_USER = (uuid, name, email, photo) => {
   // SET LOCAL STORAGE HERE...
 
-  const userId = window.localStorage.getItem('CAMPSITE_uuid');
+  const userId = window.localStorage.getItem("CAMPSITE_uuid");
 
   if (!userId) return false;
 

@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import firebase from "../datastore";
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isAuthenticated: true,
-      profilePhoto: '',
-      userName: ''
+      profilePhoto: "",
+      userName: "",
+      email: "",
+      password: ""
     };
   }
 
   componentDidMount() {
-    const userId = window.localStorage.getItem('CAMPSITE_uuid');
+    const userId = window.localStorage.getItem("CAMPSITE_uuid");
 
     if (!userId) {
       this.setState({
@@ -20,10 +23,27 @@ export default class Dashboard extends Component {
       });
     } else {
       this.setState({
-        profilePhoto: window.localStorage.getItem('CAMPSITE_photo'),
-        userName: window.localStorage.getItem('CAMPSITE_name')
+        profilePhoto: window.localStorage.getItem("CAMPSITE_photo"),
+        userName: window.localStorage.getItem("CAMPSITE_name")
       });
     }
+  }
+
+  signOutUser() {
+    const { email, password } = this.state;
+
+    firebase
+      .auth()
+      .signOut(email, password)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch(function(error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+        // An error happened.
+      });
   }
 
   render() {
@@ -36,6 +56,7 @@ export default class Dashboard extends Component {
         <h1>Dashboard</h1>
         <h4>{this.state.userName}</h4>
         <img src={this.state.profilePhoto} />
+        <button onClick={() => this.signOutUser()}>Sign Out</button>
       </div>
     );
   }
