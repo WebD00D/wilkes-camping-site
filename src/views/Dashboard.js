@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import firebase from '../datastore';
 
 export default class Dashboard extends Component {
@@ -76,6 +76,7 @@ export default class Dashboard extends Component {
         <h4>{this.state.userName}</h4>
         <img src={this.state.profilePhoto} />
         <div>{this.state.email}</div>
+        <Link to="/NewPost">Add New Campsite</Link>
         <button onClick={() => this.signOutUser()}>Sign Out</button>
       </div>
     );

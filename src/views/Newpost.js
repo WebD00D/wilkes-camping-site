@@ -1,17 +1,52 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import InputField from '../components/InputField';
 import GenericButton from '../components/GenericButton';
 
 export default class NewPost extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isAuthenticated: true,
+      profilePhoto: null,
+      email: null,
+      userId: null
+    };
+  }
+
+  componentDidMount() {
+    const userId = window.localStorage.getItem('CAMPSITE_uuid');
+    const { email, name, profilePhoto } = this.state;
+    // const profilePhoto: this.state;
+
+    console.log('user id', userId);
+
+    if (!userId) {
+      this.setState({
+        isAuthenticated: false
+      });
+    } else {
+      // console.log("photo", this.profilePhoto);
+
+      this.setState({
+        userId,
+        profilePhoto: window.localStorage.getItem('CAMPSITE_photo') || '',
+        email: window.localStorage.getItem('CAMPSITE_email') || ''
+      });
+    }
+
+    return;
   }
 
   render() {
+    if (!this.state.isAuthenticated) {
+      return <Redirect to="/login" />;
+    }
+
     return (
       <div>
         <h1>Add A Campsite</h1>
+        <div>{this.state.userId}</div>
         <InputField labelName="Campsite Name" inputType="text" />
         <InputField labelName="Description" inputType="text" />
         <h2>Star Rating</h2>
