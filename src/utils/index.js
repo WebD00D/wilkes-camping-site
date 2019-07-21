@@ -31,6 +31,7 @@ export const MULT_NUMBER = number => {
 
 export const SET_USER = (uuid, name, email, photo) => {
   // SET LOCAL STORAGE HERE...
+  window.localStorage.setItem("userID", userId);
 
   const userId = window.localStorage.getItem("CAMPSITE_uuid");
 

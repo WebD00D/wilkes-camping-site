@@ -16,8 +16,10 @@ export default class Login extends Component {
     this.state = {
       user: {},
       shouldRedirect: false,
+      name: "",
       email: "",
-      password: ""
+      password: "",
+      profilePhoto: ""
     };
   }
 
@@ -26,7 +28,7 @@ export default class Login extends Component {
       // data now has all the user data we want..
 
       this.getUsersCampsites(user.id).then(campsites => {
-        console.log("campsites", campsites);
+        // console.log("campsites", campsites);
 
         // THIS IS A CODE SNIFF
         this.doSomething().then(response => {});
@@ -36,8 +38,8 @@ export default class Login extends Component {
 
   signInUser() {
     // const userId = `7s9YssJiJ1QAkDYy6evfjZYC1ah1`; // Firebase user..
-    const { email, password } = this.state;
-    const userId = null;
+    const { profilePhoto, email, password } = this.state;
+    const userId = this.state.user;
 
     /// ------ FOR YOU TO FIX ---- ///
 
@@ -45,41 +47,65 @@ export default class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(u => {
+        console.log("user", u);
+        // console.log("email", { profilePhoto });
+
         // SIGN IN STUFF SHOULD HAPPEN HERE...
+
+        const { email, name, profilePhoto } = this.state;
+
+        window.localStorage.setItem("CAMPSITE_uuid", userId);
+        window.localStorage.setItem("CAMPSITE_name", this.state.name);
+        window.localStorage.setItem("CAMPSITE_email", this.state.email);
+        window.localStorage.setItem("CAMPSITE_photo", this.state.profilePhoto);
+
+        this.setState({
+          profilePhoto: window.localStorage.getItem("CAMPSITE_profilePhoto"),
+          email: window.localStorage.getItem("CAMPSITE_email"),
+          name: window.localStorage.getItem("CAMPSITE_name"),
+          shouldRedirect: true
+        });
+
+        // console.log("should redirect state?", this.state.shouldRedirect);
+
+        // console.log("photo", profilePhoto);
+
+        // window.localStorage.getItem("CAMPSITE_profilePhoto");
+        // window.localStorage.getItem("CAMPSITE_name");
       })
+
       .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        // ...
+        console.log(errorCode, errorMessage);
       });
   }
-
-  // console.log("user id", userId);
+  //   console.log("user id", userId);
 
   // 1. Take user id, and grab info from our "users" endpoint..
 
-  // firebase
-  //   .database()
-  //   .ref(`/users/${userId}`)
-  //   .once("value")
-  //   .then(snapshot => {
-  //     console.log("authenticated user", snapshot.val());
+  //   firebase
+  //     .database()
+  //     .ref(`/users/${userId}`)
+  //     .once("value")
+  //     .then(snapshot => {
+  //       console.log("authenticated user", snapshot.val());
 
-  //     const { email, name, profilePhoto } = snapshot.val();
+  //       const { email, name, profilePhoto } = snapshot.val();
 
-  //     window.localStorage.setItem("CAMPSITE_uuid", userId);
-  //     window.localStorage.setItem("CAMPSITE_name", name);
-  //     window.localStorage.setItem("CAMPSITE_email", email);
-  //     window.localStorage.setItem("CAMPSITE_photo", profilePhoto);
+  //       window.localStorage.setItem("CAMPSITE_uuid", userId);
+  //       window.localStorage.setItem("CAMPSITE_name", name);
+  //       window.localStorage.setItem("CAMPSITE_email", email);
+  //       window.localStorage.setItem("CAMPSITE_photo", profilePhoto);
 
-  //     this.setState({
-  //       shouldRedirect: true
+  //       this.setState({
+  //         shouldRedirect: true
+  //       });
+
+  //       //  window.localStorage.getItem()
+  //       //  window.localStorage.removeItem()
   //     });
-
-  //     //  window.localStorage.getItem()
-  //     //  window.localStorage.removeItem()
-  //   });
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });

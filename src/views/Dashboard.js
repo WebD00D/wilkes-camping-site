@@ -5,6 +5,10 @@ import firebase from "../datastore";
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
+
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.signOutUser = this.signOutUser.bind(this);
+
     this.state = {
       isAuthenticated: true,
       profilePhoto: "",
@@ -16,17 +20,26 @@ export default class Dashboard extends Component {
 
   componentDidMount() {
     const userId = window.localStorage.getItem("CAMPSITE_uuid");
+    const { email, name, profilePhoto } = this.state;
+    // const profilePhoto: this.state;
+
+    console.log("user id", userId);
 
     if (!userId) {
       this.setState({
         isAuthenticated: false
       });
     } else {
+      // console.log("photo", this.profilePhoto);
       this.setState({
-        profilePhoto: window.localStorage.getItem("CAMPSITE_photo"),
-        userName: window.localStorage.getItem("CAMPSITE_name")
+        profilePhoto: window.localStorage.getItem("CAMPSITE_profilePhoto"),
+        email: window.localStorage.getItem("CAMPSITE_email")
       });
+      console.log("email", this.email);
+      console.log("photo", this.profilePhoto);
     }
+
+    return;
   }
 
   signOutUser() {
@@ -37,11 +50,14 @@ export default class Dashboard extends Component {
       .signOut(email, password)
       .then(() => {
         // Sign-out successful.
+        this.setState({
+          isAuthenticated: false
+        });
       })
       .catch(function(error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error(errorCode, errorMessage);
+        console.error("error", errorCode, errorMessage);
         // An error happened.
       });
   }
@@ -50,6 +66,9 @@ export default class Dashboard extends Component {
     if (!this.state.isAuthenticated) {
       return <Redirect to="/login" />;
     }
+
+    // this.componentDidMount();
+    // causes update depth error
 
     return (
       <div>
