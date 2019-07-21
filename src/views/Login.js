@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import InputField from "../components/InputField";
-import firebase from "../datastore";
+import InputField from '../components/InputField';
+import firebase from '../datastore';
 
-import { VALIDATE_FIELDS } from "../utils/index";
+import { VALIDATE_FIELDS } from '../utils/index';
 
 export default class Login extends Component {
   constructor(props) {
@@ -16,10 +16,9 @@ export default class Login extends Component {
     this.state = {
       user: {},
       shouldRedirect: false,
-      name: "",
-      email: "",
-      password: "",
-      profilePhoto: ""
+
+      email: '',
+      password: ''
     };
   }
 
@@ -47,24 +46,35 @@ export default class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(u => {
-        console.log("user", u);
-        // console.log("email", { profilePhoto });
+        console.log('user', u);
 
-        // SIGN IN STUFF SHOULD HAPPEN HERE...
+        // Step 1. Look up the user by the userId in our database...
 
-        const { email, name, profilePhoto } = this.state;
+        firebase
+          .database()
+          .ref(`/users/${u.user.uid}`)
+          .once('value')
+          .then(snapshot => {
+            console.log('snapshot from user', snapshot.val());
 
-        window.localStorage.setItem("CAMPSITE_uuid", userId);
-        window.localStorage.setItem("CAMPSITE_name", this.state.name);
-        window.localStorage.setItem("CAMPSITE_email", this.state.email);
-        window.localStorage.setItem("CAMPSITE_photo", this.state.profilePhoto);
+            const { email, name, profilePhoto } = snapshot.val();
 
-        this.setState({
-          profilePhoto: window.localStorage.getItem("CAMPSITE_profilePhoto"),
-          email: window.localStorage.getItem("CAMPSITE_email"),
-          name: window.localStorage.getItem("CAMPSITE_name"),
-          shouldRedirect: true
-        });
+            window.localStorage.setItem('CAMPSITE_uuid', u.user.uid);
+            window.localStorage.setItem('CAMPSITE_name', name);
+            window.localStorage.setItem('CAMPSITE_email', email);
+            window.localStorage.setItem('CAMPSITE_photo', profilePhoto);
+
+            this.setState({
+              shouldRedirect: true
+            });
+          });
+
+        // this.setState({
+        //   profilePhoto: window.localStorage.getItem("CAMPSITE_profilePhoto"),
+        //   email: window.localStorage.getItem("CAMPSITE_email"),
+        //   name: window.localStorage.getItem("CAMPSITE_name"),
+        //   shouldRedirect: true
+        // });
 
         // console.log("should redirect state?", this.state.shouldRedirect);
 

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import firebase from "../datastore";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import firebase from '../datastore';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -11,19 +11,19 @@ export default class Dashboard extends Component {
 
     this.state = {
       isAuthenticated: true,
-      profilePhoto: "",
-      userName: "",
-      email: "",
-      password: ""
+      profilePhoto: '',
+      userName: '',
+      email: '',
+      password: ''
     };
   }
 
   componentDidMount() {
-    const userId = window.localStorage.getItem("CAMPSITE_uuid");
+    const userId = window.localStorage.getItem('CAMPSITE_uuid');
     const { email, name, profilePhoto } = this.state;
     // const profilePhoto: this.state;
 
-    console.log("user id", userId);
+    console.log('user id', userId);
 
     if (!userId) {
       this.setState({
@@ -31,25 +31,25 @@ export default class Dashboard extends Component {
       });
     } else {
       // console.log("photo", this.profilePhoto);
+
       this.setState({
-        profilePhoto: window.localStorage.getItem("CAMPSITE_profilePhoto"),
-        email: window.localStorage.getItem("CAMPSITE_email")
+        profilePhoto: window.localStorage.getItem('CAMPSITE_photo') || '',
+        email: window.localStorage.getItem('CAMPSITE_email') || ''
       });
-      console.log("email", this.email);
-      console.log("photo", this.profilePhoto);
     }
 
     return;
   }
 
   signOutUser() {
-    const { email, password } = this.state;
-
     firebase
       .auth()
-      .signOut(email, password)
+      .signOut()
       .then(() => {
         // Sign-out successful.
+
+        // NOTE: Clear the local storage items..
+
         this.setState({
           isAuthenticated: false
         });
@@ -57,7 +57,7 @@ export default class Dashboard extends Component {
       .catch(function(error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("error", errorCode, errorMessage);
+        console.error('error', errorCode, errorMessage);
         // An error happened.
       });
   }
@@ -75,6 +75,7 @@ export default class Dashboard extends Component {
         <h1>Dashboard</h1>
         <h4>{this.state.userName}</h4>
         <img src={this.state.profilePhoto} />
+        <div>{this.state.email}</div>
         <button onClick={() => this.signOutUser()}>Sign Out</button>
       </div>
     );
