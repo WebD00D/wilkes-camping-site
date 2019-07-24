@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import InputField from "../components/InputField";
 import firebase from "../datastore";
+import { Redirect, Link } from "react-router-dom";
 
 import { VALIDATE_FIELDS, SAY_MY_NAME } from "../utils/index";
 
@@ -17,7 +18,7 @@ export default class Signup extends Component {
     this.handleSignup = this.handleSignup.bind(this);
 
     this.state = {
-      // authenticated: false,
+      authenticated: false,
       name: null,
       email: null,
       password: null,
@@ -114,8 +115,9 @@ export default class Signup extends Component {
       { name: name },
       { age: -1 }
     ]);
-    console.log("validated fields", validatedFields);
 
+    this.setState({ authenticated: true });
+    console.log("validated fields", validatedFields);
 
     firebase
       .auth()
@@ -149,6 +151,10 @@ export default class Signup extends Component {
   }
 
   render() {
+    // if (this.state.authenticated) {
+    //   return <Redirect to="/dashboard" />;
+    // }
+
     return (
       <div>
         <h1>sign up here</h1>
@@ -162,16 +168,16 @@ export default class Signup extends Component {
           onChange={e => this.setState({ password: e.target.value })}
         />
         <button onClick={() => this.handleSignup()}>Sign me up</button>
-        <label>Add User</label>
-        <input
+        {/* <label>Add User</label> */}
+        {/* <input
           onChange={e => this.setState({ name: e.target.value })}
           placeholder="name"
         />
         <input
           onChange={e => this.setState({ age: e.target.value })}
           placeholder="age"
-        />
-        <button onClick={() => this.addUser()}>Add User</button>
+        /> */}
+        {/* <button onClick={() => this.addUser()}>Add User</button> */}
 
         {this.renderUser()}
         {/* <button onClick={this.handleAuth}>Sign Up</button> */}

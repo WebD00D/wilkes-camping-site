@@ -1,19 +1,19 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
-import Home from './views/Home';
-import Campsite from './views/Campsite';
-import Signup from './views/Signup';
-import Login from './views/Login';
-import NewPost from './views/NewPost';
-import EditPost from './views/EditPost';
-import Profile from './views/Profile';
-import DataSandbox from './views/DataSandbox';
-import Numbers from './views/Numbers';
+import Home from "./views/Home";
+import Campsite from "./views/Campsite";
+import Signup from "./views/Signup";
+import Login from "./views/Login";
+import NewCampsite from "./views/NewCampsite";
+import EditPost from "./views/EditPost";
+import Profile from "./views/Profile";
+import DataSandbox from "./views/DataSandbox";
+import Numbers from "./views/Numbers";
 
-import Dashboard from './views/Dashboard';
+import Dashboard from "./views/Dashboard";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
             <Link to="/login">Log In</Link>
           </li>
           <li>
-            <Link to="/NewPost">New Campsite</Link>
+            <Link to="/NewCampsite">New Campsite</Link>
           </li>
           <li>
             <Link to="/EditPost">Edit Post</Link>
@@ -56,7 +56,7 @@ function App() {
         <Route path="/campsite" exact component={Campsite} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/login" exact component={Login} />
-        <Route path="/newpost" exact component={NewPost} />
+        <Route path="/newcampsite" exact component={NewCampsite} />
         <Route path="/editpost" exact component={EditPost} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/database" exact component={DataSandbox} />
