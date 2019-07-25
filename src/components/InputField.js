@@ -14,6 +14,8 @@ export default class InputField extends Component {
     this.setState({
       value: fieldValue
     });
+
+    this.props.setValue(fieldValue);
   }
 
   signInUser() {

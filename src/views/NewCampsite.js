@@ -1,21 +1,20 @@
-import React, { Component } from "react";
-import InputField from "../components/InputField";
-import GenericButton from "../components/GenericButton";
-import { Redirect, Link } from "react-router-dom";
-import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
-import firebase from "../datastore";
+import React, { Component } from 'react';
+import InputField from '../components/InputField';
+import GenericButton from '../components/GenericButton';
+import { Redirect, Link } from 'react-router-dom';
 
-export default class NewCampsite extends Component {
+import { WithAuth } from '../contexts/AuthContext';
+
+import { GENERATE_ID } from '../utils/index';
+import firebase from '../datastore';
+
+class NewCampsite extends Component {
   constructor(props) {
     super(props);
 
     this.getCamp = this.getCamp.bind(this);
 
     this.state = {
-      isAuthenticated: true,
-      profilePhoto: null,
-      email: null,
-      userId: null,
       campsites: null,
       campName: null,
       numberOfSpots: null,
@@ -23,25 +22,15 @@ export default class NewCampsite extends Component {
     };
   }
 
-  componentDidMount() {
-    const { userId, profilePhoto, email } = CHECK_FOR_CURRENT_USER();
-
-    this.setState({
-      userId,
-      profilePhoto,
-      email,
-      isAuthenticated: userId ? true : false
-    });
-    console.log("userid", userId);
-  }
+  componentDidMount() {}
 
   getCamp() {
     firebase
       .database()
-      .ref("/campsites")
-      .once("value")
+      .ref('/campsites')
+      .once('value')
       .then(snapshot => {
-        console.log("campsites", snapshot.val());
+        console.log('campsites', snapshot.val());
         this.setState({
           campsites: snapshot.val()
         });
@@ -49,25 +38,32 @@ export default class NewCampsite extends Component {
   }
 
   addCamp() {
-    const { campName, state, numberOfSpots } = this.state;
-    const updates = {};
-    updates[`/campsites/name`] = campName;
-    updates[`/campsites/state`] = state;
-    updates[`/campsites/spotCount`] = numberOfSpots;
+    const { campName, state, numberOfSpots, userId } = this.state;
 
-    // hmmmm^
+    const newId = GENERATE_ID();
+
+    const updates = {};
+    updates[`/campsites/${newId}/name`] = campName;
+    updates[`/campsites/${newId}/state`] = state;
+    updates[`/campsites/${newId}/spotCount`] = numberOfSpots;
+    updates[`/campsites/${newId}/associatedUserId`] = userId;
+
+    updates[`/users/${userId}/campsites/${newId}/name`] = campName;
+    updates[`/users/${userId}/campsites/${newId}/campsiteId`] = newId;
 
     firebase
       .database()
       .ref()
       .update(updates)
       .then(() => {
-        this.getCamp();
+        // this.getCamp();
       });
   }
 
   render() {
-    if (!this.state.isAuthenticated) {
+    const { isAuthenticated, getProfilePhoto } = this.props.authContext;
+
+    if (!isAuthenticated) {
       return <Redirect to="/login" />;
     }
 
@@ -75,9 +71,22 @@ export default class NewCampsite extends Component {
       <div>
         <h1>Add A Campsite</h1>
         <div>{this.state.userId}</div>
-        <InputField labelName="Campsite Name" inputType="text" />
-        <InputField labelName="Number of Spots" inputType="text" />
-        <InputField labelName="State" inputType="text" />
+        {getProfilePhoto()}
+        <InputField
+          setValue={val => this.setState({ campName: val })}
+          labelName="Campsite Name"
+          inputType="text"
+        />
+        <InputField
+          setValue={val => this.setState({ numberOfSpots: val })}
+          labelName="Number of Spots"
+          inputType="text"
+        />
+        <InputField
+          setValue={val => this.setState({ state: val })}
+          labelName="State"
+          inputType="text"
+        />
 
         {/* <h2>Star Rating</h2>
         <button>1</button>
@@ -104,3 +113,5 @@ export default class NewCampsite extends Component {
     );
   }
 }
+
+export default WithAuth(NewCampsite);
