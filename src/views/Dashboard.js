@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import firebase from "../datastore";
+import AuthProvider from "../contexts/AuthContext";
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
 
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.signOutUser = this.signOutUser.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
+    // this.signOutUser = this.signOutUser.bind(this);
 
     this.state = {
       isAuthenticated: true,
@@ -37,44 +38,41 @@ export default class Dashboard extends Component {
         email: window.localStorage.getItem("CAMPSITE_email") || ""
       });
     }
-
+    console.log("props", this.email);
     return;
   }
 
-  signOutUser() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        // Sign-out successful.
+  // signOutUser() {
+  //   firebase
+  //     .auth()
+  //     .signOut()
+  //     .then(() => {
+  //       // Sign-out successful.
 
-        // NOTE: Clear the local storage items..
+  //       // NOTE: Clear the local storage items..
 
-        window.localStorage.removeItem("CAMPSITE_photo");
-        window.localStorage.removeItem("CAMPSITE_email");
-        window.localStorage.removeItem("CAMPSITE_name");
-        // do i need to do theses 3 as well??^
-        window.localStorage.removeItem("CAMPSITE_uuid");
+  //       window.localStorage.removeItem("CAMPSITE_photo");
+  //       window.localStorage.removeItem("CAMPSITE_email");
+  //       window.localStorage.removeItem("CAMPSITE_name");
+  //       // do i need to do theses 3 as well??^
+  //       window.localStorage.removeItem("CAMPSITE_uuid");
 
-        this.setState({
-          isAuthenticated: false
-        });
-      })
-      .catch(function(error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error("error", errorCode, errorMessage);
-        // An error happened.
-      });
-  }
+  //       this.setState({
+  //         isAuthenticated: false
+  //       });
+  //     })
+  //     .catch(function(error) {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.error("error", errorCode, errorMessage);
+  //       // An error happened.
+  //     });
+  // }
 
   render() {
     if (!this.state.isAuthenticated) {
       return <Redirect to="/login" />;
     }
-
-    // this.componentDidMount();
-    // causes update depth error
 
     return (
       <div>
@@ -83,7 +81,8 @@ export default class Dashboard extends Component {
         <img src={this.state.profilePhoto} />
         <div>{this.state.email}</div>
         <Link to="/NewPost">Add New Campsite</Link>
-        <button onClick={() => this.signOutUser()}>Sign Out</button>
+        {/* <button onClick={() => this.signOutUser()}>Sign Out</button> */}
+        <button onClick={() => this.props.logOutUser()}>Sign Out</button>
       </div>
     );
   }
