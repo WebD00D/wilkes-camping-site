@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
-import firebase from "../datastore";
-import AuthProvider from "../contexts/AuthContext";
+import React, { Component } from 'react';
+import { Redirect, Link } from 'react-router-dom';
+import firebase from '../datastore';
+import { WithAuth } from '../contexts/AuthContext';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
 
@@ -12,19 +12,19 @@ export default class Dashboard extends Component {
 
     this.state = {
       isAuthenticated: true,
-      profilePhoto: "",
-      userName: "",
-      email: "",
-      password: ""
+      profilePhoto: '',
+      userName: '',
+      email: '',
+      password: ''
     };
   }
 
   componentDidMount() {
-    const userId = window.localStorage.getItem("CAMPSITE_uuid");
+    const userId = window.localStorage.getItem('CAMPSITE_uuid');
     const { email, name, profilePhoto } = this.state;
     // const profilePhoto: this.state;
 
-    console.log("user id", userId);
+    console.log('user id', userId);
 
     if (!userId) {
       this.setState({
@@ -34,11 +34,11 @@ export default class Dashboard extends Component {
       // console.log("photo", this.profilePhoto);
 
       this.setState({
-        profilePhoto: window.localStorage.getItem("CAMPSITE_photo") || "",
-        email: window.localStorage.getItem("CAMPSITE_email") || ""
+        profilePhoto: window.localStorage.getItem('CAMPSITE_photo') || '',
+        email: window.localStorage.getItem('CAMPSITE_email') || ''
       });
     }
-    console.log("props", this.email);
+  
     return;
   }
 
@@ -74,6 +74,8 @@ export default class Dashboard extends Component {
       return <Redirect to="/login" />;
     }
 
+    console.log(this.props);
+
     return (
       <div>
         <h1>Dashboard</h1>
@@ -82,8 +84,10 @@ export default class Dashboard extends Component {
         <div>{this.state.email}</div>
         <Link to="/NewPost">Add New Campsite</Link>
         {/* <button onClick={() => this.signOutUser()}>Sign Out</button> */}
-        <button onClick={() => this.props.logOutUser()}>Sign Out</button>
+        <button onClick={() => this.props.authContext.logOutUser()}>Sign Out</button>
       </div>
     );
   }
 }
+
+export default WithAuth(Dashboard);

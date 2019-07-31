@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
-import firebase from "../datastore";
+import { CHECK_FOR_CURRENT_USER } from '../utils/UserAuth';
+import firebase from '../datastore';
 export const AuthContext = React.createContext(null);
 
 export class AuthProvider extends Component {
@@ -42,10 +42,10 @@ export class AuthProvider extends Component {
 
         // NOTE: Clear the local storage items..
 
-        window.localStorage.removeItem("CAMPSITE_photo");
-        window.localStorage.removeItem("CAMPSITE_email");
-        window.localStorage.removeItem("CAMPSITE_name");
-        window.localStorage.removeItem("CAMPSITE_uuid");
+        window.localStorage.removeItem('CAMPSITE_photo');
+        window.localStorage.removeItem('CAMPSITE_email');
+        window.localStorage.removeItem('CAMPSITE_name');
+        window.localStorage.removeItem('CAMPSITE_uuid');
 
         this.setState({
           isAuthenticated: false
@@ -54,7 +54,7 @@ export class AuthProvider extends Component {
       .catch(function(error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("error", errorCode, errorMessage);
+        console.error('error', errorCode, errorMessage);
         // An error happened.
       });
   }
