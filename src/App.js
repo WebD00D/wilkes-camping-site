@@ -1,19 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import "./App.css";
+import './App.css';
 
-import Home from "./views/Home";
-import Campsite from "./views/Campsite";
-import Signup from "./views/Signup";
-import Login from "./views/Login";
-import NewCampsite from "./views/NewCampsite";
-import EditPost from "./views/EditPost";
-import Profile from "./views/Profile";
-import DataSandbox from "./views/DataSandbox";
-import Numbers from "./views/Numbers";
+import Home from './views/Home';
+import Campsite from './views/Campsite';
+import Signup from './views/Signup';
+import Login from './views/Login';
+import NewCampsite from './views/NewCampsite';
+import EditPost from './views/EditPost';
+import Profile from './views/Profile';
+import DataSandbox from './views/DataSandbox';
+import Numbers from './views/Numbers';
 
-import Dashboard from "./views/Dashboard";
+import Dashboard from './views/Dashboard';
 
 function App() {
   return (

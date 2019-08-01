@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
-import firebase from "../datastore";
+import { CHECK_FOR_CURRENT_USER } from '../utils/UserAuth';
+import firebase from '../datastore';
 export const AuthContext = React.createContext(null);
 
 export class AuthProvider extends Component {
@@ -9,27 +9,41 @@ export class AuthProvider extends Component {
     super(props);
 
     this.state = {
-      userId: null,
-      email: null,
-      name: null,
-      profilePhoto: null,
+      userId: false,
+      email: false,
+      name: false,
+      profilePhoto: false,
       isAuthenticated: true
     };
 
     this.actions = {
       getProfilePhoto: () => this.getProfilePhoto(),
-      logOutUser: () => this.logOutUser()
+      logOutUser: () => this.logOutUser(),
+      setUser: (userId, name, email, photo) =>
+        this.setUser(userId, name, email, photo)
     };
   }
 
   componentDidMount() {
-    const { userId, profilePhoto, email } = CHECK_FOR_CURRENT_USER();
+    const { userId, profilePhoto, email, name } = CHECK_FOR_CURRENT_USER();
     this.setState({
+      name,
       userId,
       profilePhoto,
       email,
       isAuthenticated: userId ? true : false
     });
+  }
+
+  setUser(userId, name, email, photo) {
+    window.localStorage.setItem('CAMPSITE_uuid', userId);
+    window.localStorage.setItem('CAMPSITE_name', name);
+    window.localStorage.setItem('CAMPSITE_email', email);
+    window.localStorage.setItem('CAMPSITE_photo', photo);
+
+    // 1. Then set the authcontext state (name.. userId.. etc.)
+
+    // 2. Set isAuthenticated to true...
   }
 
   logOutUser() {
@@ -42,20 +56,24 @@ export class AuthProvider extends Component {
 
         // NOTE: Clear the local storage items..
 
-        window.localStorage.removeItem("CAMPSITE_photo");
-        window.localStorage.removeItem("CAMPSITE_email");
-        window.localStorage.removeItem("CAMPSITE_name");
-        window.localStorage.removeItem("CAMPSITE_uuid");
+        window.localStorage.removeItem('CAMPSITE_photo');
+        window.localStorage.removeItem('CAMPSITE_email');
+        window.localStorage.removeItem('CAMPSITE_name');
+        window.localStorage.removeItem('CAMPSITE_uuid');
 
         this.setState({
-          isAuthenticated: false
+          isAuthenticated: false,
+          userId: null,
+          email: null,
+          name: null,
+          profilePhoto: null
         });
-        console.log("auth context status", this.state.isAuthenticated);
+        console.log('auth context status', this.state.isAuthenticated);
       })
       .catch(function(error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("error", errorCode, errorMessage);
+        console.error('error', errorCode, errorMessage);
         // An error happened.
       });
   }

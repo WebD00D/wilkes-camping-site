@@ -59,11 +59,15 @@ export default class Login extends Component {
 
             const { email, name, profilePhoto } = snapshot.val();
 
-            window.localStorage.setItem('CAMPSITE_uuid', u.user.uid);
-            window.localStorage.setItem('CAMPSITE_name', name);
-            window.localStorage.setItem('CAMPSITE_email', email);
-            window.localStorage.setItem('CAMPSITE_photo', profilePhoto);
+            // 1. Set the user details on our auth context
+            this.props.authContext.setUser(
+              u.user.uid,
+              profilePhoto,
+              email,
+              name
+            );
 
+            // 2. Once those details are set, you're safe to redirect the user elsewhere..
             this.setState({
               shouldRedirect: true
             });
@@ -122,7 +126,13 @@ export default class Login extends Component {
   }
 
   render() {
-    if (this.state.shouldRedirect) {
+    // if (this.state.shouldRedirect) {
+    //   return <Redirect to="/Dashboard" />;
+    // }
+
+    const { isAuthenticated } = this.props.authContext;
+
+    if (isAuthenticated) {
       return <Redirect to="/Dashboard" />;
     }
 
