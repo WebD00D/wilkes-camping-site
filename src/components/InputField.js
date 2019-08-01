@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class InputField extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: '',
-      name: 'Hello'
+      value: "",
+      name: "Hello"
     };
   }
 

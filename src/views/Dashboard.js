@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import firebase from '../datastore';
-import { WithAuth } from '../contexts/AuthContext';
+import React, { Component } from "react";
+import { Redirect, Link } from "react-router-dom";
+import firebase from "../datastore";
+import { WithAuth } from "../contexts/AuthContext";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
 
     // this.componentDidMount = this.componentDidMount.bind(this);
-    // this.signOutUser = this.signOutUser.bind(this);
+    // this.stuff = this.stuff.bind(this);
 
     this.state = {
       isAuthenticated: true,
-      profilePhoto: '',
-      userName: '',
-      email: '',
-      password: ''
+      profilePhoto: "",
+      userName: "",
+      email: "",
+      password: ""
     };
   }
 
   componentDidMount() {
-    const userId = window.localStorage.getItem('CAMPSITE_uuid');
+    const userId = window.localStorage.getItem("CAMPSITE_uuid");
     const { email, name, profilePhoto } = this.state;
     // const profilePhoto: this.state;
 
-    console.log('user id', userId);
+    // console.log('user id', userId);
 
     if (!userId) {
       this.setState({
@@ -34,12 +34,18 @@ class Dashboard extends Component {
       // console.log("photo", this.profilePhoto);
 
       this.setState({
-        profilePhoto: window.localStorage.getItem('CAMPSITE_photo') || '',
-        email: window.localStorage.getItem('CAMPSITE_email') || ''
+        profilePhoto: window.localStorage.getItem("CAMPSITE_photo") || "",
+        email: window.localStorage.getItem("CAMPSITE_email") || ""
       });
     }
-  
     return;
+  }
+
+  signOutHandle() {
+    this.setState({
+      isAuthenticated: false
+    });
+    this.props.authContext.logOutUser();
   }
 
   // signOutUser() {
@@ -75,16 +81,16 @@ class Dashboard extends Component {
     }
 
     console.log(this.props);
+    console.log("dashboard auth status", this.state.isAuthenticated);
 
     return (
       <div>
         <h1>Dashboard</h1>
         <h4>{this.state.userName}</h4>
-        <img src={this.state.profilePhoto} />
+        {/* <img src={this.state.profilePhoto} /> */}
         <div>{this.state.email}</div>
         <Link to="/NewPost">Add New Campsite</Link>
-        {/* <button onClick={() => this.signOutUser()}>Sign Out</button> */}
-        <button onClick={() => this.props.authContext.logOutUser()}>Sign Out</button>
+        <button onClick={() => this.signOutHandle()}>Sign Out</button>
       </div>
     );
   }

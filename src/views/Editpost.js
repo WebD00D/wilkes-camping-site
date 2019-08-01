@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
+import { WithAuth } from "../contexts/AuthContext";
 
-export default class EditPost extends Component {
+class EditPost extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isAuthenticated: true,
       userId: null,
+      userName: null,
       profilePhoto: null,
       email: null
     };
@@ -24,6 +27,14 @@ export default class EditPost extends Component {
     });
   }
 
+  signOutHandle() {
+    this.setState({
+      isAuthenticated: false
+    });
+    this.props.authContext.logOutUser();
+    console.log("edit auth status", this.state.isAuthenticated);
+  }
+
   render() {
     if (!this.state.isAuthenticated) {
       return <Redirect to="/login" />;
@@ -32,8 +43,11 @@ export default class EditPost extends Component {
     return (
       <div>
         <button>edit</button>
+        <button onClick={() => this.signOutHandle()}>Sign Out</button>
         {/* // put same as newpost but add edit button on each section?? */}
       </div>
     );
   }
 }
+
+export default WithAuth(EditPost);
