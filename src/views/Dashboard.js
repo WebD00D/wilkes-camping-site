@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import firebase from '../datastore';
-import { WithAuth } from '../contexts/AuthContext';
+import React, { Component } from "react";
+import { Redirect, Link } from "react-router-dom";
+import firebase from "../datastore";
+import { WithAuth } from "../contexts/AuthContext";
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
 
-    // this.componentDidMount = this.componentDidMount.bind(this);
-    // this.stuff = this.stuff.bind(this);
-
     this.state = {};
   }
 
   componentDidMount() {
-    console.log('COMPONENT DID MOUNT - Dashboard ');
+    // console.log("COMPONENT DID MOUNT - Dashboard ");
     // const userId = window.localStorage.getItem('CAMPSITE_uuid');
     // if (!userId) {
     //   this.setState({
@@ -38,7 +35,7 @@ class Dashboard extends Component {
     const { name, email, isAuthenticated } = this.props.authContext;
 
     console.log(
-      'this.props.authCotnext DASHBOARD',
+      "this.props.authCotnext DASHBOARD",
       isAuthenticated,
       this.props.authContext
     );
