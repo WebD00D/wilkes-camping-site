@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
-import firebase from "../datastore";
+import React, { Component } from 'react';
+import { CHECK_FOR_CURRENT_USER } from '../utils/UserAuth';
+import firebase from '../datastore';
 export const AuthContext = React.createContext(null);
 
 export class AuthProvider extends Component {
@@ -10,15 +10,15 @@ export class AuthProvider extends Component {
     this.state = {
       user: {},
       userId: false,
-      email: "",
+      email: '',
       name: false,
-      password: "",
+      password: '',
       profilePhoto: false,
       isAuthenticated: true
     };
 
     this.actions = {
-      signInUser: () => this.signInUser(),
+      signInUser: (email, password) => this.signInUser(email, password),
       getProfilePhoto: () => this.getProfilePhoto(),
       logOutUser: () => this.logOutUser(),
       // handleChange: () => this.handleChange(),
@@ -43,36 +43,35 @@ export class AuthProvider extends Component {
   // }
 
   setUser(userId, name, email, photo) {
-    window.localStorage.setItem("CAMPSITE_uuid", userId);
-    window.localStorage.setItem("CAMPSITE_name", name);
-    window.localStorage.setItem("CAMPSITE_email", email);
-    window.localStorage.setItem("CAMPSITE_photo", photo);
+    window.localStorage.setItem('CAMPSITE_uuid', userId);
+    window.localStorage.setItem('CAMPSITE_name', name);
+    window.localStorage.setItem('CAMPSITE_email', email);
+    window.localStorage.setItem('CAMPSITE_photo', photo);
 
     // 1. Then set the authcontext state (name.. userId.. etc.)
 
     // 2. Set isAuthenticated to true...
   }
 
-  signInUser() {
-    const { email, password } = this.state;
-
+  signInUser(email, password) {
+    console.log("[AuthContext.SignInUser]", email, password)
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(u => {
-        console.log("user", u);
+        console.log('user', u);
 
         firebase
           .database()
           .ref(`/users/${u.user.uid}`)
-          .once("value")
+          .once('value')
           .then(snapshot => {
-            console.log("snapshot from user", snapshot.val());
+            console.log('snapshot from user', snapshot.val());
 
             const { email, name, profilePhoto } = snapshot.val();
 
             // 1. Set the user details on our auth context
-            this.props.authContext.setUser(
+            this.setUser(
               u.user.uid,
               profilePhoto,
               email,
@@ -97,10 +96,10 @@ export class AuthProvider extends Component {
 
         // NOTE: Clear the local storage items..
 
-        window.localStorage.removeItem("CAMPSITE_photo");
-        window.localStorage.removeItem("CAMPSITE_email");
-        window.localStorage.removeItem("CAMPSITE_name");
-        window.localStorage.removeItem("CAMPSITE_uuid");
+        window.localStorage.removeItem('CAMPSITE_photo');
+        window.localStorage.removeItem('CAMPSITE_email');
+        window.localStorage.removeItem('CAMPSITE_name');
+        window.localStorage.removeItem('CAMPSITE_uuid');
 
         this.setState({
           isAuthenticated: false,
@@ -109,12 +108,12 @@ export class AuthProvider extends Component {
           name: null,
           profilePhoto: null
         });
-        console.log("auth context status", this.state.isAuthenticated);
+        console.log('auth context status', this.state.isAuthenticated);
       })
       .catch(function(error) {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.error("error", errorCode, errorMessage);
+        console.error('error', errorCode, errorMessage);
         // An error happened.
       });
   }

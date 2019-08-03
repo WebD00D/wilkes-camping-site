@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { WithAuth } from "../contexts/AuthContext";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { WithAuth } from '../contexts/AuthContext';
 
-import InputField from "../components/InputField";
-import firebase from "../datastore";
+import InputField from '../components/InputField';
+import firebase from '../datastore';
 
-import { VALIDATE_FIELDS } from "../utils/index";
+import { VALIDATE_FIELDS } from '../utils/index';
 
 class Login extends Component {
   constructor(props) {
@@ -17,8 +17,8 @@ class Login extends Component {
     this.state = {
       user: {},
       isAuthenticated: false,
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     };
   }
 
@@ -131,7 +131,7 @@ class Login extends Component {
     if (isAuthenticated) {
       return <Redirect to="/Dashboard" />;
     }
-    console.log("login pg email", this.state.email);
+    console.log('login pg email', this.state.email);
 
     return (
       <div>
@@ -150,7 +150,14 @@ class Login extends Component {
           name="password"
           placeholder="Enter Password"
         />
-        <button onClick={() => this.props.authContext.signInUser()}>
+        <button
+          onClick={() =>
+            this.props.authContext.signInUser(
+              this.state.email,
+              this.state.password
+            )
+          }
+        >
           Sign In
         </button>
       </div>
