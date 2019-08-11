@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { WithAuth } from "../contexts/AuthContext";
 
-export default class InputField extends Component {
+class InputField extends Component {
   constructor(props) {
     super(props);
 
@@ -15,7 +16,7 @@ export default class InputField extends Component {
       value: fieldValue
     });
 
-    this.props.setValue(fieldValue);
+    // this.prop.setValue(fieldValue);
   }
 
   signInUser() {
@@ -34,3 +35,5 @@ export default class InputField extends Component {
     );
   }
 }
+
+export default WithAuth(InputField);

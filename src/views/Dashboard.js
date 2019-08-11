@@ -10,35 +10,21 @@ class Dashboard extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    // console.log("COMPONENT DID MOUNT - Dashboard ");
-    // const userId = window.localStorage.getItem('CAMPSITE_uuid');
-    // if (!userId) {
-    //   this.setState({
-    //     isAuthenticated: false
-    //   });
-    // } else {
-    //   // console.log("photo", this.profilePhoto);
-    //   this.setState({
-    //     profilePhoto: window.localStorage.getItem('CAMPSITE_photo') || '',
-    //     email: window.localStorage.getItem('CAMPSITE_email') || ''
-    //   });
-    // }
-    // return;
-  }
-
   signOutHandle() {
     this.props.authContext.logOutUser();
   }
 
   render() {
-    const { name, email, isAuthenticated } = this.props.authContext;
+    const {
+      name,
+      profilePhoto,
+      email,
+      isAuthenticated
+    } = this.props.authContext;
 
-    console.log(
-      "this.props.authCotnext DASHBOARD",
-      isAuthenticated,
-      this.props.authContext
-    );
+    console.log("dashboard name", this.props.authContext.name);
+    console.log("dashboard email", this.props.authContext.email);
+    console.log("dashboard profilePhoto", this.props.authContext.profilePhoto);
 
     if (!isAuthenticated) {
       return <Redirect to="/login" />;
@@ -49,6 +35,7 @@ class Dashboard extends Component {
         <h1>Dashboard</h1>
         <h4>{name}</h4>
         <div>{email}</div>
+        <h4>{profilePhoto}</h4>
         <Link to="/NewPost">Add New Campsite</Link>
         <button onClick={() => this.signOutHandle()}>Sign Out</button>
       </div>

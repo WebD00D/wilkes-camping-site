@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import InputField from '../components/InputField';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import InputField from "../components/InputField";
+import { Redirect } from "react-router-dom";
 
-import { CHECK_FOR_CURRENT_USER } from '../utils/UserAuth';
+import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
 
 export default class Profile extends Component {
   constructor(props) {
@@ -22,21 +22,8 @@ export default class Profile extends Component {
       userId,
       profilePhoto,
       email,
-      isAuthenticated: userId ? true : false // using ternary 
+      isAuthenticated: userId ? true : false // using ternary
     });
-
-    // if (userId) {
-    //   this.setState({
-    //     userId,
-    //     profilePhoto,
-    //     email
-    //   });
-    // } else {
-    //   this.setState({
-    //     isAuthenticated: false
-    //   });
-    // }
-
   }
 
   render() {
