@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Redirect, Link } from "react-router-dom";
 
-import styled from '@emotion/styled';
+import BigButton from "../components/BigButton";
 
-import BigButton from '../components/BigButton';
+import LittleButton from "../components/LittleButton";
 
-import LittleButton from '../components/LittleButton'
+import InputField from "../components/InputField";
+import NameDisplay from "../components/NameDisplay";
+import GenericButton from "../components/GenericButton";
 
-import InputField from '../components/InputField';
-import NameDisplay from '../components/NameDisplay';
-import GenericButton from '../components/GenericButton';
-
-// import { PageContainer, PageHeader, PageBody } from '../UI';
-import * as UI from '../UI'
+import { PageContainer, PageHeader, PageBody, Button } from "../UI";
+import * as UI from "../UI";
+import styled from "@emotion/styled";
 
 // const PageContainer = styled('div')`
 //   max-width: 900px;
@@ -41,7 +41,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Bob'
+      name: "Bob"
     };
   }
 
@@ -56,7 +56,7 @@ export default class Home extends Component {
   }
 
   alertText() {
-    alert('Some text');
+    alert("Some text");
   }
 
   updateRating(rating) {
@@ -70,16 +70,16 @@ export default class Home extends Component {
       <UI.PageContainer>
         <UI.PageHeader>
           <h1>Free Camping</h1>
-          <h4>We Have Got You Covered</h4>
+          <h4>We've Got You Covered</h4>
         </UI.PageHeader>
         <UI.PageBody>
-          <div className="sup"><LittleButton text="Little button" /></div>
+          {/* <div className="sup"><LittleButton text="Little button" /></div> */}
           <p>
-            We’ve Got You Covered This community based platform is for sharing
-            the best free campgrounds and camp sites you have discovered.
-            Whether you enjoy tent camping, car camping or RV camping, our goal
-            is to help you find the best places to go camping for free or at
-            least very cheap.
+            This community based platform is for sharing the best
+            free campgrounds and camp sites you have discovered. Whether you
+            enjoy tent camping, car camping or RV camping, our goal is to help
+            you find the best places to go camping for free or at least very
+            cheap.
           </p>
 
           <p>
@@ -97,16 +97,18 @@ export default class Home extends Component {
           </p>
 
           <p>
-            Our focus is on public lands. You own these lands and you are
-            entitled to use them. We especially like Forest Service land, BLM
-            (Bureau of Land Management) areas, WMA's (Wildlife Management Areas)
-            and county or city parks. We are not actively seeking Wal-Marts,
-            truck-stops or other parking lots. You can find those other places.
-            However, if a member of the community finds one of these locations
-            to be useful and creates an entry, we may approve the listing.
+            Our focus is on public lands, since you own them and are entitled to
+            use them. Forest Service land, BLM (Bureau of Land Management)
+            areas, WMA's (Wildlife Management Areas) and county or city parks
+            are all great. We are not actively seeking Wal-Marts, truck-stops or
+            other parking lots. However, if a member of the community finds one
+            of these locations to be useful and creates an entry, we may approve
+            the listing.
           </p>
         </UI.PageBody>
-
+        <UI.Button>
+          <Link to="/NewCampsite">New Campsite</Link>
+        </UI.Button>
         {/* 
         <GenericButton
           handleClick={() => this.alertText()}

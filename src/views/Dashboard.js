@@ -3,6 +3,10 @@ import { Redirect, Link } from "react-router-dom";
 import firebase from "../datastore";
 import { WithAuth } from "../contexts/AuthContext";
 
+import styled from "@emotion/styled";
+import { PageContainer, PageHeader, PageBody, Button } from "../UI";
+import * as UI from "../UI";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -31,14 +35,23 @@ class Dashboard extends Component {
     }
 
     return (
-      <div>
-        <h1>Dashboard</h1>
-        <h4>{name}</h4>
-        <div>{email}</div>
-        <h4>{profilePhoto}</h4>
-        <Link to="/NewPost">Add New Campsite</Link>
-        <button onClick={() => this.signOutHandle()}>Sign Out</button>
-      </div>
+      <UI.PageContainer>
+        <UI.PageHeader>
+          <h1>Dashboard</h1>
+          <h4>{name}</h4>
+          <h4>{email}</h4>
+          <img src={profilePhoto} />
+        </UI.PageHeader>
+        <UI.Button>
+          <button>
+            <Link to="/Profile">Profile</Link>
+          </button>
+          <button>
+            <Link to="/EditPost">Change Campsite Info</Link>
+          </button>
+          <button onClick={() => this.signOutHandle()}>Sign Out</button>
+        </UI.Button>
+      </UI.PageContainer>
     );
   }
 }

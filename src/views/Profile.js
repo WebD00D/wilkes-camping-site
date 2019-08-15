@@ -4,6 +4,10 @@ import { Redirect } from "react-router-dom";
 
 import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
 
+import styled from "@emotion/styled";
+import { PageContainer, PageHeader, PageBody, Button } from "../UI";
+import * as UI from "../UI";
+
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +35,7 @@ export default class Profile extends Component {
       return <Redirect to="/login" />;
     }
     return (
-      <div>
+      <UI.PageContainer>
         <h1>Profile</h1>
         <div>{this.state.userId}</div>
         <InputField labelName="First Name" inputType="text" />
@@ -60,7 +64,7 @@ export default class Profile extends Component {
         <InputField labelName="New Password" inputType="password" />
         <InputField labelName="Old Password" inputType="password" />
         {/* is this correct? */}
-      </div>
+      </UI.PageContainer>
     );
   }
 }

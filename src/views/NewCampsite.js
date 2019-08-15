@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
-import InputField from '../components/InputField';
-import GenericButton from '../components/GenericButton';
-import { Redirect, Link } from 'react-router-dom';
+import React, { Component } from "react";
+import InputField from "../components/InputField";
+import GenericButton from "../components/GenericButton";
+import { Redirect, Link } from "react-router-dom";
 
-import { WithAuth } from '../contexts/AuthContext';
+import { WithAuth } from "../contexts/AuthContext";
 
-import { GENERATE_ID } from '../utils/index';
-import firebase from '../datastore';
+import { GENERATE_ID } from "../utils/index";
+import firebase from "../datastore";
+
+import { PageContainer, PageHeader, PageBody, Button } from "../UI";
+import * as UI from "../UI";
+import styled from "@emotion/styled";
 
 class NewCampsite extends Component {
   constructor(props) {
@@ -27,10 +31,10 @@ class NewCampsite extends Component {
   getCamp() {
     firebase
       .database()
-      .ref('/campsites')
-      .once('value')
+      .ref("/campsites")
+      .once("value")
       .then(snapshot => {
-        console.log('campsites', snapshot.val());
+        console.log("campsites", snapshot.val());
         this.setState({
           campsites: snapshot.val()
         });
@@ -68,10 +72,12 @@ class NewCampsite extends Component {
     }
 
     return (
-      <div>
-        <h1>Add A Campsite</h1>
-        <div>{this.state.userId}</div>
-        {getProfilePhoto()}
+      <UI.PageContainer>
+        <UI.PageHeader>
+          <h1>Add A Campsite</h1>
+        </UI.PageHeader>
+        {/* <div>{this.state.userId}</div> */}
+        {/* {getProfilePhoto()} */}
         <InputField
           setValue={val => this.setState({ campName: val })}
           labelName="Campsite Name"
@@ -109,7 +115,7 @@ class NewCampsite extends Component {
         <button onClick={() => this.addCamp()}>Publish this Camp!</button>
 
         {/* <h3>{this.state.campsites}</h3> */}
-      </div>
+      </UI.PageContainer>
     );
   }
 }
