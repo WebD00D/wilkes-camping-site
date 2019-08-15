@@ -6,6 +6,26 @@ export const PageContainer = styled("div")`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+
+  // background-color: red;
+
+  button {
+    color: white;
+    background-color: ${T.theme.colors.primary};
+    border-radius: 3px;
+    box-shadow: -webkit-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    -moz-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+
+  a:hover {
+    color: ${T.theme.colors.secondary};
+  }
+
+  button:hover {
+    // border: 1px solid ${T.theme.colors.secondary};
+    border-radius: 3px;
+    color: ${T.theme.colors.secondary};
+  }
 `;
 
 export const NavBar = styled("div")`
@@ -14,6 +34,7 @@ export const NavBar = styled("div")`
     width: 100%;
     padding: 8px;
     margin-top: 0;
+    margin-bottom: 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -33,10 +54,6 @@ export const NavBar = styled("div")`
   a:hover {
     color: ${T.theme.colors.secondary};
   }
-
-  // a:visited {
-  //   color: ${T.theme.colors.tertiary};
-  // }
 
   .NavLeft {
     width: 100%;
@@ -68,15 +85,18 @@ export const NavBar = styled("div")`
 export const PageHeader = styled("div")`
   h1 {
     color: ${T.theme.colors.dark};
-    margin-bottom: 0.25em;
+    margin-bottom: 0;
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
   }
   h4 {
+    color: ${T.theme.colors.dark};
     margin-bottom: 0.5em;
     margin-top: 0;
   }
 
-  border-bottom: 2px solid;
-  border-bottom-color: ${T.theme.colors.tertiary};
+  // border-bottom: 2px solid;
+  // border-bottom-color: ${T.theme.colors.tertiary};
 `;
 
 export const PageBody = styled("div")`
@@ -96,4 +116,28 @@ export const PageBody = styled("div")`
 
 export const Button = styled("button")`
   background-color: ${T.theme.colors.primary};
+`;
+
+export const FormStyle = styled("div")`
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  // margin-top: 24px;
+  padding: 24px;
+  background-color: #FFF;
+  border-radius: 8px;
+  box-shadow: -webkit-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    -moz-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+
+
+  h1 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+  }
+`;
+
+export const FormBackground = styled("div")`
+  background-color: #f7f7f7;
+  height: 100%;
 `;

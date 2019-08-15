@@ -43,12 +43,10 @@ class Dashboard extends Component {
           <img src={profilePhoto} />
         </UI.PageHeader>
         <UI.Button>
-          <button>
-            <Link to="/Profile">Profile</Link>
-          </button>
-          <button>
-            <Link to="/EditPost">Change Campsite Info</Link>
-          </button>
+          <Link to="/Profile">Profile</Link>
+
+          <Link to="/EditPost">Change Campsite Info</Link>
+
           <button onClick={() => this.signOutHandle()}>Sign Out</button>
         </UI.Button>
       </UI.PageContainer>

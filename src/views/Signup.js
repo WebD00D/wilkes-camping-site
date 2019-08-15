@@ -3,6 +3,17 @@ import InputField from "../components/InputField";
 import firebase from "../datastore";
 import { Redirect, Link } from "react-router-dom";
 
+import {
+  PageContainer,
+  PageHeader,
+  PageBody,
+  Button,
+  FormBackground,
+  FormStyle
+} from "../UI";
+import * as UI from "../UI";
+import styled from "@emotion/styled";
+
 import { VALIDATE_FIELDS, SAY_MY_NAME } from "../utils/index";
 
 export default class Signup extends Component {
@@ -156,20 +167,21 @@ export default class Signup extends Component {
     // }
 
     return (
-      <div>
-        <h1>sign up here</h1>
-        <label>name</label>
-        <input onChange={e => this.setState({ name: e.target.value })} />
-        <label>email</label>
-        <input onChange={e => this.setState({ email: e.target.value })} />
-        <label>password</label>
-        <input
-          type="password"
-          onChange={e => this.setState({ password: e.target.value })}
-        />
-        <button onClick={() => this.handleSignup()}>Sign me up</button>
-        {/* <label>Add User</label> */}
-        {/* <input
+      <UI.FormBackground>
+        <UI.FormStyle>
+          <h1>Sign Up</h1>
+          <label>name</label>
+          <input onChange={e => this.setState({ name: e.target.value })} />
+          <label>email</label>
+          <input onChange={e => this.setState({ email: e.target.value })} />
+          <label>password</label>
+          <input
+            type="password"
+            onChange={e => this.setState({ password: e.target.value })}
+          />
+          <button onClick={() => this.handleSignup()}>Sign me up</button>
+          {/* <label>Add User</label> */}
+          {/* <input
           onChange={e => this.setState({ name: e.target.value })}
           placeholder="name"
         />
@@ -177,11 +189,12 @@ export default class Signup extends Component {
           onChange={e => this.setState({ age: e.target.value })}
           placeholder="age"
         /> */}
-        {/* <button onClick={() => this.addUser()}>Add User</button> */}
+          {/* <button onClick={() => this.addUser()}>Add User</button> */}
 
-        {this.renderUser()}
-        {/* <button onClick={this.handleAuth}>Sign Up</button> */}
-      </div>
+          {/* {this.renderUser()} */}
+          {/* <button onClick={this.handleAuth}>Sign Up</button> */}
+        </UI.FormStyle>
+      </UI.FormBackground>
     );
   }
 }

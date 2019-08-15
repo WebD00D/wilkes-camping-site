@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { WithAuth } from "../contexts/AuthContext";
+import { WithAuth } from "../../contexts/AuthContext";
+import * as S from "./styles";
 
 class InputField extends Component {
   constructor(props) {
@@ -25,13 +26,14 @@ class InputField extends Component {
 
   render() {
     return (
-      <div>
-        <label>{this.props.labelName}</label>
+      <S.InputField>
+        {/* <label>{this.props.labelName}</label> */}
         <input
           onChange={e => this.setValue(e.target.value)}
           type={this.props.inputType}
+          placeholder={this.props.placeholder}
         />
-      </div>
+      </S.InputField>
     );
   }
 }

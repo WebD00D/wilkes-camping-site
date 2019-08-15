@@ -7,6 +7,17 @@ import firebase from "../datastore";
 
 import { VALIDATE_FIELDS } from "../utils/index";
 
+import {
+  PageContainer,
+  PageHeader,
+  PageBody,
+  Button,
+  FormBackground,
+  FormStyle
+} from "../UI";
+import * as UI from "../UI";
+import styled from "@emotion/styled";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -47,33 +58,35 @@ class Login extends Component {
     }
 
     return (
-      <div>
-        <h1>Log In</h1>
-        <input
-          value={this.state.email}
-          onChange={this.handleChange}
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-        />
-        <input
-          value={this.state.password}
-          onChange={this.handleChange}
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-        />
-        <button
-          onClick={() =>
-            this.props.authContext.signInUser(
-              this.state.email,
-              this.state.password
-            )
-          }
-        >
-          Sign In
-        </button>
-      </div>
+      <UI.FormBackground>
+        <UI.FormStyle>
+          <h1>Log In</h1>
+          <input
+            value={this.state.email}
+            onChange={this.handleChange}
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+          />
+          <input
+            value={this.state.password}
+            onChange={this.handleChange}
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+          />
+          <button
+            onClick={() =>
+              this.props.authContext.signInUser(
+                this.state.email,
+                this.state.password
+              )
+            }
+          >
+            Sign In
+          </button>
+        </UI.FormStyle>
+      </UI.FormBackground>
     );
   }
 }
