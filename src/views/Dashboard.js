@@ -44,7 +44,6 @@ class Dashboard extends Component {
         </UI.PageHeader>
         <UI.Button>
           <Link to="/Profile">Profile</Link>
-
           <Link to="/EditPost">Change Campsite Info</Link>
 
           <button onClick={() => this.signOutHandle()}>Sign Out</button>
