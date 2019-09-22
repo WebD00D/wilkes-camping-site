@@ -12,30 +12,7 @@ import GenericButton from "../components/GenericButton";
 import { PageContainer, PageHeader, PageBody, Button } from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
-
-// const PageContainer = styled('div')`
-//   max-width: 900px;
-//   margin-left: auto;s
-//   margin-right: auto;
-// `;
-
-// const PageHeader = styled('div')`
-//   h1 {
-//     color: red;
-//   }
-
-//   border-bottom: 2px solid black;
-// `;
-
-// const PageBody = styled('div')`
-//   .sup {
-//     color: blue;
-//   }
-
-//   p {
-//     color: green;
-//   }
-// `;
+import Mapbox from "../components/Mapbox";
 
 export default class Home extends Component {
   constructor(props) {
@@ -65,6 +42,30 @@ export default class Home extends Component {
     });
   }
 
+  // Map() {
+  //   ReactMapboxGl({
+  //     accessToken:
+  //       "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A"
+  //   });
+  // }
+
+  // mapbox() {
+  //   const Map = ReactMapboxGl({
+  //     accessToken:
+  //       "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A"
+  //   });
+  // }
+
+  // mapboxgl.accessToken =
+  // `pk.eyJ1IjoiYm9vdGhhdyIsImEiOiJjazA0aTR2a2IwMHc1M21scW5yYWVpenRmIn0.biHPkY42pl9LYR4rXDW1fw`;
+
+  // mapbox() {
+  //   let map = new mapboxgl.Map({
+  //     container: "camp-map",
+  //     style: "mapbox://styles/mapbox/streets-v11"
+  //   });
+  // }
+
   render() {
     return (
       <UI.PageContainer>
@@ -73,7 +74,6 @@ export default class Home extends Component {
           <h4>We've Got You Covered</h4>
         </UI.PageHeader>
         <UI.PageBody>
-          {/* <div className="sup"><LittleButton text="Little button" /></div> */}
           <p>
             This community based platform is for sharing the best
             free campgrounds and camp sites you have discovered. Whether you
@@ -89,13 +89,6 @@ export default class Home extends Component {
             information and help you select the best camp site for your next
             camping trip.
           </p>
-
-          <p>
-            By sharing camping information freely, we can all spend less time
-            researching campgrounds, spend less money, and more time camping.
-            More contributions equals more fun.
-          </p>
-
           <p>
             Our focus is on public lands, since you own them and are entitled to
             use them. Forest Service land, BLM (Bureau of Land Management)
@@ -105,33 +98,24 @@ export default class Home extends Component {
             of these locations to be useful and creates an entry, we may approve
             the listing.
           </p>
+          <p>
+            By sharing this information, we spend less time and money and more
+            time camping. More contributions equals more fun. Let's get out
+            there!
+          </p>
         </UI.PageBody>
         <UI.Button>
           <Link to="/NewCampsite">New Campsite</Link>
         </UI.Button>
-        {/* 
-        <GenericButton
-          handleClick={() => this.alertText()}
-          buttonName="Hello World"
-        />
-        <GenericButton
-          handleClick={() => this.alertNumber()}
-          buttonName="Number Alerter"
-        />
-        <GenericButton
-          handleClick={() => this.alertText()}
-          buttonName="Text Alerter"
-        /> */}
-
-        {/* <NameDisplay
-          handleClick={() => this.clearName()}
-          displayName={this.state.name}
-        /> */}
-        {/* <InputField labelName="Username" inputType="email" />
-        <BigButton text="Hello" color="red" />
-        <BigButton text="Whats up" color="green" />
-        <BigButton text="Click me" /> */}
       </UI.PageContainer>
     );
   }
 }
+
+// var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+
+// mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+// var map = new mapboxgl.Map({
+// container: 'YOUR_CONTAINER_ELEMENT_ID',
+// style: 'mapbox://styles/mapbox/streets-v11'
+// });

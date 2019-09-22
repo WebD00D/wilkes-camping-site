@@ -85,8 +85,8 @@ export default class Login extends Component {
   }
 
   render() {
-    return (
-      <div>
+    return {
+      /* <div>
         <h1>Datastore Sandbox</h1>
 
         <label>Add Campsite</label>
@@ -104,7 +104,7 @@ export default class Login extends Component {
         />
         <button onClick={() => this.addCampsite()}>Add Campsite</button>
         {this.renderCampsites()}
-      </div>
-    );
+      </div> */
+    };
   }
 }

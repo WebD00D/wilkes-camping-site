@@ -12,8 +12,6 @@ import Login from "./views/Login";
 import NewCampsite from "./views/NewCampsite";
 import EditPost from "./views/EditPost";
 import Profile from "./views/Profile";
-// import DataSandbox from "./views/DataSandbox";
-// import Numbers from "./views/Numbers";
 
 import Dashboard from "./views/Dashboard";
 
@@ -49,7 +47,6 @@ function App() {
             <li className="NavRight">
               <Link to="/Dashboard">Dashboard</Link>
             </li>
-            {/* {getProfilePhoto()} */}
             <li className="NavRight">
               <Link to="/login">Log In</Link>
             </li>
