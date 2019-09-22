@@ -7,14 +7,6 @@ export default class Mapbox extends Component {
     this.state = {};
   }
 
-  var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
- 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiYm9vdGhhdyIsImEiOiJjazA0aHh0bHowMGt0M2NteDl5dTRzbWUwIn0.gW2S6ibbZgo9WPtk27SYYQ';
-  var map = new mapboxgl.Map({
-container: 'YOUR_CONTAINER_ELEMENT_ID',
-style: 'mapbox://styles/mapbox/streets-v11'
-});
-
   // Map() {
   //   ReactMapboxGl({
   //     accessToken:
