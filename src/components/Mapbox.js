@@ -1,5 +1,19 @@
-import React, { Component } from "react";
-import ReactMapboxGl, { Layer, Feature } from "mapbox-gl/dist/mapbox-gl.js";
+import React, { Component } from 'react';
+import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
+import { MAPBOX_ACCESS_TOKEN } from '../constants/index';
+
+import styled from '@emotion/styled'
+
+const Mark = styled.div`
+  background-color: red;
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+`
+
+const Map = ReactMapboxGl({
+  accessToken: MAPBOX_ACCESS_TOKEN
+});
 
 export default class Mapbox extends Component {
   constructor(props) {
@@ -7,33 +21,28 @@ export default class Mapbox extends Component {
     this.state = {};
   }
 
-  // Map() {
-  //   ReactMapboxGl({
-  //     accessToken:
-  //       "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A"
-  //   });
-  // }
-
-  // < Map
-  //   style="mapbox://styles/mapbox/streets-v9"
-  //   containerStyle={{
-  //     height: "100vh",
-  //     width: "100vw"
-  //   }}
-  // >
-  //   <Layer
-  //     type="symbol"
-  //     id="marker"
-  //     layout={{ "icon-image": "marker-15" }}
-  //   >
-  //     <Feature coordinates={[-0.481747846041145, 51.3233379650232]} />
-  //   </Layer>
-  // </Map>
-
   render() {
     return (
       <div>
-        <ReactMapboxGl>marker here</ReactMapboxGl>
+        <Map
+          style="mapbox://styles/mapbox/streets-v9"
+          containerStyle={{
+            height: '500px',
+            width: '500px'
+          }}
+        >
+          <Layer
+            type="symbol"
+            id="marker"
+            layout={{ 'icon-image': 'marker-15' }}
+          >
+            {/* <Feature coordinates={[-0.481747846041145, 51.3233379650232]} /> */}
+
+            <Marker coordinates={[37.5247764,-77.5633018]} anchor="bottom">
+              <Mark />
+            </Marker>
+          </Layer>
+        </Map>
       </div>
     );
   }

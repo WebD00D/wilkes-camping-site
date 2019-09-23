@@ -14,6 +14,8 @@ import * as UI from "../UI";
 import styled from "@emotion/styled";
 import Mapbox from "../components/Mapbox";
 
+import Hook from '../components/Hook';
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -42,29 +44,6 @@ export default class Home extends Component {
     });
   }
 
-  // Map() {
-  //   ReactMapboxGl({
-  //     accessToken:
-  //       "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A"
-  //   });
-  // }
-
-  // mapbox() {
-  //   const Map = ReactMapboxGl({
-  //     accessToken:
-  //       "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A"
-  //   });
-  // }
-
-  // mapboxgl.accessToken =
-  // `pk.eyJ1IjoiYm9vdGhhdyIsImEiOiJjazA0aTR2a2IwMHc1M21scW5yYWVpenRmIn0.biHPkY42pl9LYR4rXDW1fw`;
-
-  // mapbox() {
-  //   let map = new mapboxgl.Map({
-  //     container: "camp-map",
-  //     style: "mapbox://styles/mapbox/streets-v11"
-  //   });
-  // }
 
   render() {
     return (
@@ -73,6 +52,7 @@ export default class Home extends Component {
           <h1>Free Camping</h1>
           <h4>We've Got You Covered</h4>
         </UI.PageHeader>
+        <Hook />
         <UI.PageBody>
           <p>
             This community based platform is for sharing the best
@@ -104,6 +84,7 @@ export default class Home extends Component {
             there!
           </p>
         </UI.PageBody>
+        <Mapbox />
         <UI.Button>
           <Link to="/NewCampsite">New Campsite</Link>
         </UI.Button>
@@ -112,10 +93,3 @@ export default class Home extends Component {
   }
 }
 
-// var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-
-// mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
-// var map = new mapboxgl.Map({
-// container: 'YOUR_CONTAINER_ELEMENT_ID',
-// style: 'mapbox://styles/mapbox/streets-v11'
-// });
