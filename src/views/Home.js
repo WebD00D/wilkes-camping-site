@@ -9,12 +9,18 @@ import InputField from "../components/InputField";
 import NameDisplay from "../components/NameDisplay";
 import GenericButton from "../components/GenericButton";
 
-import { PageContainer, PageHeader, PageBody, Button } from "../UI";
+import {
+  PageContainer,
+  PageHeader,
+  PageBody,
+  Button,
+  MapContainer
+} from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
 import Mapbox from "../components/Mapbox";
 
-import Hook from '../components/Hook';
+import Hook from "../components/Hook";
 
 export default class Home extends Component {
   constructor(props) {
@@ -30,20 +36,19 @@ export default class Home extends Component {
     });
   }
 
-  alertNumber() {
-    alert(2);
-  }
+  // alertNumber() {
+  //   alert(2);
+  // }
 
-  alertText() {
-    alert("Some text");
-  }
+  // alertText() {
+  //   alert("Some text");
+  // }
 
-  updateRating(rating) {
-    this.setState({
-      currentRating: rating
-    });
-  }
-
+  // updateRating(rating) {
+  //   this.setState({
+  //     currentRating: rating
+  //   });
+  // }
 
   render() {
     return (
@@ -52,7 +57,7 @@ export default class Home extends Component {
           <h1>Free Camping</h1>
           <h4>We've Got You Covered</h4>
         </UI.PageHeader>
-        <Hook />
+        {/* <Hook /> */}
         <UI.PageBody>
           <p>
             This community based platform is for sharing the best
@@ -84,7 +89,10 @@ export default class Home extends Component {
             there!
           </p>
         </UI.PageBody>
-        <Mapbox />
+        <UI.MapContainer>
+          <Mapbox />
+        </UI.MapContainer>
+
         <UI.Button>
           <Link to="/NewCampsite">New Campsite</Link>
         </UI.Button>
@@ -92,4 +100,3 @@ export default class Home extends Component {
     );
   }
 }
-

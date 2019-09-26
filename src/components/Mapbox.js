@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import ReactMapboxGl, { Layer, Feature, Marker } from 'react-mapbox-gl';
-import { MAPBOX_ACCESS_TOKEN } from '../constants/index';
+import React, { Component } from "react";
+import ReactMapboxGl, { Layer, Feature, Marker } from "react-mapbox-gl";
+import { MAPBOX_ACCESS_TOKEN } from "../constants/index";
 
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 const Mark = styled.div`
   background-color: red;
@@ -45,21 +45,22 @@ export default class Mapbox extends Component {
     return (
       <div>
         <Map
-        latitude={51.3233379650232}
-          longitude={-0.481747846041145}
-          
+          center={[-122.4194, 37.7749]}
+          zoom={[6]}
           style="mapbox://styles/mapbox/streets-v9"
           containerStyle={{
-            height: '500px',
-            width: '500px'
+            width: "900px",
+            height: "500px",
+            position: "center"
           }}
         >
           <Layer
             type="symbol"
             id="marker"
-            layout={{ 'icon-image': 'marker-15' }}
+            layout={{ "icon-image": "marker-15" }}
           >
-            {/* <Feature coordinates={[-0.481747846041145, 51.3233379650232]} /> */}
+            <Feature coordinates={[-121.4194, 37.7749]} />
+
             {this.renderCampsiteMarkers()}
           </Layer>
         </Map>

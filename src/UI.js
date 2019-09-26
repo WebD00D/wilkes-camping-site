@@ -6,6 +6,7 @@ export const PageContainer = styled("div")`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  margin-bottom: 50px;
 
   // background-color: red;
 
@@ -140,4 +141,19 @@ export const FormStyle = styled("div")`
 export const FormBackground = styled("div")`
   background-color: #f7f7f7;
   height: 100%;
+`;
+
+export const MapContainer = styled("div")`
+  width: 100%;
+  // height: 700px;
+  margin-left: auto;
+  margin-right auto;
+  padding-left; auto;
+  paddint-right: auto;
+ border: 2px solid red;
+ overflow: hidden;
+
+.marker {
+  border: 10px solid pink;
+} 
 `;
