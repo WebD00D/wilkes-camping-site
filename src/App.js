@@ -14,6 +14,7 @@ import EditPost from "./views/EditPost";
 import Profile from "./views/Profile";
 
 import Dashboard from "./views/Dashboard";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 function App() {
   // const { getProfilePhoto } = this.props.authContext;

@@ -144,16 +144,27 @@ export const FormBackground = styled("div")`
 `;
 
 export const MapContainer = styled("div")`
-  width: 100%;
-  // height: 700px;
+  width: 800px;
+  height: 600px;
+  margin-top: 75px;
   margin-left: auto;
-  margin-right auto;
+  margin-right: auto;
   padding-left; auto;
   paddint-right: auto;
- border: 2px solid red;
- overflow: hidden;
+  // overflow: hidden;
+`;
 
-.marker {
-  border: 10px solid pink;
-} 
+export const MapStyle = styled("div")`
+  display: block;
+  position: relative;
+  margin: 0px auto;
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: #ee8a65;
 `;
