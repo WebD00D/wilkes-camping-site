@@ -62,9 +62,9 @@ export default class Mapbox extends Component {
 
   renderDataPoints() {
     const CAMPSITES = [
-      { lat: 37.78, long: -122.45, text: '1' },
-      { lat: 38.78, long: -125.45,  text: '2' },
-      { lat: 39.78, long: -121.45, text: '3' }
+      { id: 123, lat: 37.78, long: -122.45, text: '1' },
+      { id: 456, lat: 38.78, long: -125.45,  text: '2' },
+      { id: 678, lat: 39.78, long: -121.45, text: '3' }
     ];
 
     return Object.keys(CAMPSITES).map(k => {
@@ -76,7 +76,7 @@ export default class Mapbox extends Component {
           longitude={campsite.long}
           latitude={campsite.lat}
         >
-          <Mark />
+          <a href={`/campsite/${campsite.id}`}><Mark /></a>
           {campsite.text}
         </Marker>
       );

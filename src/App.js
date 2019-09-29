@@ -57,7 +57,7 @@ function App() {
           </ul>
 
           <Route path="/" exact component={Home} />
-          <Route path="/campsite" exact component={Campsite} />
+          <Route path="/campsite/:campsiteId" exact component={Campsite} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/newcampsite" exact component={NewCampsite} />

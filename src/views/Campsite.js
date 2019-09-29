@@ -9,6 +9,13 @@ export default class Campsite extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log("this.props", this.props);
+
+    // we are looking for the campsiteId param.. for which you
+   // will use to then query your firebase db.. 
+  }
+
 
   render() {
     return (
