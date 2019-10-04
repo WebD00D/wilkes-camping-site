@@ -63,9 +63,8 @@ export default class Profile extends Component {
           <InputField placeholder="Rig Type" inputType="text" />
           {/* fix this ^ need selector bar */}
           <h1>Preferences</h1>
-          <button type="checkbox">Receive Email Udates</button>
-          <button type="checkbox">Share Your Travel Map</button>
-          <button type="checkbox">Delay Updates to Profile?</button>
+          <button type="radio">Receive Email Udates</button>
+          {/* why doesnt this work??? */}
           {/* <button onClick=<Link to="/">Home</Link>> hello </button> */}
           {/* fix this */}
           <h1>Change Password</h1>

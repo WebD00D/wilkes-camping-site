@@ -144,14 +144,15 @@ export const FormBackground = styled("div")`
 `;
 
 export const MapContainer = styled("div")`
-  width: 800px;
+  width: 100%;
   height: 600px;
   margin-top: 75px;
   margin-left: auto;
   margin-right: auto;
   padding-left; auto;
-  paddint-right: auto;
-  // overflow: hidden;
+  padding-right: auto;
+  overflow: hidden;
+  border-radius: 5px;
 `;
 
 export const MapStyle = styled("div")`
