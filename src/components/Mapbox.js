@@ -36,7 +36,7 @@ const navStyle = {
 const geolocateStyle = {
   position: "absolute",
   top: 0,
-  left: 0,
+  left: 750,
   margin: 10
 };
 
@@ -58,7 +58,7 @@ export default class Mapbox extends Component {
         bearing: 0,
         pitch: 0
       },
-      popupInfo: "true"
+      popupInfo: null
     };
   }
 
@@ -119,12 +119,12 @@ export default class Mapbox extends Component {
         <Popup
           tipSize={5}
           anchor="top"
-          longitude={this.CAMPSITES.long}
-          latitude={this.CAMPSITES.lat}
+          longitude={popupInfo.long}
+          latitude={popupInfo.lat}
           closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
         >
-          <CampInfo info={CAMPSITES} />
+          <CampInfo info={popupInfo} />
         </Popup>
       )
     );
