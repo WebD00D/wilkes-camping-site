@@ -1,11 +1,37 @@
 import React, { Component } from "react";
-import ReactMapboxGL, { Marker, GeolocateControl, Popup } from "react-map-gl";
+import ReactMapboxGL, {
+  Marker,
+  GeolocateControl,
+  Popup,
+  FullscreenControl,
+  NavigationControl
+} from "react-map-gl";
 import CampPin from "../UI/CampPin";
 import { MAPBOX_ACCESS_TOKEN } from "../constants/index";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
 // import { fromJS } from "immutable"; do i still need this???
 import CampInfo from "./CampInfo";
+
+const CAMPSITES = [
+  { id: 123, lat: 37.78, long: -122.45, text: "1" },
+  { id: 456, lat: 38.78, long: -125.45, text: "2" },
+  { id: 678, lat: 39.78, long: -121.45, text: "3" }
+];
+
+const fullscreenControlStyle = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  padding: "10px"
+};
+
+const navStyle = {
+  position: "absolute",
+  top: 36,
+  left: 0,
+  padding: "10px"
+};
 
 const geolocateStyle = {
   position: "absolute",
@@ -32,16 +58,16 @@ export default class Mapbox extends Component {
         bearing: 0,
         pitch: 0
       },
-      popupInfo: null
+      popupInfo: "true"
     };
   }
 
   renderDataPoints() {
-    const CAMPSITES = [
-      { id: 123, lat: 37.78, long: -122.45, text: "1" },
-      { id: 456, lat: 38.78, long: -125.45, text: "2" },
-      { id: 678, lat: 39.78, long: -121.45, text: "3" }
-    ];
+    // const CAMPSITES = [
+    //   { id: 123, lat: 37.78, long: -122.45, text: "1" },
+    //   { id: 456, lat: 38.78, long: -125.45, text: "2" },
+    //   { id: 678, lat: 39.78, long: -121.45, text: "3" }
+    // ];
 
     return Object.keys(CAMPSITES).map(k => {
       const campsite = CAMPSITES[k];
@@ -86,19 +112,19 @@ export default class Mapbox extends Component {
   }
 
   _renderPopup() {
-    const { popupInfo } = this.state;
+    const { popupInfo, CAMPSITES } = this.state;
 
     return (
       popupInfo && (
         <Popup
           tipSize={5}
           anchor="top"
-          longitude={popupInfo.longitude}
-          latitude={popupInfo.latitude}
+          longitude={this.CAMPSITES.long}
+          latitude={this.CAMPSITES.lat}
           closeOnClick={false}
           onClose={() => this.setState({ popupInfo: null })}
         >
-          <CampInfo info={popupInfo} />
+          <CampInfo info={CAMPSITES} />
         </Popup>
       )
     );
@@ -122,6 +148,15 @@ export default class Mapbox extends Component {
             positionOptions={{ enableHighAccuracy: false }}
             trackUserLocation={true}
           />
+
+          {this._renderPopup()}
+
+          <div className="fullscreen" style={fullscreenControlStyle}>
+            <FullscreenControl />
+          </div>
+          <div className="nav" style={navStyle}>
+            <NavigationControl />
+          </div>
         </ReactMapboxGL>
       </div>
     );
