@@ -3,7 +3,6 @@ import ReactMapboxGL, {
   Marker,
   GeolocateControl,
   Popup,
-  FullscreenControl,
   NavigationControl
 } from "react-map-gl";
 import CampPin from "../UI/CampPin";
@@ -19,12 +18,12 @@ const CAMPSITES = [
   { id: 678, lat: 39.78, long: -121.45, text: "3" }
 ];
 
-const fullscreenControlStyle = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  padding: "10px"
-};
+// const fullscreenControlStyle = {
+//   position: "absolute",
+//   top: 0,
+//   left: 0,
+//   padding: "10px"
+// };
 
 const navStyle = {
   position: "absolute",
@@ -36,7 +35,7 @@ const navStyle = {
 const geolocateStyle = {
   position: "absolute",
   top: 0,
-  left: 750,
+  left: 0,
   margin: 10
 };
 
@@ -57,6 +56,17 @@ export default class Mapbox extends Component {
         zoom: 6.5,
         bearing: 0,
         pitch: 0
+      },
+      settings: {
+        scrollZoom: true,
+        touchZoom: true,
+        touchRotate: true,
+        keyboard: true,
+        doubleClickZoom: true,
+        minZoom: 7,
+        maxZoom: 12,
+        minPitch: 0,
+        maxPitch: 85
       },
       popupInfo: null
     };
@@ -111,6 +121,26 @@ export default class Mapbox extends Component {
     this.setState({ mapStyle });
   }
 
+  // geoZoom() {
+  //   const { viewport } = this.state;
+
+  //   this.setState({ viewport: this.zoom(4) });
+  // }
+
+  // handleOnResult = event => {
+  //   console.log(event.result);
+  //   this.setState({
+  //     searchResultLayer: new GeoJsonLayer({
+  //       id: "search-result",
+  //       data: event.result.geometry,
+  //       getFillColor: [255, 0, 0, 128],
+  //       getRadius: 1000,
+  //       pointRadiusMinPixels: 10,
+  //       pointRadiusMaxPixels: 10
+  //     })
+  //   });
+  // };
+
   _renderPopup() {
     const { popupInfo, CAMPSITES } = this.state;
 
@@ -132,12 +162,13 @@ export default class Mapbox extends Component {
 
   render() {
     // console.log("campsite markers", this.state.campsites);
-    const { viewport, style } = this.state;
+    const { viewport, style, settings } = this.state;
 
     return (
       <div>
         <ReactMapboxGL
           {...viewport}
+          {...settings}
           mapStyle={style}
           onViewportChange={viewport => this._onViewportChange(viewport)}
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
@@ -145,15 +176,18 @@ export default class Mapbox extends Component {
           {this.renderDataPoints()}
           <GeolocateControl
             style={geolocateStyle}
-            positionOptions={{ enableHighAccuracy: false }}
+            positionOptions={{
+              enableHighAccuracy: false
+            }}
             trackUserLocation={true}
+            fitBoundsOptions={{ maxZoom: 6 }}
           />
 
           {this._renderPopup()}
 
-          <div className="fullscreen" style={fullscreenControlStyle}>
+          {/* <div className="fullscreen" style={fullscreenControlStyle}>
             <FullscreenControl />
-          </div>
+          </div> */}
           <div className="nav" style={navStyle}>
             <NavigationControl />
           </div>

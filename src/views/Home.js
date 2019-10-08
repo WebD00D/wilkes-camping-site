@@ -112,7 +112,13 @@ export default class Home extends Component {
         <UI.Button>
           <Link to="/NewCampsite">New Campsite</Link>
         </UI.Button>
-        <div>
+      </UI.PageContainer>
+    );
+  }
+}
+
+{
+  /* <div>
           <Geosuggest
             ref={el => (this._geoSuggest = el)}
             placeholder="Start typing!"
@@ -130,8 +136,5 @@ export default class Home extends Component {
           <button onClick={() => this._geoSuggest.selectSuggest()}>
             Search
           </button>
-        </div>
-      </UI.PageContainer>
-    );
-  }
+        </div> */
 }
