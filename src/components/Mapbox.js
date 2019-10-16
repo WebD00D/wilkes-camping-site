@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapboxGL, {
+import MapGL, {
   Marker,
   GeolocateControl,
   Popup,
@@ -11,19 +11,15 @@ import * as UI from "../UI";
 import styled from "@emotion/styled";
 // import { fromJS } from "immutable"; do i still need this???
 import CampInfo from "./CampInfo";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import * as Geocoder from "react-map-gl-geocoder";
 
 const CAMPSITES = [
   { id: 123, lat: 37.78, long: -122.45, text: "1" },
   { id: 456, lat: 38.78, long: -125.45, text: "2" },
   { id: 678, lat: 39.78, long: -121.45, text: "3" }
 ];
-
-// const fullscreenControlStyle = {
-//   position: "absolute",
-//   top: 0,
-//   left: 0,
-//   padding: "10px"
-// };
 
 const navStyle = {
   position: "absolute",
@@ -72,6 +68,8 @@ export default class Mapbox extends Component {
     };
   }
 
+  mapRef = React.createRef();
+
   renderDataPoints() {
     // const CAMPSITES = [
     //   { id: 123, lat: 37.78, long: -122.45, text: "1" },
@@ -95,11 +93,11 @@ export default class Mapbox extends Component {
       );
     });
   }
-  _onViewportChange(viewport) {
-    this.setState({
-      viewport: { ...this.state.viewport, ...viewport }
-    });
-  }
+  // _onViewportChange(viewport) {
+  //   this.setState({
+  //     viewport: { ...this.state.viewport, ...viewport }
+  //   });
+  // }
 
   componentDidMount() {
     window.addEventListener("resize", this._resize);
@@ -141,6 +139,12 @@ export default class Mapbox extends Component {
   //   });
   // };
 
+  _onViewportChange = viewport => {
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
+    });
+  };
+
   _renderPopup() {
     const { popupInfo, CAMPSITES } = this.state;
 
@@ -166,14 +170,16 @@ export default class Mapbox extends Component {
 
     return (
       <div>
-        <ReactMapboxGL
+        <MapGL
+          // ref={this.mapRef}
           {...viewport}
-          {...settings}
           mapStyle={style}
           onViewportChange={viewport => this._onViewportChange(viewport)}
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
         >
           {this.renderDataPoints()}
+          {this._renderPopup()}
+
           <GeolocateControl
             style={geolocateStyle}
             positionOptions={{
@@ -183,15 +189,16 @@ export default class Mapbox extends Component {
             fitBoundsOptions={{ maxZoom: 6 }}
           />
 
-          {this._renderPopup()}
-
-          {/* <div className="fullscreen" style={fullscreenControlStyle}>
-            <FullscreenControl />
-          </div> */}
           <div className="nav" style={navStyle}>
             <NavigationControl />
           </div>
-        </ReactMapboxGL>
+
+          {/* <Geocoder
+            mapRef={this.mapRef}
+            onViewportChange={this.handleViewportChange}
+            mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+          /> */}
+        </MapGL>
       </div>
     );
   }

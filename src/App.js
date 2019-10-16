@@ -27,8 +27,8 @@ function App() {
             <li className="NavLeft">
               <Link to="/">Home</Link>
             </li>
-            <li className="NotInNav">
-              <Link to="/campsite">Campsite</Link>
+            <li className="NavLeft">
+              <Link to="/Campsite">Campsite</Link>
             </li>
             <li className="NotInNav">
               <Link to="/NewCampsite">New Campsite</Link>
@@ -57,7 +57,7 @@ function App() {
           </ul>
 
           <Route path="/" exact component={Home} />
-          <Route path="/campsite/:campsiteId" exact component={Campsite} />
+          <Route path="/campsite" exact component={Campsite} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/newcampsite" exact component={NewCampsite} />

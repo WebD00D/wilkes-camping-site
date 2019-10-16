@@ -12,6 +12,12 @@ export const theme = {
     radius: "3px"
   },
 
+  boxshadow: {
+    boxshadow: `box-shadow: -webkit-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    -moz-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);`
+  },
+
   fontSizes: {
     small: "10px",
     medium: "14px",

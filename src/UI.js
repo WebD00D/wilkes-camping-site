@@ -101,10 +101,6 @@ export const PageHeader = styled("div")`
 `;
 
 export const PageBody = styled("div")`
-  // .sup {
-  //   color: blue;
-  // }
-
   p {
     color: ${T.theme.colors.dark};
     padding: 8px;
@@ -125,12 +121,9 @@ export const FormStyle = styled("div")`
   margin-right: auto;
   // margin-top: 24px;
   padding: 24px;
-  background-color: #FFF;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: -webkit-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
-    -moz-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
-    box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
-
+  box-shadow: ${T.theme.boxshadow.boxshadow};
 
   h1 {
     text-decoration: underline;
@@ -145,7 +138,7 @@ export const FormBackground = styled("div")`
 
 export const MapContainer = styled("div")`
   width: 100%;
-  height: 600px;
+  height: 700px;
   margin-top: 75px;
   margin-left: auto;
   margin-right: auto;
@@ -155,17 +148,63 @@ export const MapContainer = styled("div")`
   border-radius: 5px;
 `;
 
-export const MapStyle = styled("div")`
-  display: block;
-  position: relative;
-  margin: 0px auto;
-  width: 50%;
-  height: 40px;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-  font-size: 12px;
-  text-align: center;
-  color: #fff;
-  background: #ee8a65;
+export const CampsitePageContainer = styled("div")`
+  width: 900px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: left;
+  background-color: white;
+
+  p {
+    max-width: 400px;
+  }
+
+  ul {
+    background-color: white;
+    text-decoration: none;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      // display: flex;
+      // flex-wrap: wrap;
+      width: 50px;
+    }
+  }
 `;
+
+export const CampMapContainer = styled("div")`
+  width: 450px;
+  height: 450px;
+  // margin-top: 75px;
+  // margin-left: auto;
+  // margin-right: auto;
+  // padding-left; auto;
+  // padding-right: auto;
+  overflow: hidden;
+  border-radius: 5px;
+  // border: solid black 2px;
+  box-shadow: ${T.theme.boxshadow.boxshadow};
+`;
+
+// export const MapStyle = styled("div")`
+//   display: block;
+//   position: relative;
+//   margin: 0px auto;
+//   width: 50%;
+//   height: 40px;
+//   padding: 10px;
+//   border: none;
+//   border-radius: 3px;
+//   font-size: 12px;
+//   text-align: center;
+//   color: #fff;
+//   background: #ee8a65;
+// `;
