@@ -13,7 +13,7 @@ import styled from "@emotion/styled";
 import CampInfo from "./CampInfo";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import * as Geocoder from "react-map-gl-geocoder";
+import Geocoder from "react-map-gl-geocoder";
 
 const CAMPSITES = [
   { id: 123, lat: 37.78, long: -122.45, text: "1" },
@@ -44,6 +44,9 @@ export default class Mapbox extends Component {
 
       style: "mapbox://styles/mapbox/outdoors-v10",
 
+      activeLat: null,
+      activeLong: null,
+
       viewport: {
         width: window.innerWidth,
         height: window.innerHeight,
@@ -64,11 +67,11 @@ export default class Mapbox extends Component {
         minPitch: 0,
         maxPitch: 85
       },
-      showPopup: true
+      showPopup: false
     };
   }
 
-  // mapRef = React.createRef();
+  mapRef = React.createRef();
 
   renderDataPoints() {
     return Object.keys(CAMPSITES).map(k => {
@@ -80,7 +83,11 @@ export default class Mapbox extends Component {
           latitude={campsite.lat}
         >
           {/* how to href without rerendering? */}
-          <a onclick={this.renderPopup()}>
+          <a href="#" onClick={(e) => {
+            e.preventDefault();
+            this.setState({ showPopup: true, activeLat: campsite.lat, activeLong: campsite.long })
+          }
+          } >
             <CampPin />
           </a>
           {campsite.text}
@@ -90,13 +97,13 @@ export default class Mapbox extends Component {
   }
 
   renderPopup() {
-    const { showPopup } = this.state;
+    const { showPopup, activeLat, activeLong } = this.state;
     console.log("renderpopup", showPopup);
     if (showPopup) {
       return (
         <Popup
-          latitude={38.78} //link to campsites -- abstract
-          longitude={-125.45} //link to campsites -- abstract
+          latitude={activeLat} //link to campsites -- abstract
+          longitude={activeLong} //link to campsites -- abstract
           closeButton={true}
           closeOnClick={false} //`campsite/:${campsiteId}`?????
           onClose={() => this.setState({ showPopup: false })}
@@ -129,10 +136,19 @@ export default class Mapbox extends Component {
   }
 
   _onViewportChange = viewport => {
+    console.log("map box view port", viewport)
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     });
   };
+
+  handleViewportChange = (viewport) => {
+    console.log("view port changed", viewport);
+
+    this.setState({
+      viewport: { ...this.state.viewport, latitude: viewport.latitude, longitude: viewport.longitude }
+    })
+  }
 
   render() {
     // console.log("campsite markers", this.state.campsites);
@@ -141,12 +157,13 @@ export default class Mapbox extends Component {
     return (
       <div>
         <MapGL
-          // ref={this.mapRef}
+          ref={this.mapRef}
           {...viewport}
           mapStyle={style}
           onViewportChange={viewport => this._onViewportChange(viewport)}
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
         >
+          {this.renderPopup()}
           {this.renderDataPoints()}
           {/* how only load data points that are in viewport?? */}
           <GeolocateControl
@@ -160,11 +177,12 @@ export default class Mapbox extends Component {
           <div className="nav" style={navStyle}>
             <NavigationControl />
           </div>
-          {/* <Geocoder
+          <Geocoder
+            id="MY_GEO_CODER"
             mapRef={this.mapRef}
             onViewportChange={this.handleViewportChange}
             mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-          /> */}
+          />
         </MapGL>
       </div>
     );

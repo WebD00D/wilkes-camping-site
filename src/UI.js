@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import * as T from "./theme";
 
 export const PageContainer = styled("div")`
-  max-width: 800px;
+  // max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
