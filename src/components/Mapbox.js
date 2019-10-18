@@ -64,19 +64,13 @@ export default class Mapbox extends Component {
         minPitch: 0,
         maxPitch: 85
       },
-      popupInfo: null
+      showPopup: true
     };
   }
 
-  mapRef = React.createRef();
+  // mapRef = React.createRef();
 
   renderDataPoints() {
-    // const CAMPSITES = [
-    //   { id: 123, lat: 37.78, long: -122.45, text: "1" },
-    //   { id: 456, lat: 38.78, long: -125.45, text: "2" },
-    //   { id: 678, lat: 39.78, long: -121.45, text: "3" }
-    // ];
-
     return Object.keys(CAMPSITES).map(k => {
       const campsite = CAMPSITES[k];
       return (
@@ -85,7 +79,8 @@ export default class Mapbox extends Component {
           longitude={campsite.long}
           latitude={campsite.lat}
         >
-          <a href={`/campsite/${campsite.id}`}>
+          {/* how to href without rerendering? */}
+          <a onclick={this.renderPopup()}>
             <CampPin />
           </a>
           {campsite.text}
@@ -93,11 +88,25 @@ export default class Mapbox extends Component {
       );
     });
   }
-  // _onViewportChange(viewport) {
-  //   this.setState({
-  //     viewport: { ...this.state.viewport, ...viewport }
-  //   });
-  // }
+
+  renderPopup() {
+    const { showPopup } = this.state;
+    console.log("renderpopup", showPopup);
+    if (showPopup) {
+      return (
+        <Popup
+          latitude={38.78} //link to campsites -- abstract
+          longitude={-125.45} //link to campsites -- abstract
+          closeButton={true}
+          closeOnClick={false} //`campsite/:${campsiteId}`?????
+          onClose={() => this.setState({ showPopup: false })}
+          anchor="top"
+        >
+          <div>Camp Info</div>
+        </Popup>
+      );
+    }
+  }
 
   componentDidMount() {
     window.addEventListener("resize", this._resize);
@@ -119,54 +128,15 @@ export default class Mapbox extends Component {
     this.setState({ mapStyle });
   }
 
-  // geoZoom() {
-  //   const { viewport } = this.state;
-
-  //   this.setState({ viewport: this.zoom(4) });
-  // }
-
-  // handleOnResult = event => {
-  //   console.log(event.result);
-  //   this.setState({
-  //     searchResultLayer: new GeoJsonLayer({
-  //       id: "search-result",
-  //       data: event.result.geometry,
-  //       getFillColor: [255, 0, 0, 128],
-  //       getRadius: 1000,
-  //       pointRadiusMinPixels: 10,
-  //       pointRadiusMaxPixels: 10
-  //     })
-  //   });
-  // };
-
   _onViewportChange = viewport => {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     });
   };
 
-  _renderPopup() {
-    const { popupInfo, CAMPSITES } = this.state;
-
-    return (
-      popupInfo && (
-        <Popup
-          tipSize={5}
-          anchor="top"
-          longitude={popupInfo.long}
-          latitude={popupInfo.lat}
-          closeOnClick={false}
-          onClose={() => this.setState({ popupInfo: null })}
-        >
-          <CampInfo info={popupInfo} />
-        </Popup>
-      )
-    );
-  }
-
   render() {
     // console.log("campsite markers", this.state.campsites);
-    const { viewport, style, settings } = this.state;
+    const { viewport, style, showPopup, settings, popupInfo } = this.state;
 
     return (
       <div>
@@ -178,8 +148,7 @@ export default class Mapbox extends Component {
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
         >
           {this.renderDataPoints()}
-          {this._renderPopup()}
-
+          {/* how only load data points that are in viewport?? */}
           <GeolocateControl
             style={geolocateStyle}
             positionOptions={{
@@ -188,11 +157,9 @@ export default class Mapbox extends Component {
             trackUserLocation={true}
             fitBoundsOptions={{ maxZoom: 6 }}
           />
-
           <div className="nav" style={navStyle}>
             <NavigationControl />
           </div>
-
           {/* <Geocoder
             mapRef={this.mapRef}
             onViewportChange={this.handleViewportChange}
@@ -203,4 +170,3 @@ export default class Mapbox extends Component {
     );
   }
 }
-// onViewportChange={this._onViewportChange}
