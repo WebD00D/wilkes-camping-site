@@ -36,7 +36,7 @@ export default class Campsite extends Component {
           </CampViewSection>
           <CampViewSection>
             <CampMapContainer>
-              <Mapbox />
+              <Mapbox hideLocator />
             </CampMapContainer>
           </CampViewSection>
 

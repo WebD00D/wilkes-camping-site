@@ -168,39 +168,44 @@ export default class Mapbox extends Component {
     } = this.state;
 
     return (
-     
-        <MapGL
-          ref={this.mapRef}
-          {...viewport}
-          mapStyle={style}
-          onViewportChange={viewport => this._onViewportChange(viewport)}
-          mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-          scrollZoom={false}
-          doubleClickZoom={true}
-          maxZoom={14}
-          minZoom={6}
-          width={'100%'}
-        >
-          {this.renderPopup()}
-          {this.renderDataPoints()}
 
-          <GeolocateControl
-            style={geolocateStyle}
-            options={{ maxZoom: 13 }}
-            trackUserLocation={true}
-          />
-          <div className="nav" style={navStyle}>
-            <NavigationControl />
-          </div>
-          <Geocoder
-            id="MY_GEO_CODER"
-            mapRef={this.mapRef}
-            onViewportChange={this.handleViewportChange}
-            mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-            onZoom={6}
-          />
-        </MapGL>
-      
+      <MapGL
+        ref={this.mapRef}
+        {...viewport}
+        mapStyle={style}
+        onViewportChange={viewport => this._onViewportChange(viewport)}
+        mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+        scrollZoom={false}
+        doubleClickZoom={true}
+        maxZoom={14}
+        minZoom={6}
+        width={'100%'}
+      >
+        {this.renderPopup()}
+        {this.renderDataPoints()}
+
+        {!this.props.hideLocator && (
+          <React.Fragment>
+            <GeolocateControl
+              style={geolocateStyle}
+              options={{ maxZoom: 13 }}
+              trackUserLocation={true}
+            />
+            <div className="nav" style={navStyle}>
+              <NavigationControl />
+            </div>
+            <Geocoder
+              id="MY_GEO_CODER"
+              mapRef={this.mapRef}
+              onViewportChange={this.handleViewportChange}
+              mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+              onZoom={6}
+            />
+          </React.Fragment>
+        )}
+
+      </MapGL>
+
     );
   }
 }
