@@ -75,10 +75,10 @@ export default class Home extends Component {
             time camping. More contributions equals more fun. Let's get out
             there!
           </p>
+          <UI.MapContainer>
+            <Mapbox />
+          </UI.MapContainer>
         </UI.PageBody>
-        <UI.MapContainer>
-          <Mapbox />
-        </UI.MapContainer>
 
         <UI.Button>
           <Link to="/NewCampsite">New Campsite</Link>

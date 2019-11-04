@@ -39,7 +39,7 @@ export default class Campsite extends Component {
               <p>Road St Ave.</p>
               <p>City, State</p>
               <p>GPS: 123.56, 78.9</p>
-              <p>Get Directions</p>
+              <a href="https://www.google.com/maps">Get Directions</a>
               {/* link to google maps^ */}
             </div>
           </UI.PageHeader>
@@ -49,30 +49,30 @@ export default class Campsite extends Component {
             {/* zoom in on location */}
           </UI.CampMapContainer>
 
-          <div>
+          <UI.PageBody>
             <h3>Description</h3>
             <p>
               Lenghty Description. Thundercats you probably haven't heard of
               them umami literally, iceland skateboard artisan swag +1 pok pok.
             </p>
-          </div>
 
-          <div>
-            <h3>Amenities</h3>
-            <ul>
-              <li>Fun Shit</li>
-              <li>Fun Shit</li>
-              <li>Fun Shit</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Activities</h3>
-            <ul>
-              <li>Nice Shit</li>
-              <li>Nice Shit</li>
-              <li>Nice Shit</li>
-            </ul>
-          </div>
+            <div>
+              <h3>Amenities</h3>
+              <ul>
+                <li>Fun Shit</li>
+                <li>Fun Shit</li>
+                <li>Fun Shit</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Activities</h3>
+              <ul>
+                <li>Nice Shit</li>
+                <li>Nice Shit</li>
+                <li>Nice Shit</li>
+              </ul>
+            </div>
+          </UI.PageBody>
           <div>
             <p>Submitted by ____.</p>
             <p>Last update on ____.</p>

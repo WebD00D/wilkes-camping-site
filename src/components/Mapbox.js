@@ -48,26 +48,16 @@ export default class Mapbox extends Component {
       activeLong: null,
 
       viewport: {
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: "200px",
+        height: "100px",
         latitude: 37.785164,
         longitude: -122,
         zoom: 6.5,
         bearing: 0,
         pitch: 0
       },
-      settings: {
-        scrollZoom: true,
-        touchZoom: true,
-        touchRotate: true,
-        keyboard: true,
-        doubleClickZoom: true,
-        minZoom: 7,
-        maxZoom: 12,
-        minPitch: 0,
-        maxPitch: 85
-      },
-      showPopup: false
+      showPopup: false,
+      resize: false
     };
   }
 
@@ -82,12 +72,17 @@ export default class Mapbox extends Component {
           longitude={campsite.long}
           latitude={campsite.lat}
         >
-          {/* how to href without rerendering? */}
-          <a href="#" onClick={(e) => {
-            e.preventDefault();
-            this.setState({ showPopup: true, activeLat: campsite.lat, activeLong: campsite.long })
-          }
-          } >
+          <a
+            href="#"
+            onClick={e => {
+              e.preventDefault();
+              this.setState({
+                showPopup: true,
+                activeLat: campsite.lat,
+                activeLong: campsite.long
+              });
+            }}
+          >
             <CampPin />
           </a>
           {campsite.text}
@@ -102,8 +97,8 @@ export default class Mapbox extends Component {
     if (showPopup) {
       return (
         <Popup
-          latitude={activeLat} //link to campsites -- abstract
-          longitude={activeLong} //link to campsites -- abstract
+          latitude={activeLat}
+          longitude={activeLong}
           closeButton={true}
           closeOnClick={false} //`campsite/:${campsiteId}`?????
           onClose={() => this.setState({ showPopup: false })}
@@ -136,23 +131,41 @@ export default class Mapbox extends Component {
   }
 
   _onViewportChange = viewport => {
-    console.log("map box view port", viewport)
+    console.log("map box view port", viewport);
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     });
   };
 
-  handleViewportChange = (viewport) => {
+  handleViewportChange = viewport => {
     console.log("view port changed", viewport);
 
     this.setState({
-      viewport: { ...this.state.viewport, latitude: viewport.latitude, longitude: viewport.longitude }
-    })
-  }
+      viewport: {
+        ...this.state.viewport,
+        latitude: viewport.latitude,
+        longitude: viewport.longitude
+      }
+    });
+  };
+
+  // campsitePageSize() {
+  //   const { resize } = this.state;
+
+  //   if ((resize = false)) {
+  //     return ();
+  //   }
+  // }
 
   render() {
     // console.log("campsite markers", this.state.campsites);
-    const { viewport, style, showPopup, settings, popupInfo } = this.state;
+    const {
+      viewport,
+      style,
+      showPopup,
+      popupInfo,
+      fitBoundsOptions
+    } = this.state;
 
     return (
       <div>
@@ -162,17 +175,18 @@ export default class Mapbox extends Component {
           mapStyle={style}
           onViewportChange={viewport => this._onViewportChange(viewport)}
           mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+          scrollZoom={false}
+          doubleClickZoom={true}
+          maxZoom={14}
+          minZoom={6}
         >
           {this.renderPopup()}
           {this.renderDataPoints()}
-          {/* how only load data points that are in viewport?? */}
+
           <GeolocateControl
             style={geolocateStyle}
-            positionOptions={{
-              enableHighAccuracy: false
-            }}
+            options={{ maxZoom: 13 }}
             trackUserLocation={true}
-            fitBoundsOptions={{ maxZoom: 6 }}
           />
           <div className="nav" style={navStyle}>
             <NavigationControl />
@@ -182,6 +196,7 @@ export default class Mapbox extends Component {
             mapRef={this.mapRef}
             onViewportChange={this.handleViewportChange}
             mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+            onZoom={6}
           />
         </MapGL>
       </div>

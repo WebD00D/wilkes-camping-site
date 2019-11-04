@@ -90,14 +90,38 @@ export const PageHeader = styled("div")`
     text-decoration: underline;
     text-decoration-color: ${T.theme.colors.primary};
   }
+
+  h2 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+  }
+
+  h3 {
+    font-size: ${T.theme.fontSizes.medium};
+  }
+
   h4 {
     color: ${T.theme.colors.dark};
     margin-bottom: 0.5em;
     margin-top: 0;
   }
 
-  // border-bottom: 2px solid;
-  // border-bottom-color: ${T.theme.colors.tertiary};
+  a {
+    color: ${T.theme.colors.dark};
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: ${T.theme.colors.primary};
+  }
+
+  p {
+    line-height: 50%;
+  }
+
+  a {
+    line-height: 50%;
+  }
 `;
 
 export const PageBody = styled("div")`
@@ -108,6 +132,7 @@ export const PageBody = styled("div")`
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    max-width: 750px;
   }
 `;
 
@@ -137,19 +162,11 @@ export const FormBackground = styled("div")`
 `;
 
 export const MapContainer = styled("div")`
-  width: 100%;
-  height: 700px;
   margin-top: 75px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left; auto;
-  padding-right: auto;
-  overflow: hidden;
-  border-radius: 5px;
 `;
 
 export const CampsitePageContainer = styled("div")`
-  width: 900px;
+  width: 800px;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -173,24 +190,16 @@ export const CampsitePageContainer = styled("div")`
     flex-wrap: wrap;
 
     li {
-      // display: flex;
-      // flex-wrap: wrap;
       width: 50px;
     }
   }
 `;
 
 export const CampMapContainer = styled("div")`
-  width: 450px;
-  height: 450px;
-  // margin-top: 75px;
-  // margin-left: auto;
-  // margin-right: auto;
-  // padding-left; auto;
-  // padding-right: auto;
-  overflow: hidden;
+  width: 400px;
+  max-height: 400px;
+  content: contain;
   border-radius: 5px;
-  // border: solid black 2px;
   box-shadow: ${T.theme.boxshadow.boxshadow};
 `;
 

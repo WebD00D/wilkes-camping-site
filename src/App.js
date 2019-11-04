@@ -10,7 +10,7 @@ import Campsite from "./views/Campsite";
 import Signup from "./views/Signup";
 import Login from "./views/Login";
 import NewCampsite from "./views/NewCampsite";
-import EditPost from "./views/Editpost";
+import EditPost from "./views/EditPost";
 import Profile from "./views/Profile";
 
 import Dashboard from "./views/Dashboard";
