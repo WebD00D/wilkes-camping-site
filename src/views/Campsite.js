@@ -21,13 +21,14 @@ export default class Campsite extends Component {
   }
 
   componentDidMount() {
-    // console.log("this.props", this.props);
+    console.log("this.props", this.props.match.params.campsiteId);
     // we are looking for the campsiteId param.. for which you
     // will use to then query your firebase db..
     
   }
 
   render() {
+
     return (
       <UI.FormBackground>
         <UI.CampsitePageContainer>
