@@ -166,15 +166,15 @@ export const MapContainer = styled("div")`
 `;
 
 export const CampsitePageContainer = styled("div")`
-  width: 800px;
+  max-width: 1200px;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
   text-align: left;
   background-color: white;
 
@@ -195,12 +195,13 @@ export const CampsitePageContainer = styled("div")`
   }
 `;
 
+export const CampViewSection = styled('div')`
+  width: 50%;
+`
+
 export const CampMapContainer = styled("div")`
-  width: 400px;
-  max-height: 400px;
-  content: contain;
-  border-radius: 5px;
-  box-shadow: ${T.theme.boxshadow.boxshadow};
+   border: 4px solid black;
+   width: 100%;
 `;
 
 // export const MapStyle = styled("div")`

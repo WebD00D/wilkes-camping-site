@@ -168,7 +168,7 @@ export default class Mapbox extends Component {
     } = this.state;
 
     return (
-      <div>
+     
         <MapGL
           ref={this.mapRef}
           {...viewport}
@@ -179,6 +179,7 @@ export default class Mapbox extends Component {
           doubleClickZoom={true}
           maxZoom={14}
           minZoom={6}
+          width={'100%'}
         >
           {this.renderPopup()}
           {this.renderDataPoints()}
@@ -199,7 +200,7 @@ export default class Mapbox extends Component {
             onZoom={6}
           />
         </MapGL>
-      </div>
+      
     );
   }
 }

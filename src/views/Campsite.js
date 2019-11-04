@@ -7,7 +7,8 @@ import {
   Button,
   MapContainer,
   CampMapContainer,
-  CampsitePageContainer
+  CampsitePageContainer,
+  CampViewSection
 } from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
@@ -23,13 +24,23 @@ export default class Campsite extends Component {
     // console.log("this.props", this.props);
     // we are looking for the campsiteId param.. for which you
     // will use to then query your firebase db..
+    
   }
 
   render() {
     return (
       <UI.FormBackground>
         <UI.CampsitePageContainer>
-          <UI.PageHeader>
+          <CampViewSection>
+            Left
+          </CampViewSection>
+          <CampViewSection>
+            <CampMapContainer id="MAP_CONTAINER">
+              <Mapbox />
+            </CampMapContainer>
+          </CampViewSection>
+
+          {/* <UI.PageHeader>
             <h1>Camp Name</h1>
             <h3>This is a ___ campsite.</h3>
             <h3>State/County</h3>
@@ -40,43 +51,42 @@ export default class Campsite extends Component {
               <p>City, State</p>
               <p>GPS: 123.56, 78.9</p>
               <a href="https://www.google.com/maps">Get Directions</a>
-              {/* link to google maps^ */}
+    
             </div>
-          </UI.PageHeader>
+          </UI.PageHeader>  */}
 
-          <UI.CampMapContainer>
-            <Mapbox />
-            {/* zoom in on location */}
-          </UI.CampMapContainer>
+          {/* // <UI.CampMapContainer id="CAMP_CONTAINER">
+          //   <Mapbox />
+          // </UI.CampMapContainer>
 
-          <UI.PageBody>
-            <h3>Description</h3>
-            <p>
-              Lenghty Description. Thundercats you probably haven't heard of
-              them umami literally, iceland skateboard artisan swag +1 pok pok.
-            </p>
+          // <UI.PageBody id="PAGE_BODY">
+          //   <h3>Description</h3>
+          //   <p>
+          //     Lenghty Description. Thundercats you probably haven't heard of
+          //     them umami literally, iceland skateboard artisan swag +1 pok pok.
+          //   </p>
 
-            <div>
-              <h3>Amenities</h3>
-              <ul>
-                <li>Fun Shit</li>
-                <li>Fun Shit</li>
-                <li>Fun Shit</li>
-              </ul>
-            </div>
-            <div>
-              <h3>Activities</h3>
-              <ul>
-                <li>Nice Shit</li>
-                <li>Nice Shit</li>
-                <li>Nice Shit</li>
-              </ul>
-            </div>
-          </UI.PageBody>
-          <div>
-            <p>Submitted by ____.</p>
-            <p>Last update on ____.</p>
-          </div>
+          //   <div>
+          //     <h3>Amenities</h3>
+          //     <ul>
+          //       <li>Fun Shit</li>
+          //       <li>Fun Shit</li>
+          //       <li>Fun Shit</li>
+          //     </ul>
+          //   </div>
+          //   <div>
+          //     <h3>Activities</h3>
+          //     <ul>
+          //       <li>Nice Shit</li>
+          //       <li>Nice Shit</li>
+          //       <li>Nice Shit</li>
+          //     </ul>
+          //   </div>
+          // </UI.PageBody>
+          // <div>
+          //   <p>Submitted by ____.</p>
+          //   <p>Last update on ____.</p>
+          // </div> */}
         </UI.CampsitePageContainer>
       </UI.FormBackground>
     );
