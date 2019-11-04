@@ -35,7 +35,7 @@ export default class Campsite extends Component {
             Left
           </CampViewSection>
           <CampViewSection>
-            <CampMapContainer id="MAP_CONTAINER">
+            <CampMapContainer>
               <Mapbox />
             </CampMapContainer>
           </CampViewSection>
@@ -88,6 +88,7 @@ export default class Campsite extends Component {
           //   <p>Last update on ____.</p>
           // </div> */}
         </UI.CampsitePageContainer>
+      
       </UI.FormBackground>
     );
   }
