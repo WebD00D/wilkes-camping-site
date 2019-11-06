@@ -100,7 +100,7 @@ export default class Mapbox extends Component {
           latitude={activeLat}
           longitude={activeLong}
           closeButton={true}
-          closeOnClick={false} //`campsite/:${campsiteId}`?????
+          closeOnClick={false}
           onClose={() => this.setState({ showPopup: false })}
           anchor="top"
         >
@@ -168,29 +168,25 @@ export default class Mapbox extends Component {
     } = this.state;
 
     return (
-
       <MapGL
         ref={this.mapRef}
         {...viewport}
         mapStyle={style}
         onViewportChange={viewport => this._onViewportChange(viewport)}
         mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
-        scrollZoom={false}
+        scrollZoom={true}
         doubleClickZoom={true}
-        maxZoom={14}
+        maxZoom={13}
         minZoom={6}
-        width={'100%'}
+        width={"100%"}
+        height={"100%"}
       >
         {this.renderPopup()}
         {this.renderDataPoints()}
 
         {!this.props.hideLocator && (
           <React.Fragment>
-            <GeolocateControl
-              style={geolocateStyle}
-              options={{ maxZoom: 13 }}
-              trackUserLocation={true}
-            />
+            <GeolocateControl style={geolocateStyle} trackUserLocation={true} />
             <div className="nav" style={navStyle}>
               <NavigationControl />
             </div>
@@ -203,9 +199,7 @@ export default class Mapbox extends Component {
             />
           </React.Fragment>
         )}
-
       </MapGL>
-
     );
   }
 }

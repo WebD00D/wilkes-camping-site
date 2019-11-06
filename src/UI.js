@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import * as T from "./theme";
 
 export const PageContainer = styled("div")`
-  // max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -84,6 +83,9 @@ export const NavBar = styled("div")`
 `;
 
 export const PageHeader = styled("div")`
+  width: 100%;
+  // display: flex;
+
   h1 {
     color: ${T.theme.colors.dark};
     margin-bottom: 0;
@@ -92,8 +94,10 @@ export const PageHeader = styled("div")`
   }
 
   h2 {
+    margin-bottom: 0;
     text-decoration: underline;
     text-decoration-color: ${T.theme.colors.primary};
+  }
   }
 
   h3 {
@@ -163,18 +167,18 @@ export const FormBackground = styled("div")`
 
 export const MapContainer = styled("div")`
   margin-top: 75px;
+  max-width: 1200px;
+  width: 100%;
+  height: 600px;
 `;
 
 export const CampsitePageContainer = styled("div")`
-  max-width: 1200px;
+  max-width: 1000px;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
   display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
   text-align: left;
   background-color: white;
 
@@ -195,13 +199,71 @@ export const CampsitePageContainer = styled("div")`
   }
 `;
 
-export const CampViewSection = styled('div')`
+export const CampViewSection = styled("div")`
   width: 50%;
-`
+  margin: 20px;
+`;
 
 export const CampMapContainer = styled("div")`
-   border: 4px solid black;
-   width: 100%;
+  border: 4px solid black;
+  width: 100%;
+  height: 400px;
+  border-radius: 5px;
+`;
+
+export const CampTitle = styled("div")`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  h1 {
+    margin-top: 0;
+    width: 250px;
+  }
+
+  #rating {
+    width: 400px;
+  }
+`;
+
+export const CampInfo = styled("div")`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  height: 225px;
+
+  h2 {
+    margin: 0;
+    margin-bottom: 0;
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+  }
+
+  #Address {
+    width: 35%;
+    margin-right: 16px;
+
+    h2:nth-child(2) {
+      margin-top: 26px;
+    }
+
+    p {
+      line-height: 70%;
+    }
+    a {
+      color: ${T.theme.colors.dark};
+      text-decoration: underline;
+    }
+  }
+
+  #Description {
+    width: 60%;
+    min-width: 260px;
+  }
+
+  div {
+    width: 50%;
+  }
 `;
 
 // export const MapStyle = styled("div")`

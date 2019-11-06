@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Rating extends Component {
   constructor(props) {
@@ -20,10 +20,10 @@ export default class Rating extends Component {
     if (!this.state.rating) {
       return (
         <div>
-          <h3>No ratings yet! Be the first?</h3>
+          <h4>No ratings yet! Be the first?</h4>
           <button onClick={() => this.setState({ renderNewRating: true })}>
-            {' '}
-            Rate this campsite{' '}
+            {" "}
+            Rate this campsite{" "}
           </button>
         </div>
       );

@@ -10,7 +10,7 @@ import Campsite from "./views/Campsite";
 import Signup from "./views/Signup";
 import Login from "./views/Login";
 import NewCampsite from "./views/NewCampsite";
-import EditPost from "./views/EditPost"
+import EditPost from "./views/EditPost";
 import Profile from "./views/Profile";
 
 import Dashboard from "./views/Dashboard";
@@ -28,13 +28,13 @@ function App() {
               <Link to="/">Home</Link>
             </li>
             <li className="NavLeft">
-              <Link to="/Campsite">Campsite</Link>
+              <Link to="/campsite">Campsite</Link>
             </li>
             <li className="NotInNav">
-              <Link to="/NewCampsite">New Campsite</Link>
+              <Link to="/newcampsite">New Campsite</Link>
             </li>
             <li className="NotInNav">
-              <Link to="/EditPost">Edit Post</Link>
+              <Link to="/editpost">Edit Post</Link>
             </li>
             {/* <li>
               <Link to="/database">Data Store</Link>
@@ -43,10 +43,10 @@ function App() {
               <Link to="/Numbers">Numbers</Link>
             </li> */}
             <li className="NotInNav">
-              <Link to="/Profile">Profile</Link>
+              <Link to="/profile">Profile</Link>
             </li>
             <li className="NavRight">
-              <Link to="/Dashboard">Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li className="NavRight">
               <Link to="/login">Log In</Link>
@@ -57,7 +57,8 @@ function App() {
           </ul>
 
           <Route path="/" exact component={Home} />
-          <Route path="/campsite/:campsiteId" exact component={Campsite} />
+          {/* <Route path="/campsite/:campsiteId" exact component={Campsite} /> */}
+          <Route path="/campsite" exact component={Campsite} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/login" exact component={Login} />
           <Route path="/newcampsite" exact component={NewCampsite} />

@@ -54,7 +54,7 @@ class Login extends Component {
     const { isAuthenticated } = this.props.authContext;
 
     if (isAuthenticated) {
-      return <Redirect to="/Dashboard" />;
+      return <Redirect to="/dashboard" />;
     }
 
     return (
