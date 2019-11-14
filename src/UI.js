@@ -6,6 +6,7 @@ export const PageContainer = styled("div")`
   margin-right: auto;
   text-align: center;
   margin-bottom: 50px;
+  padding-top: 20px;
 
   // background-color: red;
 
@@ -84,9 +85,9 @@ export const NavBar = styled("div")`
 
 export const PageHeader = styled("div")`
   width: 100%;
-  // display: flex;
 
   h1 {
+    margin-top: 0;
     color: ${T.theme.colors.dark};
     margin-bottom: 0;
     text-decoration: underline;
@@ -148,7 +149,6 @@ export const FormStyle = styled("div")`
   width: 500px;
   margin-left: auto;
   margin-right: auto;
-  // margin-top: 24px;
   padding: 24px;
   background-color: #fff;
   border-radius: 8px;
@@ -167,7 +167,6 @@ export const FormBackground = styled("div")`
 
 export const MapContainer = styled("div")`
   margin-top: 75px;
-  max-width: 1200px;
   width: 100%;
   height: 600px;
 `;
@@ -178,13 +177,10 @@ export const CampsitePageContainer = styled("div")`
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
-  display: flex;
   text-align: left;
   background-color: white;
-
-  p {
-    max-width: 400px;
-  }
+  display: flex;
+  //flex-wrap: wrap;
 
   ul {
     background-color: white;
@@ -192,16 +188,17 @@ export const CampsitePageContainer = styled("div")`
     border: none;
     display: flex;
     flex-wrap: wrap;
-
-    li {
-      width: 50px;
-    }
   }
 `;
 
 export const CampViewSection = styled("div")`
   width: 50%;
   margin: 20px;
+
+  #Update_Info {
+    display: flex;
+    justify-content: space-around;
+  }
 `;
 
 export const CampMapContainer = styled("div")`
@@ -209,74 +206,137 @@ export const CampMapContainer = styled("div")`
   width: 100%;
   height: 400px;
   border-radius: 5px;
+  min-width: 400px;
 `;
 
 export const CampTitle = styled("div")`
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 8px;
 
   h1 {
     margin-top: 0;
-    width: 250px;
+    width: 100%;
   }
 
-  #rating {
-    width: 400px;
+
+  #TitleInfo {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap; wrap;
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      font-size: ${T.theme.fontSizes.medium};
+      font-weight: bold;
+      width: 100%;
+    }
   }
+
 `;
 
 export const CampInfo = styled("div")`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 16px;
-  height: 225px;
+  justify-content: space-between;
+  margin-top: 24px;
 
   h2 {
-    margin: 0;
-    margin-bottom: 0;
     text-decoration: underline;
     text-decoration-color: ${T.theme.colors.primary};
   }
 
-  #Address {
-    width: 35%;
-    margin-right: 16px;
+  h3 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+  }
 
-    h2:nth-child(2) {
-      margin-top: 26px;
+  #Address,
+  #Mgmt {
+    h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
     }
 
-    p {
-      line-height: 70%;
-    }
     a {
       color: ${T.theme.colors.dark};
       text-decoration: underline;
+      line-height: 1.5;
+    }
+
+    li {
+      line-height: 1.5;
     }
   }
 
-  #Description {
-    width: 60%;
-    min-width: 260px;
+  #Mgmt {
+    text-align: left;
   }
 
-  div {
-    width: 50%;
+  #Description {
+    width: 100%;
+    min-width: 260px;
+    margin-top: 24px;
+
+    p {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    li {
+      line-height: 1.5;
+    }
+  }
+
+  #Amenities,
+  #Activities {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    width: 280px;
+
+    h3 {
+      width: 100%;
+      display: block;
+      margin: 0;
+    }
+
+    ul {
+      //list-style-type: circle;
+      height: 90px;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    ul li {
+      display: flex;
+      width: 50%;
+      margin-right: 8px;
+      line-height: 120%;
+    }
   }
 `;
 
-// export const MapStyle = styled("div")`
-//   display: block;
-//   position: relative;
-//   margin: 0px auto;
-//   width: 50%;
-//   height: 40px;
-//   padding: 10px;
-//   border: none;
-//   border-radius: 3px;
-//   font-size: 12px;
-//   text-align: center;
-//   color: #fff;
-//   background: #ee8a65;
-// `;
+export const ImgSection = styled("div")`
+  display: flex;
+  align-self: flex-end;
+
+  width: 100%;
+  height: 250px;
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+`;

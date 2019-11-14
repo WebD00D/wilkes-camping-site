@@ -75,7 +75,7 @@ export default class Home extends Component {
             time camping. More contributions equals more fun. Let's get out
             there!
           </p>
-          <UI.MapContainer>
+          <UI.MapContainer id="mapbox-container">
             <Mapbox />
           </UI.MapContainer>
         </UI.PageBody>

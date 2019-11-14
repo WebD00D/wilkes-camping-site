@@ -8,5 +8,27 @@
 }
 
 h1 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+@media only screen and (max-width: 960px) {
+  li {
+    background-color: lightblue;
+  }
+
+  #CampsitePageContainer {
+    width: 100%;
+  }
+
+  #Desktop {
+    display: none;
+    margin: 0px;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  #Mobile {
+    display: none;
+    width: 100%;
+  }
 }
