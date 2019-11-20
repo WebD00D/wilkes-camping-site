@@ -180,7 +180,6 @@ export const CampsitePageContainer = styled("div")`
   text-align: left;
   background-color: white;
   display: flex;
-  //flex-wrap: wrap;
 
   ul {
     background-color: white;

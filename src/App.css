@@ -11,24 +11,71 @@ h1 {
   font-family: "Roboto", sans-serif;
 }
 
-@media only screen and (max-width: 960px) {
-  li {
-    background-color: lightblue;
+@media only screen and (min-width: 975px) {
+  #Mobile {
+    display: none;
   }
+}
 
-  #CampsitePageContainer {
-    width: 100%;
+@media only screen and (min-width: 600px) and (max-width: 975px) {
+  li {
+    background-color: red;
   }
 
   #Desktop {
     display: none;
     margin: 0px;
   }
+
+  #CampViewSection {
+    margin-left: auto;
+    margin-right: auto;
+    width: 675px;
+  }
 }
 
-@media only screen and (min-width: 960px) {
-  #Mobile {
-    display: none;
+@media only screen and (max-width: 600px) {
+  #FormBackground {
+    background-color: white;
+  }
+
+  #CampsitePageContainer {
+    min-width: 350px;
+    width: 350px;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+
+  #CampViewSection {
+    margin-left: auto;
+    margin-right: auto;
+    width: 375px;
+  }
+
+  #CampMapContainer {
+    min-width: 200px;
     width: 100%;
+    border: none;
+    margin: 0;
+    height: 350px;
+  }
+
+  #Desktop {
+    display: none;
+    margin: 0px;
+  }
+
+  #Mobile {
+    height: 350px;
+    width: 350px;
+    min-width: 250px;
+  }
+
+  #Description {
+    width: 100%;
+    min-width: 200px;
+    margin-top: 8px;
   }
 }

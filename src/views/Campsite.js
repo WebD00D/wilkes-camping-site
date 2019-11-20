@@ -30,9 +30,9 @@ export default class Campsite extends Component {
 
   render() {
     return (
-      <UI.FormBackground>
+      <UI.FormBackground id="FormBackground">
         <UI.CampsitePageContainer id="CampsitePageContainer">
-          <CampViewSection>
+          <CampViewSection id="CampViewSection">
             <UI.PageHeader>
               <h1>Camp Name</h1>
               <UI.CampTitle>
@@ -99,7 +99,7 @@ export default class Campsite extends Component {
             </UI.PageBody> */}
           </CampViewSection>
           <CampViewSection id="Desktop">
-            <CampMapContainer id="Desktop">
+            <CampMapContainer id="Desktop" id="Tablet">
               <Mapbox hideLocator />
             </CampMapContainer>
             <div id="Update_Info" id="Desktop">
