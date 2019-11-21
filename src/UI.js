@@ -180,7 +180,7 @@ export const CampsitePageContainer = styled("div")`
   padding: 20px;
   text-align: left;
   background-color: white;
-  display: flex;
+
 
   ul {
     background-color: white;
@@ -191,9 +191,20 @@ export const CampsitePageContainer = styled("div")`
   }
 `;
 
+
+export const FlexWrapper = styled('div')`
+  display: flex;
+`
+
 export const CampViewSection = styled("div")`
   width: 50%;
   margin: 20px;
+
+  @media (max-width: 600px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 375px;
+  }
 
   #Update_Info {
     display: flex;

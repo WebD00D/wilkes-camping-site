@@ -23,6 +23,8 @@ import Mapbox from "../components/Mapbox";
 
 import Hook from "../components/Hook";
 
+import { Icon, Alert } from 'antd'
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -43,6 +45,8 @@ export default class Home extends Component {
         <UI.PageHeader>
           <h1>Free Camping</h1>
           <h4>We've Got You Covered</h4>
+          <Alert showIcon message="Hello, you need to sign up to view more." type="warning" />
+          
         </UI.PageHeader>
         {/* <Hook /> */}
         <UI.PageBody>

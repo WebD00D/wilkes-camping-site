@@ -16,6 +16,9 @@ import Profile from "./views/Profile";
 import Dashboard from "./views/Dashboard";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+import 'antd/dist/antd.css';
+
+
 function App() {
   // const { getProfilePhoto } = this.props.authContext;
 
