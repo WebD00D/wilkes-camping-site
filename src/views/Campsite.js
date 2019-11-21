@@ -107,7 +107,7 @@ export default class Campsite extends Component {
               <p>Last update on ____.</p>
             </div>
           </CampViewSection>
-          {/* <ImgSection>
+          <ImgSection>
             <img
               alt="campsite "
               src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
@@ -118,7 +118,22 @@ export default class Campsite extends Component {
               src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
               id="UserCampImg"
             ></img>
-          </ImgSection> */}
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+          </ImgSection>
         </UI.CampsitePageContainer>
       </UI.FormBackground>
     );

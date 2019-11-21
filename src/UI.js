@@ -174,6 +174,7 @@ export const MapContainer = styled("div")`
 export const CampsitePageContainer = styled("div")`
   max-width: 1000px;
   height: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -203,7 +204,7 @@ export const CampViewSection = styled("div")`
 export const CampMapContainer = styled("div")`
   border: 4px solid black;
   width: 100%;
-  height: 400px;
+  height: 450px;
   border-radius: 5px;
   min-width: 400px;
 `;
@@ -300,7 +301,6 @@ export const CampInfo = styled("div")`
   #Activities {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 24px;
     width: 280px;
 
     h3 {
@@ -328,13 +328,14 @@ export const CampInfo = styled("div")`
 `;
 
 export const ImgSection = styled("div")`
-  display: flex;
-  align-self: flex-end;
-
+  max-width: 1000px;
   width: 100%;
-  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
 
   img {
+    margin-right: 8px;
+    margin-top: 8px;
     width: 200px;
     height: 200px;
   }
