@@ -12,46 +12,42 @@ h1 {
 }
 
 @media only screen and (min-width: 1000px) {
-  #Mobile {
+  /* #Mobile {
     display: none;
-  }
+  } */
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1000px) {
-  li {
-    background-color: red;
-  }
-
-  #Desktop {
+  /* #Desktop {
     display: none;
     margin: 0px;
-  }
+  } */
 
-  #CampViewSection {
+  /* #CampViewSection {
     margin-left: auto;
     margin-right: auto;
     width: 675px;
-  }
+  } */
 
-  #mapbox-container {
+  /* #mapbox-container {
     height: 450px;
     width: 100%;
-  }
+  } */
 }
 
 @media only screen and (max-width: 600px) {
-  #FormBackground {
+  /* #FormBackground {
     background-color: white;
-  }
+  } */
 
-  #CampsitePageContainer {
+  /* #CampsitePageContainer {
     min-width: 350px;
     width: 350px;
     margin-top: 0;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-  }
+  } */
 
   /* #CampViewSection {
     margin-left: auto;
@@ -59,33 +55,33 @@ h1 {
     width: 375px;
   } */
 
-  #CampMapContainer {
+  /* #CampMapContainer {
     min-width: 200px;
     width: 100%;
     border: none;
     margin: 0;
     height: 350px;
-  }
+  } */
 
-  #Desktop {
+  /* #Desktop {
     display: none;
     margin: 0px;
-  }
+  } */
 
-  #Mobile {
+  /* #Mobile {
     height: 350px;
     width: 350px;
     min-width: 250px;
-  }
+  } */
 
-  #Description {
+  /* #Description {
     width: 100%;
     min-width: 200px;
     margin-top: 8px;
-  }
+  } */
 
-  #mapbox-container {
+  /* #mapbox-container {
     height: 350px;
     width: 100%;
-  }
+  } */
 }

@@ -69,7 +69,7 @@ export default class Campsite extends Component {
                   </p>
                 </div>
 
-                <CampMapContainer id="Mobile">
+                <CampMapContainer id="left">
                   <Mapbox hideLocator />
                 </CampMapContainer>
 
@@ -101,11 +101,11 @@ export default class Campsite extends Component {
             </UI.PageBody> */}
             </CampViewSection>
 
-            <CampViewSection id="Desktop">
-              <CampMapContainer id="Desktop" id="Tablet">
+            <CampViewSection id="right">
+              <CampMapContainer>
                 <Mapbox hideLocator />
               </CampMapContainer>
-              <div id="Update_Info" id="Desktop">
+              <div id="Update_Info">
                 <p>Submitted by ____.</p>
                 <p>Last update on ____.</p>
               </div>
@@ -113,35 +113,33 @@ export default class Campsite extends Component {
           </UI.FlexWrapper>
 
           <ImgSection>
-          <img
-            alt="campsite "
-            src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
-            id="UserCampImg"
-          ></img>
-          <img
-            alt="campsite "
-            src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
-            id="UserCampImg"
-          ></img>
-          <img
-            alt="campsite "
-            src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
-            id="UserCampImg"
-          ></img>
-          <img
-            alt="campsite "
-            src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
-            id="UserCampImg"
-          ></img>
-          <img
-            alt="campsite "
-            src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
-            id="UserCampImg"
-          ></img>
-        </ImgSection>
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+            <img
+              alt="campsite "
+              src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2447&q=80"
+              id="UserCampImg"
+            ></img>
+          </ImgSection>
         </UI.CampsitePageContainer>
-
-       
       </UI.FormBackground>
     );
   }

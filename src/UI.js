@@ -127,6 +127,13 @@ export const PageHeader = styled("div")`
   a {
     line-height: 50%;
   }
+
+  @media (min-width: 600px) and (max-width: 950px) {
+    h1 {max-width: 750px;
+      margin-left: auto;
+      margin-right: auto;}
+  }
+  
 `;
 
 export const PageBody = styled("div")`
@@ -181,7 +188,6 @@ export const CampsitePageContainer = styled("div")`
   text-align: left;
   background-color: white;
 
-
   ul {
     background-color: white;
     text-decoration: none;
@@ -191,10 +197,21 @@ export const CampsitePageContainer = styled("div")`
   }
 `;
 
-
-export const FlexWrapper = styled('div')`
+export const FlexWrapper = styled("div")`
   display: flex;
-`
+
+  @media (max-width: 600px) {
+    #right {
+      display: none;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 950px) {
+    #right {
+      display: none;
+    }
+
+`;
 
 export const CampViewSection = styled("div")`
   width: 50%;
@@ -204,6 +221,16 @@ export const CampViewSection = styled("div")`
     margin-left: auto;
     margin-right: auto;
     width: 375px;
+  }
+
+  @media (min-width: 600px) and (max-width: 950px) {
+    width: 100%;
+  }
+
+  @media (min-width: 950px) {
+    #left {
+      display: none;
+    }
   }
 
   #Update_Info {
@@ -226,11 +253,6 @@ export const CampTitle = styled("div")`
   justify-content: space-between;
   margin-top: 8px;
 
-  h1 {
-    margin-top: 0;
-    width: 100%;
-  }
-
 
   #TitleInfo {
     display: flex;
@@ -246,6 +268,13 @@ export const CampTitle = styled("div")`
       font-weight: bold;
       width: 100%;
     }
+  }
+
+
+  @media (min-width: 600px) and (max-width: 950px) {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 `;
@@ -334,6 +363,24 @@ export const CampInfo = styled("div")`
       width: 50%;
       margin-right: 8px;
       line-height: 120%;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 950px) {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+
+    #Activities,
+    #Amenities {
+      margin-top: 16px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #Activities,
+    #Amenities {
+      margin-top: 16px;
     }
   }
 `;
