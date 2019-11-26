@@ -390,11 +390,31 @@ export const ImgSection = styled("div")`
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 
   img {
     margin-right: 8px;
     margin-top: 8px;
     width: 200px;
     height: 200px;
+  }
+`;
+
+export const ReviewSection = styled("div")`
+  width: 100%;
+  padding: 20px;
+
+  h2 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+  }
+
+  #card {
+    margin-bottom: 16px;
+  }
+
+  a {
+    color: ${T.theme.colors.dark};
   }
 `;

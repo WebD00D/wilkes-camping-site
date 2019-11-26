@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Rating from "../components/Rating";
+import { Card } from "antd";
+
 import {
   PageHeader,
   PageBody,
@@ -10,7 +12,8 @@ import {
   CampViewSection,
   CampTitle,
   CampInfo,
-  ImgSection
+  ImgSection,
+  ReviewSection
 } from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
@@ -139,6 +142,42 @@ export default class Campsite extends Component {
               id="UserCampImg"
             ></img>
           </ImgSection>
+          <UI.ReviewSection>
+            <h2>Reviews</h2>
+            <Card
+              title="Review Title"
+              extra={<a href="#">More</a>}
+              style={{ width: 920 }}
+              id="card"
+            >
+              <p>Content</p>
+              <p>Content -- needs to be 100%, have img option and stars</p>
+              <p>-- possible make seperate component to import</p>
+              <p>research limiting characters/size</p>
+            </Card>
+            <Card
+              title="Review Title"
+              extra={<a href="#">More</a>}
+              style={{ width: 920 }}
+              id="card"
+            >
+              <p>Content</p>
+              <p>Content -- needs to be 100%, have img option and stars</p>
+              <p>-- possible make seperate component to import</p>
+              <p>research limiting characters/size</p>
+            </Card>
+            <Card
+              title="Review Title"
+              extra={<a href="#">More</a>}
+              style={{ width: 920 }}
+              id="card"
+            >
+              <p>Content</p>
+              <p>Content -- needs to be 100%, have img option and stars</p>
+              <p>-- possible make seperate component to import</p>
+              <p>research limiting characters/size</p>
+            </Card>
+          </UI.ReviewSection>
         </UI.CampsitePageContainer>
       </UI.FormBackground>
     );

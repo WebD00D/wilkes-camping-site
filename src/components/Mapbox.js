@@ -149,16 +149,7 @@ export default class Mapbox extends Component {
     });
   };
 
-  // campsitePageSize() {
-  //   const { resize } = this.state;
-
-  //   if ((resize = false)) {
-  //     return ();
-  //   }
-  // }
-
   render() {
-    // console.log("campsite markers", this.state.campsites);
     const {
       viewport,
       style,
