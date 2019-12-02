@@ -14,18 +14,18 @@ export const PageContainer = styled("div")`
     color: white;
     background-color: ${T.theme.colors.primary};
     border-radius: 3px;
-    box-shadow: -webkit-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
-    -moz-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
-    box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    // box-shadow: -webkit-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    // -moz-box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
+    // box-shadow: 2px 2px 2px -1px rgba(25,25,25,0.4);
 
   a:hover {
-    color: ${T.theme.colors.secondary};
+    // color: ${T.theme.colors.secondary};
   }
 
   button:hover {
     // border: 1px solid ${T.theme.colors.secondary};
-    border-radius: 3px;
-    color: ${T.theme.colors.secondary};
+    // border-radius: 3px;
+    // color: ${T.theme.colors.secondary};
   }
 `;
 
@@ -53,7 +53,7 @@ export const NavBar = styled("div")`
   }
 
   a:hover {
-    color: ${T.theme.colors.secondary};
+    // color: ${T.theme.colors.secondary};
   }
 
   .NavLeft {
@@ -80,6 +80,12 @@ export const NavBar = styled("div")`
 
   .NotInNav {
     display: none;
+  }
+
+  @media (min-width: 600px) {
+    .mobile {
+      display: none;
+    }
   }
 `;
 
@@ -117,7 +123,7 @@ export const PageHeader = styled("div")`
   }
 
   a:hover {
-    color: ${T.theme.colors.primary};
+    // color: ${T.theme.colors.primary};
   }
 
   p {
@@ -129,9 +135,11 @@ export const PageHeader = styled("div")`
   }
 
   @media (min-width: 600px) and (max-width: 950px) {
-    h1 {max-width: 750px;
+    h1 {
+      max-width: 750px;
       margin-left: auto;
-      margin-right: auto;}
+      margin-right: auto;
+    }
   }
   
 `;
@@ -146,6 +154,18 @@ export const PageBody = styled("div")`
     text-align: center;
     max-width: 750px;
   }
+
+  @media (min-width: 600px) {
+    #HomeCollapse {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #p {
+      display: none;
+    }
+  }
 `;
 
 export const Button = styled("button")`
@@ -153,27 +173,43 @@ export const Button = styled("button")`
 `;
 
 export const FormStyle = styled("div")`
-  width: 500px;
+  height: 500px;
+  width: 400px;
   margin-left: auto;
   margin-right: auto;
   padding: 24px;
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: ${T.theme.boxshadow.boxshadow};
+  // border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.65);
 
   h1 {
     text-decoration: underline;
     text-decoration-color: ${T.theme.colors.primary};
   }
+
+  a {
+    color: ${T.theme.colors.primary};
+  }
+
+  .login-form {
+    max-width: 400px;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .login-form-button {
+    width: 100%;
+  }
 `;
 
 export const FormBackground = styled("div")`
   background-color: #f7f7f7;
-  height: 100%;
+  height: 100vh;
+  padding-top: 16px;
 `;
 
 export const MapContainer = styled("div")`
-  margin-top: 75px;
+  margin-top: 20px;
   width: 100%;
   height: 600px;
 `;
@@ -303,7 +339,7 @@ export const CampInfo = styled("div")`
     }
 
     a {
-      color: ${T.theme.colors.dark};
+      color: rgba(0, 0, 0, 0.65);
       text-decoration: underline;
       line-height: 1.5;
     }
@@ -399,11 +435,17 @@ export const ImgSection = styled("div")`
     width: 200px;
     height: 200px;
   }
+
+  h2 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+  }
 `;
 
 export const ReviewSection = styled("div")`
-  width: 100%;
   padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
 
   h2 {
     text-decoration: underline;
@@ -412,9 +454,19 @@ export const ReviewSection = styled("div")`
 
   #card {
     margin-bottom: 16px;
+    width: 200px;
   }
 
   a {
     color: ${T.theme.colors.dark};
+  }
+
+  @media (max-width: 975px) {
+    margin-left: auto;
+    margin-right: auto;
+
+    #card {
+      max-width: 100%;
+    }
   }
 `;

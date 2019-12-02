@@ -16,17 +16,21 @@ import Profile from "./views/Profile";
 import Dashboard from "./views/Dashboard";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 
+import { Icon, Layout } from "antd";
+import { isUserWhitespacable, isPatternLike } from "@babel/types";
 
 function App() {
   // const { getProfilePhoto } = this.props.authContext;
+  const { Header } = Layout;
 
   return (
     <Router>
       <UI.NavBar>
         <div className="App">
           <ul>
+            <Icon type="menu" className="mobile" />
             <li className="NavLeft">
               <Link to="/">Home</Link>
             </li>

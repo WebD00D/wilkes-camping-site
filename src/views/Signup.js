@@ -20,9 +20,6 @@ export default class Signup extends Component {
   constructor(props) {
     super(props);
 
-    // this.handleAuth = this.handleAuth.bind(this);
-    // this.sortFunction = this.sortFunction.bind(this);
-
     this.getUsers = this.getUsers.bind(this);
     this.addUser = this.addUser.bind(this);
     this.renderUser = this.renderUser.bind(this);
@@ -37,24 +34,6 @@ export default class Signup extends Component {
       age: ""
     };
   }
-
-  // handleAuth() {
-  //   this.setState({
-  //     authenticated: true
-  //   });
-  // }
-
-  // sortFunction() {
-  //   const { authenticated, name } = this.state;
-
-  //   if (authenticated) {
-  //     return <div>You are already signed up!</div>;
-  //   }
-
-  //   if (!authenticated) {
-  //     return <div>Please sign up</div>;
-  //   }
-  // }
 
   componentDidMount() {
     this.getUsers();
@@ -136,10 +115,6 @@ export default class Signup extends Component {
       .then(u => {
         console.log("the new user!", u.user.uid);
 
-        // Now want to save that user to the database..
-
-        // store the email and name
-
         const userUpdates = {};
         userUpdates[`users/${u.user.uid}/name`] = name;
         userUpdates[`users/${u.user.uid}/email`] = email;
@@ -162,10 +137,6 @@ export default class Signup extends Component {
   }
 
   render() {
-    // if (this.state.authenticated) {
-    //   return <Redirect to="/dashboard" />;
-    // }
-
     return (
       <UI.FormBackground>
         <UI.FormStyle>
@@ -180,32 +151,89 @@ export default class Signup extends Component {
             onChange={e => this.setState({ password: e.target.value })}
           />
           <button onClick={() => this.handleSignup()}>Sign me up</button>
-          {/* <label>Add User</label> */}
-          {/* <input
-          onChange={e => this.setState({ name: e.target.value })}
-          placeholder="name"
-        />
-        <input
-          onChange={e => this.setState({ age: e.target.value })}
-          placeholder="age"
-        /> */}
-          {/* <button onClick={() => this.addUser()}>Add User</button> */}
-
-          {/* {this.renderUser()} */}
-          {/* <button onClick={this.handleAuth}>Sign Up</button> */}
         </UI.FormStyle>
       </UI.FormBackground>
     );
   }
 }
 
-// {
-/* <button onClick={() => this.setState({ renderNewRating: true })}>
-            {' '}
-            Rate this campsite{' '}
-          </button> */
+// import { PageContainer, FormBackground, FormStyle } from "../UI";
+// import * as UI from "../UI";
+
+// import { Form, Icon, Input, Button, Checkbox } from "antd";
+// // import { UI } from "winjs";
+
+// class Signup extends Component {
+//   handleSubmit = e => {
+//     e.preventDefault();
+//     this.props.form.validateFields((err, values) => {
+//       if (!err) {
+//         console.log("Received values of form: ", values);
+//       }
+//     });
+//   };
+
+//   render() {
+//     const { getFieldDecorator } = this.props.form;
+//     return (
+//       <UI.FormBackground>
+//         <UI.FormStyle>
+//           <Form onSubmit={this.handleSubmit} className="login-form">
+//             <Form.Item>
+//               {getFieldDecorator("username", {
+//                 rules: [
+//                   { required: true, message: "Please input your username!" }
+//                 ]
+//               })(
+//                 <Input
+//                   prefix={
+//                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+//                   }
+//                   placeholder="Username"
+//                 />
+//               )}
+//             </Form.Item>
+//             <Form.Item>
+//               {getFieldDecorator("password", {
+//                 rules: [
+//                   { required: true, message: "Please input your Password!" }
+//                 ]
+//               })(
+//                 <Input
+//                   prefix={
+//                     <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+//                   }
+//                   type="password"
+//                   placeholder="Password"
+//                 />
+//               )}
+//             </Form.Item>
+//             <Form.Item>
+//               {getFieldDecorator("remember", {
+//                 valuePropName: "checked",
+//                 initialValue: true
+//               })(<Checkbox>Remember me</Checkbox>)}
+//               <a className="login-form-forgot" href="">
+//                 Forgot password
+//               </a>
+//               <Button
+//                 type="primary"
+//                 htmlType="submit"
+//                 className="login-form-button"
+//               >
+//                 Log in
+//               </Button>
+//               <a href="http://www.facebook.com">Register Now </a>
+//             </Form.Item>
+//           </Form>
+//         </UI.FormStyle>
+//       </UI.FormBackground>
+//     );
+//   }
 // }
 
-// 1. Create a signup handler function which will fire when a button "Sign up" is clicked.
-// 2. When the handler function runs, it should set a state property of "authenticated" to true.
-// 3. If authenticated is true, don't display the form, show a message that says "you are signed up!"
+// const WrappedSignup = Form.create({ name: "normal_login" })(Signup);
+
+// // ReactDOM.render(<WrappedSignup />, mountNode);
+
+// export default WrappedSignup;
