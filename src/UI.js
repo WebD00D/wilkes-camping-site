@@ -212,6 +212,10 @@ export const MapContainer = styled("div")`
   margin-top: 20px;
   width: 100%;
   height: 600px;
+
+  button {
+    background-color: white;
+  }
 `;
 
 export const CampsitePageContainer = styled("div")`

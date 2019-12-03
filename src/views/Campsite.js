@@ -240,7 +240,7 @@ class Campsite extends Component {
     const { getFieldDecorator } = this.props.form;
     const { isAuthenticated } = this.state;
 
-    // = this.props.authContext; Change above back to this
+    // = this.props.authContext; Change isAuth... back to this
 
     if (isAuthenticated) {
       return <Redirect to="/dashboard" />;
@@ -284,9 +284,6 @@ class Campsite extends Component {
                 valuePropName: "checked",
                 initialValue: true
               })(<Checkbox>Remember me</Checkbox>)}
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -294,6 +291,9 @@ class Campsite extends Component {
               >
                 Log in
               </Button>
+              <a className="login-form-forgot" href="">
+                Forgot password
+              </a>
               <a href="/Signup">Register Now </a>
             </Form.Item>
           </Form>
