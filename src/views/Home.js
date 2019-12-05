@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 
+import HideDesktop from "../utils/HideDesktop";
+
 // import BigButton from "../components/BigButton";
 
 // import LittleButton from "../components/LittleButton";
@@ -90,11 +92,13 @@ export default class Home extends Component {
         </UI.PageHeader>
         {/* <Hook /> */}
         <UI.PageBody>
-          <Collapse accordion id="HomeCollapse">
-            <Panel header="About Us" key="1" id="HomeCollapse">
-              {this.renderAboutContent()}
-            </Panel>
-          </Collapse>
+          <HideDesktop>
+            <Collapse accordion>
+              <Panel header="About Us" key="1" id="HomeCollapse">
+                {this.renderAboutContent()}
+              </Panel>
+            </Collapse>
+          </HideDesktop>
 
           {/* how to get this stuff to show up in tablet and mobile  */}
 
