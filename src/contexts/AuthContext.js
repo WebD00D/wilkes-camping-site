@@ -43,6 +43,8 @@ export class AuthProvider extends Component {
   // }
 
   setUser(userId, name, email, profilePhoto) {
+
+
     window.localStorage.setItem("CAMPSITE_uuid", userId);
     window.localStorage.setItem("CAMPSITE_name", name);
     window.localStorage.setItem("CAMPSITE_email", email);
@@ -61,7 +63,8 @@ export class AuthProvider extends Component {
   }
 
   signInUser(email, password) {
-    // console.log("[AuthContext.SignInUser]", email, password);
+
+    console.log("[AuthContext.SignInUser]", email, password);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)

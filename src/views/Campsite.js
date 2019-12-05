@@ -189,7 +189,7 @@ import React, { Component } from "react";
 import InputField from "../components/InputField";
 import firebase from "../datastore";
 import { Redirect, Link } from "react-router-dom";
-
+import { WithAuth } from "../contexts/AuthContext";
 import { PageContainer, FormBackground, FormStyle } from "../UI";
 import * as UI from "../UI";
 
@@ -201,10 +201,7 @@ class Campsite extends Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-
     this.state = {
-      user: {},
-      isAuthenticated: false,
       email: "",
       password: ""
     };
@@ -215,6 +212,9 @@ class Campsite extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        const { email, password } = values;
+        console.log(this.props);
+        this.props.authContext.signInUser(email, password);
       }
     });
   };
@@ -238,7 +238,7 @@ class Campsite extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { isAuthenticated } = this.state;
+    const { isAuthenticated } = this.props.authContext;
 
     // = this.props.authContext; Change isAuth... back to this
 
@@ -251,16 +251,14 @@ class Campsite extends Component {
         <UI.FormStyle>
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
-              {getFieldDecorator("username", {
-                rules: [
-                  { required: true, message: "Please input your username!" }
-                ]
+              {getFieldDecorator("email", {
+                rules: [{ required: true, message: "Please input your email!" }]
               })(
                 <Input
                   prefix={
                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                   }
-                  placeholder="Username"
+                  placeholder="Email"
                 />
               )}
             </Form.Item>
@@ -303,7 +301,9 @@ class Campsite extends Component {
   }
 }
 
-const WrappedCampsite = Form.create({ name: "normal_login" })(Campsite);
+const WrappedCampsite = Form.create({ name: "normal_login" })(
+  WithAuth(Campsite)
+);
 
 // ReactDOM.render(<WrappedLogin />, mountNode);
 
