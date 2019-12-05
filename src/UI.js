@@ -456,7 +456,7 @@ export const ReviewSection = styled("div")`
     text-decoration-color: ${T.theme.colors.primary};
   }
 
-  #card {
+  .ant-card {
     margin-bottom: 16px;
     width: 200px;
   }

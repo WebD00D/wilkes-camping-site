@@ -43,6 +43,38 @@ export default class Home extends Component {
     });
   }
 
+  renderAboutContent() {
+    return (
+      <>
+        <p>
+          This community based platform is for sharing the best free campgrounds
+          and camp sites you have discovered. Whether you enjoy tent camping,
+          car camping or RV camping, our goal is to help you find the best
+          places to go camping for free or at least very cheap.
+        </p>
+        <p>
+          Free campgrounds can be hard to find. We makes it easy. We give you a
+          simple, map based search engine to find free and cheap camping areas.
+          Community reviews and ratings provide you with up to date information
+          and help you select the best camp site for your next camping trip.
+        </p>
+        <p>
+          Our focus is on public lands, since you own them and are entitled to
+          use them. Forest Service land, BLM (Bureau of Land Management) areas,
+          WMA's (Wildlife Management Areas) and county or city parks are all
+          great. We are not actively seeking Wal-Marts, truck-stops or other
+          parking lots. However, if a member of the community finds one of these
+          locations to be useful and creates an entry, we may approve the
+          listing.
+        </p>
+        <p>
+          By sharing this information, we spend less time and money and more
+          time camping. More contributions equals more fun. Let's get out there!
+        </p>
+      </>
+    );
+  }
+
   render() {
     const { Panel } = Collapse;
     return (
@@ -60,67 +92,13 @@ export default class Home extends Component {
         <UI.PageBody>
           <Collapse accordion id="HomeCollapse">
             <Panel header="About Us" key="1" id="HomeCollapse">
-              <p>
-                This community based platform is for sharing the best
-                free campgrounds and camp sites you have discovered. Whether you
-                enjoy tent camping, car camping or RV camping, our goal is to
-                help you find the best places to go camping for free or at least
-                very cheap.
-              </p>
-              <p>
-                Free campgrounds can be hard to find. We makes it easy. We give
-                you a simple, map based search engine to find free and cheap
-                camping areas. Community reviews and ratings provide you with up
-                to date information and help you select the best camp site for
-                your next camping trip.
-              </p>
-              <p>
-                Our focus is on public lands, since you own them and are
-                entitled to use them. Forest Service land, BLM (Bureau of Land
-                Management) areas, WMA's (Wildlife Management Areas) and county
-                or city parks are all great. We are not actively seeking
-                Wal-Marts, truck-stops or other parking lots. However, if a
-                member of the community finds one of these locations to be
-                useful and creates an entry, we may approve the listing.
-              </p>
-              <p>
-                By sharing this information, we spend less time and money and
-                more time camping. More contributions equals more fun. Let's get
-                out there!
-              </p>
+              {this.renderAboutContent()}
             </Panel>
           </Collapse>
 
           {/* how to get this stuff to show up in tablet and mobile  */}
 
-          <p id="p">
-            This community based platform is for sharing the best
-            free campgrounds and camp sites you have discovered. Whether you
-            enjoy tent camping, car camping or RV camping, our goal is to help
-            you find the best places to go camping for free or at least very
-            cheap.
-          </p>
-          <p id="p">
-            Free campgrounds can be hard to find. We makes it easy. We give you
-            a simple, map based search engine to find free and cheap camping
-            areas. Community reviews and ratings provide you with up to date
-            information and help you select the best camp site for your next
-            camping trip.
-          </p>
-          <p id="p">
-            Our focus is on public lands, since you own them and are entitled to
-            use them. Forest Service land, BLM (Bureau of Land Management)
-            areas, WMA's (Wildlife Management Areas) and county or city parks
-            are all great. We are not actively seeking Wal-Marts, truck-stops or
-            other parking lots. However, if a member of the community finds one
-            of these locations to be useful and creates an entry, we may approve
-            the listing.
-          </p>
-          <p id="p">
-            By sharing this information, we spend less time and money and more
-            time camping. More contributions equals more fun. Let's get out
-            there!
-          </p>
+          {this.renderAboutContent()}
           <UI.MapContainer id="mapbox-container">
             <Mapbox />
           </UI.MapContainer>
