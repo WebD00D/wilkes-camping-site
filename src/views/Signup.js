@@ -7,16 +7,18 @@ import {
   PageContainer,
   PageHeader,
   PageBody,
-  Button,
+  // Button,
   FormBackground,
   FormStyle
 } from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
 
+import { Form, Icon, Input, Button, Checkbox } from "antd";
+
 import { VALIDATE_FIELDS, SAY_MY_NAME } from "../utils/index";
 
-export default class Signup extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
@@ -134,106 +136,85 @@ export default class Signup extends Component {
         console.error(errorCode, errorMessage);
         // ..
       });
+    // console.log("new state email", this.state.email);
   }
 
   render() {
+    const { getFieldDecorator } = this.props.form;
+    const { isAuthenticated } = this.state;
+
+    if (isAuthenticated) {
+      return <Redirect to="/dashboard" />;
+    }
+
     return (
       <UI.FormBackground>
         <UI.FormStyle>
-          <h1>Sign Up</h1>
-          <label>name</label>
-          <input onChange={e => this.setState({ name: e.target.value })} />
-          <label>email</label>
-          <input onChange={e => this.setState({ email: e.target.value })} />
-          <label>password</label>
-          <input
-            type="password"
-            onChange={e => this.setState({ password: e.target.value })}
-          />
-          <button onClick={() => this.handleSignup()}>Sign me up</button>
+          <h1>Register</h1>
+          <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form.Item>
+              {getFieldDecorator("name", {
+                rules: [{ required: true, message: "Please input your name!" }]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="Name"
+                  onChange={e => this.setState({ name: e.target.value })}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("email", {
+                rules: [{ required: true, message: "Please input your email!" }]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="Email"
+                  onChange={e => this.setState({ email: e.target.value })}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("password", {
+                rules: [
+                  { required: true, message: "Please input your Password!" }
+                ]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  type="password"
+                  placeholder="Password"
+                  onChange={e => this.setState({ password: e.target.value })}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("remember", {
+                valuePropName: "checked",
+                initialValue: true
+              })(<Checkbox>Remember me</Checkbox>)}
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+                onChange={this.handleSignup()}
+              >
+                Register Now
+              </Button>
+            </Form.Item>
+          </Form>
         </UI.FormStyle>
       </UI.FormBackground>
     );
   }
 }
 
-// import { PageContainer, FormBackground, FormStyle } from "../UI";
-// import * as UI from "../UI";
+const WrappedSignup = Form.create({ name: "normal_signup" })(Signup);
 
-// import { Form, Icon, Input, Button, Checkbox } from "antd";
-// // import { UI } from "winjs";
-
-// class Signup extends Component {
-//   handleSubmit = e => {
-//     e.preventDefault();
-//     this.props.form.validateFields((err, values) => {
-//       if (!err) {
-//         console.log("Received values of form: ", values);
-//       }
-//     });
-//   };
-
-//   render() {
-//     const { getFieldDecorator } = this.props.form;
-//     return (
-//       <UI.FormBackground>
-//         <UI.FormStyle>
-//           <Form onSubmit={this.handleSubmit} className="login-form">
-//             <Form.Item>
-//               {getFieldDecorator("username", {
-//                 rules: [
-//                   { required: true, message: "Please input your username!" }
-//                 ]
-//               })(
-//                 <Input
-//                   prefix={
-//                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-//                   }
-//                   placeholder="Username"
-//                 />
-//               )}
-//             </Form.Item>
-//             <Form.Item>
-//               {getFieldDecorator("password", {
-//                 rules: [
-//                   { required: true, message: "Please input your Password!" }
-//                 ]
-//               })(
-//                 <Input
-//                   prefix={
-//                     <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-//                   }
-//                   type="password"
-//                   placeholder="Password"
-//                 />
-//               )}
-//             </Form.Item>
-//             <Form.Item>
-//               {getFieldDecorator("remember", {
-//                 valuePropName: "checked",
-//                 initialValue: true
-//               })(<Checkbox>Remember me</Checkbox>)}
-//               <a className="login-form-forgot" href="">
-//                 Forgot password
-//               </a>
-//               <Button
-//                 type="primary"
-//                 htmlType="submit"
-//                 className="login-form-button"
-//               >
-//                 Log in
-//               </Button>
-//               <a href="http://www.facebook.com">Register Now </a>
-//             </Form.Item>
-//           </Form>
-//         </UI.FormStyle>
-//       </UI.FormBackground>
-//     );
-//   }
-// }
-
-// const WrappedSignup = Form.create({ name: "normal_login" })(Signup);
-
-// // ReactDOM.render(<WrappedSignup />, mountNode);
-
-// export default WrappedSignup;
+export default WrappedSignup;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 
-import HideDesktop from "../utils/HideDesktop";
+import HideDesktop from "../components/HideDesktop";
+import HideMobile from "../components/HideMobile";
 
 // import BigButton from "../components/BigButton";
 
@@ -28,7 +29,8 @@ import {
   Alert,
   Collapse,
   PageHeader as AntPageHeader,
-  Button as AntButton
+  Button as AntButton,
+  Layout
 } from "antd";
 
 export default class Home extends Component {
@@ -79,6 +81,7 @@ export default class Home extends Component {
 
   render() {
     const { Panel } = Collapse;
+    const { Header, Footer, Sider, Content } = Layout;
     return (
       <UI.PageContainer>
         <UI.PageHeader>
@@ -100,25 +103,16 @@ export default class Home extends Component {
             </Collapse>
           </HideDesktop>
 
-          {/* how to get this stuff to show up in tablet and mobile  */}
+          <HideMobile>{this.renderAboutContent()}</HideMobile>
 
-          {this.renderAboutContent()}
           <UI.MapContainer id="mapbox-container">
             <Mapbox />
           </UI.MapContainer>
         </UI.PageBody>
 
-        {/* <UI.Button>
-          <AntButton type="primary">Primary</AntButton>
-          <Link to="/NewCampsite">New Campsite</Link>
-        </UI.Button> */}
         <AntButton href="/NewCampsite" type="primary">
           New Campsite
         </AntButton>
-        {/* <AntPageHeader>
-          <p>contact</p>
-          <p>contact</p>
-        </AntPageHeader> */}
       </UI.PageContainer>
     );
   }

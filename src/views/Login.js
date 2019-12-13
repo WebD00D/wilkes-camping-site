@@ -1,36 +1,36 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { WithAuth } from "../contexts/AuthContext";
-
 import InputField from "../components/InputField";
 import firebase from "../datastore";
-
-import { VALIDATE_FIELDS } from "../utils/index";
-
-import {
-  PageContainer,
-  PageHeader,
-  PageBody,
-  Button,
-  FormBackground,
-  FormStyle
-} from "../UI";
+import { Redirect, Link } from "react-router-dom";
+import { WithAuth } from "../contexts/AuthContext";
+import { PageContainer, FormBackground, FormStyle } from "../UI";
 import * as UI from "../UI";
-import styled from "@emotion/styled";
+
+import { Form, Icon, Input, Button, Checkbox } from "antd";
+// import { WithAuth } from "../contexts/AuthContext";
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-
     this.state = {
-      user: {},
-      isAuthenticated: false,
       email: "",
       password: ""
     };
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log("Received values of form: ", values);
+        const { email, password } = values;
+        console.log(this.props);
+        this.props.authContext.signInUser(email, password);
+      }
+    });
+  };
 
   getMeSomeData() {
     this.getUser().then(user => {
@@ -50,7 +50,10 @@ class Login extends Component {
   }
 
   render() {
+    const { getFieldDecorator } = this.props.form;
     const { isAuthenticated } = this.props.authContext;
+
+    // = this.props.authContext; Change isAuth... back to this
 
     if (isAuthenticated) {
       return <Redirect to="/dashboard" />;
@@ -60,119 +63,78 @@ class Login extends Component {
       <UI.FormBackground>
         <UI.FormStyle>
           <h1>Log In</h1>
-          <input
-            value={this.state.email}
-            onChange={this.handleChange}
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-          />
-          <input
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-          />
-          <button
-            onClick={() =>
-              this.props.authContext.signInUser(
-                this.state.email,
-                this.state.password
-              )
-            }
-          >
-            Sign In
-          </button>
+          <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form.Item>
+              {getFieldDecorator("email", {
+                rules: [{ required: true, message: "Please input your email!" }]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="Email"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("password", {
+                rules: [
+                  { required: true, message: "Please input your Password!" }
+                ]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  type="password"
+                  placeholder="Password"
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("remember", {
+                valuePropName: "checked",
+                initialValue: true
+              })(<Checkbox>Remember me</Checkbox>)}
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+              >
+                Log in
+              </Button>
+              <a className="login-form-forgot" href="">
+                Forgot password
+              </a>
+              <a href="/Signup">Register Now </a>
+            </Form.Item>
+          </Form>
         </UI.FormStyle>
       </UI.FormBackground>
     );
   }
 }
 
-export default WithAuth(Login);
+const WrappedLogin = Form.create({ name: "normal_login" })(WithAuth(Login));
 
-// import React, { Component } from "react";
-// import InputField from "../components/InputField";
-// import firebase from "../datastore";
-// import { Redirect, Link } from "react-router-dom";
+// ReactDOM.render(<WrappedLogin />, mountNode);
 
-// import { PageContainer, FormBackground, FormStyle } from "../UI";
-// import * as UI from "../UI";
+export default WrappedLogin;
 
-// import { Form, Icon, Input, Button, Checkbox } from "antd";
-
-// class Login extends Component {
-//   handleSubmit = e => {
-//     e.preventDefault();
-//     this.props.form.validateFields((err, values) => {
-//       if (!err) {
-//         console.log("Received values of form: ", values);
-//       }
-//     });
-//   };
-
-//   render() {
-//     const { getFieldDecorator } = this.props.form;
-//     return (
-//       <UI.FormBackground>
-//         <UI.FormStyle>
-//           <Form onSubmit={this.handleSubmit} className="login-form">
-//             <Form.Item>
-//               {getFieldDecorator("username", {
-//                 rules: [
-//                   { required: true, message: "Please input your username!" }
-//                 ]
-//               })(
-//                 <Input
-//                   prefix={
-//                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-//                   }
-//                   placeholder="Username"
-//                 />
-//               )}
-//             </Form.Item>
-//             <Form.Item>
-//               {getFieldDecorator("password", {
-//                 rules: [
-//                   { required: true, message: "Please input your Password!" }
-//                 ]
-//               })(
-//                 <Input
-//                   prefix={
-//                     <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-//                   }
-//                   type="password"
-//                   placeholder="Password"
-//                 />
-//               )}
-//             </Form.Item>
-//             <Form.Item>
-//               {getFieldDecorator("remember", {
-//                 valuePropName: "checked",
-//                 initialValue: true
-//               })(<Checkbox>Remember me</Checkbox>)}
-//               <a className="login-form-forgot" href="">
-//                 Forgot password
-//               </a>
-//               <Button
-//                 type="primary"
-//                 htmlType="submit"
-//                 className="login-form-button"
-//               >
-//                 Log in
-//               </Button>
-//               <a href="/Signup">Register Now </a>
-//             </Form.Item>
-//           </Form>
-//         </UI.FormStyle>
-//       </UI.FormBackground>
-//     );
-//   }
-// }
-
-// const WrappedLogin = Form.create({ name: "normal_login" })(Login);
-
-// // ReactDOM.render(<WrappedLogin />, mountNode);
-
-// export default WrappedLogin;
+{
+  /* <UI.FormBackground>
+  <UI.FormStyle>
+    <h1>Sign Up</h1>
+    <label>name</label>
+    <input onChange={e => this.setState({ name: e.target.value })} />
+    <label>email</label>
+    <input onChange={e => this.setState({ email: e.target.value })} />
+    <label>password</label>
+    <input
+      type="password"
+      onChange={e => this.setState({ password: e.target.value })}
+    />
+    <button onClick={() => this.handleSignup()}>Sign me up</button>
+  </UI.FormStyle>
+</UI.FormBackground>; */
+}

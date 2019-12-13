@@ -159,6 +159,10 @@ export const PageBody = styled("div")`
     #HomeCollapse {
       display: none;
     }
+
+    .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+      background-color: red;
+    }
   }
 
   @media (max-width: 600px) {
@@ -205,7 +209,6 @@ export const FormStyle = styled("div")`
 export const FormBackground = styled("div")`
   background-color: #f7f7f7;
   height: 100vh;
-  padding-top: 16px;
 `;
 
 export const MapContainer = styled("div")`
@@ -215,6 +218,33 @@ export const MapContainer = styled("div")`
 
   button {
     background-color: white;
+  }
+
+  .mapboxgl-ctrl-geocoder {
+    width: 33.3333%;
+    font-size: 15px;
+    line-height: 20px;
+    max-width: 360px;
+  }
+
+  .mapboxgl-ctrl-geocoder--icon-search {
+    left: 9px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .mapboxgl-ctrl-geocoder--input {
+    height: 36px;
+    padding: 6px 35px;
+  }
+
+  .css-1svksw0 .mapboxgl-ctrl-geocoder--input {
+    height: 36px;
+    padding: 6px 35px;
+  }
+
+  .mapboxgl-ctrl-geocoder--icon {
+    top: 9px;
   }
 `;
 
@@ -450,6 +480,7 @@ export const ReviewSection = styled("div")`
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
 
   h2 {
     text-decoration: underline;
@@ -470,6 +501,12 @@ export const ReviewSection = styled("div")`
     margin-right: auto;
 
     #card {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 975px) {
+    .ant-card {
       max-width: 100%;
     }
   }

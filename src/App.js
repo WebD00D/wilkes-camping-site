@@ -23,7 +23,7 @@ import { isUserWhitespacable, isPatternLike } from "@babel/types";
 
 function App() {
   // const { getProfilePhoto } = this.props.authContext;
-  const { Header } = Layout;
+  const { Header, Footer, Content } = Layout;
 
   return (
     <Router>
