@@ -26,8 +26,8 @@ class Dashboard extends Component {
       isAuthenticated
     } = this.props.authContext;
 
-    console.log("dashboard name", this.props.authContext.name);
-    console.log("dashboard email", this.props.authContext.email);
+    // console.log("dashboard name", this.props.authContext.name);
+    // console.log("dashboard email", this.props.authContext.email);
     console.log("dashboard profilePhoto", this.props.authContext.profilePhoto);
 
     if (!isAuthenticated) {
@@ -45,9 +45,8 @@ class Dashboard extends Component {
         <UI.Button>
           <Link to="/Profile">Profile</Link>
           <Link to="/EditPost">Change Campsite Info</Link>
-
-          <button onClick={() => this.signOutHandle()}>Sign Out</button>
         </UI.Button>
+        <button onClick={() => this.signOutHandle()}>Sign Out</button>
       </UI.PageContainer>
     );
   }

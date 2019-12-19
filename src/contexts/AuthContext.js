@@ -7,6 +7,8 @@ export class AuthProvider extends Component {
   constructor(props) {
     super(props);
 
+    // this.signInUser = this.signInUser.bind(this);
+
     this.state = {
       user: {},
       userId: false,
@@ -14,14 +16,14 @@ export class AuthProvider extends Component {
       name: false,
       password: "",
       profilePhoto: null,
-      isAuthenticated: true
+      isAuthenticated: false
     };
 
     this.actions = {
       signInUser: (email, password) => this.signInUser(email, password),
       getProfilePhoto: () => this.getProfilePhoto(),
       logOutUser: () => this.logOutUser(),
-      // handleChange: () => this.handleChange(),
+      handleChange: () => this.handleChange(),
       setUser: (userId, name, email, profilePhoto) =>
         this.setUser(userId, name, email, profilePhoto)
     };
@@ -43,8 +45,6 @@ export class AuthProvider extends Component {
   // }
 
   setUser(userId, name, email, profilePhoto) {
-
-
     window.localStorage.setItem("CAMPSITE_uuid", userId);
     window.localStorage.setItem("CAMPSITE_name", name);
     window.localStorage.setItem("CAMPSITE_email", email);
@@ -63,7 +63,6 @@ export class AuthProvider extends Component {
   }
 
   signInUser(email, password) {
-
     console.log("[AuthContext.SignInUser]", email, password);
     firebase
       .auth()
@@ -76,7 +75,7 @@ export class AuthProvider extends Component {
           .ref(`/users/${u.user.uid}`)
           .once("value")
           .then(snapshot => {
-            console.log("snapshot from user", snapshot.val());
+            console.log("snapshot from user", `/users/${u.user.uid}`);
 
             const { name, email, profilePhoto } = snapshot.val();
 

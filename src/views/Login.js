@@ -7,7 +7,6 @@ import { PageContainer, FormBackground, FormStyle } from "../UI";
 import * as UI from "../UI";
 
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-// import { WithAuth } from "../contexts/AuthContext";
 
 class Login extends Component {
   constructor(props) {
@@ -121,8 +120,7 @@ const WrappedLogin = Form.create({ name: "normal_login" })(WithAuth(Login));
 
 export default WrappedLogin;
 
-{
-  /* <UI.FormBackground>
+/* <UI.FormBackground>
   <UI.FormStyle>
     <h1>Sign Up</h1>
     <label>name</label>
@@ -137,4 +135,3 @@ export default WrappedLogin;
     <button onClick={() => this.handleSignup()}>Sign me up</button>
   </UI.FormStyle>
 </UI.FormBackground>; */
-}

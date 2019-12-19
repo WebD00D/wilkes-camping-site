@@ -1,220 +1,224 @@
-// import React, { Component } from "react";
-// import InputField from "../components/InputField";
-// import firebase from "../datastore";
-// import { Redirect, Link } from "react-router-dom";
+import React, { Component } from "react";
+import InputField from "../components/InputField";
+import firebase from "../datastore";
+import { Redirect, Link } from "react-router-dom";
 
-// import {
-//   PageContainer,
-//   PageHeader,
-//   PageBody,
-//   // Button,
-//   FormBackground,
-//   FormStyle
-// } from "../UI";
-// import * as UI from "../UI";
-// import styled from "@emotion/styled";
+import {
+  PageContainer,
+  PageHeader,
+  PageBody,
+  // Button,
+  FormBackground,
+  FormStyle
+} from "../UI";
+import * as UI from "../UI";
+import styled from "@emotion/styled";
 
-// import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { Form, Icon, Input, Button, Checkbox } from "antd";
 
-// import { VALIDATE_FIELDS, SAY_MY_NAME } from "../utils/index";
+import { VALIDATE_FIELDS } from "../utils/index";
 
-// class Signup extends Component {
-//   constructor(props) {
-//     super(props);
+class Signup extends Component {
+  constructor(props) {
+    super(props);
 
-//     this.getUsers = this.getUsers.bind(this);
-//     this.addUser = this.addUser.bind(this);
-//     this.renderUser = this.renderUser.bind(this);
-//     this.handleSignup = this.handleSignup.bind(this);
+    this.getUsers = this.getUsers.bind(this);
+    this.addUser = this.addUser.bind(this);
+    this.renderUser = this.renderUser.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
 
-//     this.state = {
-//       authenticated: false,
-//       name: null,
-//       email: null,
-//       password: null,
-//       users: [],
-//       age: ""
-//     };
-//   }
+    this.state = {
+      authenticated: false,
+      name: null,
+      email: null,
+      password: null,
+      users: [],
+      age: ""
+    };
+  }
 
-//   componentDidMount() {
-//     this.getUsers();
-//   }
+  componentDidMount() {
+    this.getUsers();
+  }
 
-//   getUsers() {
-//     firebase
-//       .database()
-//       .ref("/users")
-//       .once("value")
-//       .then(snapshot => {
-//         // console.log('user', snapshot.val());
-//         this.setState({
-//           users: snapshot.val()
-//         });
-//       });
-//   }
+  // componentWillUnmount() {
+  //   this.handleSignup();
+  // }
 
-//   renderUser() {
-//     const { users } = this.state;
-//     console.log("users", users);
+  getUsers() {
+    firebase
+      .database()
+      .ref("/users")
+      .once("value")
+      .then(snapshot => {
+        // console.log('user', snapshot.val());
+        this.setState({
+          users: snapshot.val()
+        });
+      });
+  }
 
-//     let userEls;
+  renderUser() {
+    const { users } = this.state;
+    console.log("users", users);
 
-//     userEls =
-//       users &&
-//       Object.keys(users).map(c => {
-//         const user = users[c];
-//         console.log("SINGLE USER", user);
+    let userEls;
 
-//         return (
-//           <div key={c}>
-//             <h3>{user.name}</h3>
-//             <p>{user.age}</p>
-//           </div>
-//         );
-//       });
+    userEls =
+      users &&
+      Object.keys(users).map(c => {
+        const user = users[c];
+        console.log("SINGLE USER", user);
 
-//     console.log("user els", userEls);
+        return (
+          <div key={c}>
+            <h3>{user.name}</h3>
+            <p>{user.email}</p>
+          </div>
+        );
+      });
 
-//     return userEls;
-//   }
+    console.log("user els", userEls);
 
-//   addUser() {
-//     const { name, age } = this.state;
+    return userEls;
+  }
 
-//     const updates = {};
+  addUser() {
+    const { name, email } = this.state;
 
-//     const uniqueId = Date.now();
-//     updates[`/users/${uniqueId}/name`] = name;
-//     updates[`/users/${uniqueId}/age`] = age;
+    const updates = {};
 
-//     firebase
-//       .database()
-//       .ref()
-//       .update(updates)
-//       .then(() => {
-//         this.getUsers();
-//       });
-//   }
+    const uniqueId = Date.now();
+    updates[`/users/${uniqueId}/name`] = name;
+    updates[`/users/${uniqueId}/email`] = email;
 
-//   handleSignup() {
-//     const { email, password, name } = this.state;
+    firebase
+      .database()
+      .ref()
+      .update(updates)
+      .then(() => {
+        this.getUsers();
+      });
+  }
 
-//     // TODO: VAlidate form fields aka check for empties
-//     const validatedFields = VALIDATE_FIELDS([
-//       { email: email },
-//       { password: password },
-//       { name: name },
-//       { age: -1 }
-//     ]);
+  handleSignup() {
+    const { email, password, name } = this.state;
 
-//     this.setState({ authenticated: true });
-//     console.log("validated fields", validatedFields);
+    //TODO: VAlidate form fields aka check for empties
+    const validatedFields = VALIDATE_FIELDS([
+      { email: email },
+      { password: password },
+      { name: name },
+      { age: -1 }
+    ]);
 
-//     firebase
-//       .auth()
-//       .createUserWithEmailAndPassword(email, password)
-//       .then(u => {
-//         console.log("the new user!", u.user.uid);
+    this.setState({ authenticated: true });
+    // console.log("validated fields", validatedFields);
 
-//         const userUpdates = {};
-//         userUpdates[`users/${u.user.uid}/name`] = name;
-//         userUpdates[`users/${u.user.uid}/email`] = email;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(u => {
+        console.log("the new user!", u.user.uid);
 
-//         firebase
-//           .database()
-//           .ref()
-//           .update(userUpdates)
-//           .then(() => {
-//             this.getUsers();
-//           });
-//       })
-//       .catch(function(error) {
-//         // Handle Errors here.
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         console.error(errorCode, errorMessage);
-//         // ..
-//       });
-//     // console.log("new state email", this.state.email);
-//   }
+        const userUpdates = {};
+        userUpdates[`users/${u.user.uid}/name`] = name;
+        userUpdates[`users/${u.user.uid}/email`] = email;
 
-//   render() {
-//     const { getFieldDecorator } = this.props.form;
-//     const { isAuthenticated } = this.state;
+        firebase
+          .database()
+          .ref()
+          .update(userUpdates)
+          .then(() => {
+            this.getUsers();
+          });
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorCode, errorMessage);
+        // ..
+      });
+    console.log("new state email", this.state.email);
+  }
 
-//     if (isAuthenticated) {
-//       return <Redirect to="/dashboard" />;
-//     }
+  render() {
+    const { getFieldDecorator } = this.props.form;
+    const { authenticated } = this.state;
 
-//     return (
-//       <UI.FormBackground>
-//         <UI.FormStyle>
-//           <h1>Register</h1>
-//           <Form onSubmit={this.handleSubmit} className="login-form">
-//             <Form.Item>
-//               {getFieldDecorator("name", {
-//                 rules: [{ required: true, message: "Please input your name!" }]
-//               })(
-//                 <Input
-//                   prefix={
-//                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-//                   }
-//                   placeholder="Name"
-//                   onChange={e => this.setState({ name: e.target.value })}
-//                 />
-//               )}
-//             </Form.Item>
-//             <Form.Item>
-//               {getFieldDecorator("email", {
-//                 rules: [{ required: true, message: "Please input your email!" }]
-//               })(
-//                 <Input
-//                   prefix={
-//                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-//                   }
-//                   placeholder="Email"
-//                   onChange={e => this.setState({ email: e.target.value })}
-//                 />
-//               )}
-//             </Form.Item>
-//             <Form.Item>
-//               {getFieldDecorator("password", {
-//                 rules: [
-//                   { required: true, message: "Please input your Password!" }
-//                 ]
-//               })(
-//                 <Input
-//                   prefix={
-//                     <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-//                   }
-//                   type="password"
-//                   placeholder="Password"
-//                   onChange={e => this.setState({ password: e.target.value })}
-//                 />
-//               )}
-//             </Form.Item>
-//             <Form.Item>
-//               {getFieldDecorator("remember", {
-//                 valuePropName: "checked",
-//                 initialValue: true
-//               })(<Checkbox>Remember me</Checkbox>)}
-//               <Button
-//                 type="primary"
-//                 htmlType="submit"
-//                 className="login-form-button"
-//                 onChange={this.handleSignup()}
-//               >
-//                 Register Now
-//               </Button>
-//             </Form.Item>
-//           </Form>
-//         </UI.FormStyle>
-//       </UI.FormBackground>
-//     );
-//   }
-// }
+    if (authenticated) {
+      return <Redirect to="/dashboard" />;
+    }
 
-// const WrappedSignup = Form.create({ name: "normal_signup" })(Signup);
+    return (
+      <UI.FormBackground>
+        <UI.FormStyle>
+          <h1>Register</h1>
+          <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form.Item>
+              {getFieldDecorator("name", {
+                rules: [{ required: true, message: "Please input your name!" }]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="Name"
+                  onChange={e => this.setState({ name: e.target.value })}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("email", {
+                rules: [{ required: true, message: "Please input your email!" }]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="Email"
+                  onChange={e => this.setState({ email: e.target.value })}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("password", {
+                rules: [
+                  { required: true, message: "Please input your Password!" }
+                ]
+              })(
+                <Input
+                  prefix={
+                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  type="password"
+                  placeholder="Password"
+                  onChange={e => this.setState({ password: e.target.value })}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator("remember", {
+                valuePropName: "checked",
+                initialValue: true
+              })(<Checkbox>Remember me</Checkbox>)}
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-form-button"
+                onClick={() => this.handleSignup()}
+              >
+                Register Now
+              </Button>
+            </Form.Item>
+          </Form>
+        </UI.FormStyle>
+      </UI.FormBackground>
+    );
+  }
+}
 
-// export default WrappedSignup;
+const WrappedSignup = Form.create({ name: "normal_signup" })(Signup);
+
+export default WrappedSignup;

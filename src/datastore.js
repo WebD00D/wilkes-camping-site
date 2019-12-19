@@ -1,14 +1,15 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDXcwBNoiQkPeju4n7NkZq_qewIn2dZCHo',
-  authDomain: 'wilkes-campsite.firebaseapp.com',
-  databaseURL: 'https://wilkes-campsite.firebaseio.com',
-  projectId: 'wilkes-campsite',
-  storageBucket: 'wilkes-campsite.appspot.com',
-  messagingSenderId: '551254767914',
-  appId: '1:551254767914:web:f456055a251f5fce'
+  apiKey: "AIzaSyA0o1q1yQM1rk7WnyDYG2hM5iW0g3meJ3M",
+  authDomain: "free-campsites.firebaseapp.com",
+  databaseURL: "https://free-campsites.firebaseio.com",
+  projectId: "free-campsites",
+  storageBucket: "free-campsites.appspot.com",
+  messagingSenderId: "774799200960",
+  appId: "1:774799200960:web:5e5d1425cf6f594fe91325",
+  measurementId: "G-59CNXL9V80"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
