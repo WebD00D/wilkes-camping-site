@@ -39,6 +39,8 @@ export default class Home extends Component {
     this.state = {
       name: "Bob"
     };
+
+    const { Header, Footer, Content } = Layout;
   }
 
   clearName() {
@@ -81,39 +83,44 @@ export default class Home extends Component {
 
   render() {
     const { Panel } = Collapse;
-    const { Header, Footer, Sider, Content } = Layout;
+    const { Header, Footer, Content } = Layout;
     return (
-      <UI.PageContainer>
-        <UI.PageHeader>
-          <h1>Free Camping</h1>
-          <h4>We've Got You Covered</h4>
-          {/* <Alert
+      <Layout>
+        <Content>
+          <UI.PageContainer>
+            <UI.PageHeader>
+              <h1>Free Camping</h1>
+              <h4>We've Got You Covered</h4>
+              {/* <Alert
             showIcon
             message="Hello, you need to sign up to view more."
             type="warning"
           /> */}
-        </UI.PageHeader>
-        {/* <Hook /> */}
-        <UI.PageBody>
-          <HideDesktop>
-            <Collapse accordion>
-              <Panel header="About Us" key="1" id="HomeCollapse">
-                {this.renderAboutContent()}
-              </Panel>
-            </Collapse>
-          </HideDesktop>
+            </UI.PageHeader>
 
-          <HideMobile>{this.renderAboutContent()}</HideMobile>
+            {/* <Hook /> */}
+            <UI.PageBody>
+              <HideDesktop>
+                <Collapse accordion>
+                  <Panel header="About Us" key="1" id="HomeCollapse">
+                    {this.renderAboutContent()}
+                  </Panel>
+                </Collapse>
+              </HideDesktop>
 
-          <UI.MapContainer id="mapbox-container">
-            <Mapbox />
-          </UI.MapContainer>
-        </UI.PageBody>
+              <HideMobile>{this.renderAboutContent()}</HideMobile>
 
-        <AntButton href="/NewCampsite" type="primary">
-          New Campsite
-        </AntButton>
-      </UI.PageContainer>
+              <UI.MapContainer id="mapbox-container">
+                <Mapbox />
+              </UI.MapContainer>
+            </UI.PageBody>
+
+            <AntButton href="/NewCampsite" type="primary">
+              New Campsite
+            </AntButton>
+          </UI.PageContainer>
+        </Content>
+      </Layout>
     );
   }
 }

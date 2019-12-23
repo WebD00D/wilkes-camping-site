@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import InputField from "../components/InputField";
 import firebase from "../datastore";
 import { Redirect, Link } from "react-router-dom";
+import { WithAuth } from "../contexts/AuthContext";
 
 import {
   PageContainer,
@@ -28,7 +29,7 @@ class Signup extends Component {
     this.handleSignup = this.handleSignup.bind(this);
 
     this.state = {
-      authenticated: false,
+      isAuthenticated: false,
       name: null,
       email: null,
       password: null,
@@ -40,10 +41,6 @@ class Signup extends Component {
   componentDidMount() {
     this.getUsers();
   }
-
-  // componentWillUnmount() {
-  //   this.handleSignup();
-  // }
 
   getUsers() {
     firebase
@@ -112,7 +109,7 @@ class Signup extends Component {
       { age: -1 }
     ]);
 
-    this.setState({ authenticated: true });
+    this.setState({ isAuthenticated: true });
     // console.log("validated fields", validatedFields);
 
     firebase
@@ -141,13 +138,14 @@ class Signup extends Component {
         // ..
       });
     console.log("new state email", this.state.email);
+    console.log("auth context props", this.state.isAuthenticated);
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { authenticated } = this.state;
+    const { isAuthenticated } = this.state;
 
-    if (authenticated) {
+    if (isAuthenticated) {
       return <Redirect to="/dashboard" />;
     }
 
@@ -219,6 +217,6 @@ class Signup extends Component {
   }
 }
 
-const WrappedSignup = Form.create({ name: "normal_signup" })(Signup);
+const WrappedSignup = Form.create({ name: "normal_signup" })(WithAuth(Signup));
 
 export default WrappedSignup;

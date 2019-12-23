@@ -30,6 +30,7 @@ export const PageContainer = styled("div")`
 `;
 
 export const NavBar = styled("div")`
+
   ul {
     height: 48px;
     width: 100%;
@@ -159,15 +160,16 @@ export const PageBody = styled("div")`
     #HomeCollapse {
       display: none;
     }
-
-    .ant-collapse > .ant-collapse-item > .ant-collapse-header {
-      background-color: red;
-    }
   }
 
   @media (max-width: 600px) {
     #p {
       display: none;
+    }
+
+    .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+      background-color: rgb(24, 144, 255);
+      color: white;
     }
   }
 `;
@@ -509,5 +511,15 @@ export const ReviewSection = styled("div")`
     .ant-card {
       max-width: 100%;
     }
+  }
+`;
+
+export const AntFixes = styled("div")`
+  .ant-layout-header {
+    height: 5px;
+    // change this ^ later
+    padding: 0;
+    line-height: 24px;
+    background: white;
   }
 `;
