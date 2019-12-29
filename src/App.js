@@ -18,16 +18,29 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import "antd/dist/antd.css";
 
+import AntFooter from "./components/AntFooter";
+
 import { Icon, Layout } from "antd";
 import { isUserWhitespacable, isPatternLike } from "@babel/types";
 
+import AntHeader from "./components/AntHeader";
+
 function App() {
   // const { getProfilePhoto } = this.props.authContext;
-  const { Header, Footer, Content } = Layout;
+  // const { Header, Footer, Content } = Layout;
 
   return (
-    <UI.AntFixes>
-      <Layout>
+    <div>
+      <UI.AntFixes>
+        <AntHeader></AntHeader>
+      </UI.AntFixes>
+    </div>
+  );
+}
+
+export default App;
+{
+  /* <Layout>
         <Header>
           <Router>
             <UI.NavBar>
@@ -51,8 +64,10 @@ function App() {
             </li>
             <li>
               <Link to="/Numbers">Numbers</Link>
-            </li> */}
-                  <li className="NotInNav">
+            </li> */
+}
+{
+  /* <li className="NotInNav">
                     <Link to="/profile">Profile</Link>
                   </li>
                   <li className="NavRight">
@@ -66,26 +81,28 @@ function App() {
                   </li>
                 </ul>
 
-                <Route path="/" exact component={Home} />
-                {/* <Route path="/campsite/:campsiteId" exact component={Campsite} /> */}
-                <Route path="/campsite" exact component={Campsite} />
+                <Route path="/" exact component={Home} /> */
+}
+{
+  /* <Route path="/campsite/:campsiteId" exact component={Campsite} /> */
+}
+{
+  /* <Route path="/campsite" exact component={Campsite} />
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/newcampsite" exact component={NewCampsite} />
                 <Route path="/editpost" exact component={EditPost} />
-                <Route path="/profile" exact component={Profile} />
-                {/* <Route path="/database" exact component={DataSandbox} />
-          <Route path="/numbers" exact component={Numbers} /> */}
-                <Route path="/Dashboard" exact component={Dashboard} />
+                <Route path="/profile" exact component={Profile} /> */
+}
+{
+  /* <Route path="/database" exact component={DataSandbox} />
+          <Route path="/numbers" exact component={Numbers} /> */
+}
+{
+  /* <Route path="/Dashboard" exact component={Dashboard} />
               </div>
             </UI.NavBar>
           </Router>
         </Header>
-        {/* <Content></Content>
-        <Footer></Footer> */}
-      </Layout>
-    </UI.AntFixes>
-  );
+      </Layout> */
 }
-
-export default App;

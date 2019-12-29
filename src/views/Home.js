@@ -3,6 +3,9 @@ import { Redirect, Link } from "react-router-dom";
 
 import HideDesktop from "../components/HideDesktop";
 import HideMobile from "../components/HideMobile";
+import AntFooter from "../components/AntFooter";
+
+import NewCampsite from "../views/NewCampsite";
 
 // import BigButton from "../components/BigButton";
 
@@ -115,11 +118,12 @@ export default class Home extends Component {
               </UI.MapContainer>
             </UI.PageBody>
 
-            <AntButton href="/NewCampsite" type="primary">
-              New Campsite
+            <AntButton>
+              <Link to="/NewCampsite">New Campsite</Link>
             </AntButton>
           </UI.PageContainer>
         </Content>
+        <AntFooter></AntFooter>
       </Layout>
     );
   }

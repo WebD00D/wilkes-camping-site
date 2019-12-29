@@ -5,10 +5,10 @@ export const PageContainer = styled("div")`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  margin-bottom: 50px;
+  // margin-bottom: 50px;
   padding-top: 20px;
 
-  // background-color: red;
+  background-color: white;
 
   button {
     color: white;
@@ -142,10 +142,11 @@ export const PageHeader = styled("div")`
       margin-right: auto;
     }
   }
-  
 `;
 
 export const PageBody = styled("div")`
+  background-color: white;
+
   p {
     color: ${T.theme.colors.dark};
     padding: 8px;
@@ -210,7 +211,6 @@ export const FormStyle = styled("div")`
 
 export const FormBackground = styled("div")`
   background-color: #f7f7f7;
-  height: 100vh;
 `;
 
 export const MapContainer = styled("div")`
@@ -237,7 +237,7 @@ export const MapContainer = styled("div")`
 
   .mapboxgl-ctrl-geocoder--input {
     height: 36px;
-    padding: 6px 35px;
+    dding: 6px 35px;
   }
 
   .css-1svksw0 .mapboxgl-ctrl-geocoder--input {
@@ -252,7 +252,7 @@ export const MapContainer = styled("div")`
 
 export const CampsitePageContainer = styled("div")`
   max-width: 1000px;
-  height: 100%;
+  // height: 100%;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -266,6 +266,10 @@ export const CampsitePageContainer = styled("div")`
     border: none;
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .ant-layout {
+    height: 100%;
   }
 `;
 
@@ -522,4 +526,29 @@ export const AntFixes = styled("div")`
     line-height: 24px;
     background: white;
   }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h4 {
+    font-size: 16px;
+  }
+
+  background: white;
 `;
+
+export const AntFooterStyle = styled("div")`
+  height: 48px;
+
+  .ant-layout-footer {
+    height: 48px;
+    padding: 8px;
+    background-color: ${T.theme.colors.primary};
+    color: white;
+    position: sticky;
+    bottom: 0;
+  }
+`;
+
+export const AntHeaderStyle = styled("div")``;

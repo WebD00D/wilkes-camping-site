@@ -12,6 +12,17 @@ import { PageContainer, PageHeader, PageBody, Button } from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
 
+import AntFooter from "../components/AntFooter";
+
+import {
+  Icon,
+  Alert,
+  Collapse,
+  PageHeader as AntPageHeader,
+  Button as AntButton,
+  Layout
+} from "antd";
+
 class NewCampsite extends Component {
   constructor(props) {
     super(props);
@@ -72,29 +83,30 @@ class NewCampsite extends Component {
     }
 
     return (
-      <UI.PageContainer>
-        <UI.PageHeader>
-          <h1>Add A Campsite</h1>
-        </UI.PageHeader>
-        {/* <div>{this.state.userId}</div> */}
-        {/* {getProfilePhoto()} */}
-        <InputField
-          setValue={val => this.setState({ campName: val })}
-          labelName="Campsite Name"
-          inputType="text"
-        />
-        <InputField
-          setValue={val => this.setState({ numberOfSpots: val })}
-          labelName="Number of Spots"
-          inputType="text"
-        />
-        <InputField
-          setValue={val => this.setState({ state: val })}
-          labelName="State"
-          inputType="text"
-        />
+      <Layout>
+        <UI.PageContainer>
+          <UI.PageHeader>
+            <h1>Add A Campsite</h1>
+          </UI.PageHeader>
+          {/* <div>{this.state.userId}</div> */}
+          {/* {getProfilePhoto()} */}
+          <InputField
+            setValue={val => this.setState({ campName: val })}
+            labelName="Campsite Name"
+            inputType="text"
+          />
+          <InputField
+            setValue={val => this.setState({ numberOfSpots: val })}
+            labelName="Number of Spots"
+            inputType="text"
+          />
+          <InputField
+            setValue={val => this.setState({ state: val })}
+            labelName="State"
+            inputType="text"
+          />
 
-        {/* <h2>Star Rating</h2>
+          {/* <h2>Star Rating</h2>
         <button>1</button>
         <button>2</button>
         <button>3</button>
@@ -111,11 +123,13 @@ class NewCampsite extends Component {
         <GenericButton buttonName="Yes" />
         <GenericButton buttonName="No" /> */}
 
-        <label>Finished?</label>
-        <button onClick={() => this.addCamp()}>Publish this Camp!</button>
+          <label>Finished?</label>
+          <button onClick={() => this.addCamp()}>Publish this Camp!</button>
 
-        {/* <h3>{this.state.campsites}</h3> */}
-      </UI.PageContainer>
+          {/* <h3>{this.state.campsites}</h3> */}
+        </UI.PageContainer>
+        <AntFooter></AntFooter>
+      </Layout>
     );
   }
 }
