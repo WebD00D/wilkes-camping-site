@@ -4,6 +4,8 @@ import firebase from "../datastore";
 import { Redirect, Link } from "react-router-dom";
 import { WithAuth } from "../contexts/AuthContext";
 
+import AntFooter from "../components/AntFooter";
+
 import {
   PageContainer,
   PageHeader,
@@ -150,69 +152,76 @@ class Signup extends Component {
     }
 
     return (
-      <UI.FormBackground>
-        <UI.FormStyle>
-          <h1>Register</h1>
-          <Form onSubmit={this.handleSubmit} className="login-form">
-            <Form.Item>
-              {getFieldDecorator("name", {
-                rules: [{ required: true, message: "Please input your name!" }]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="Name"
-                  onChange={e => this.setState({ name: e.target.value })}
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("email", {
-                rules: [{ required: true, message: "Please input your email!" }]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="Email"
-                  onChange={e => this.setState({ email: e.target.value })}
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("password", {
-                rules: [
-                  { required: true, message: "Please input your Password!" }
-                ]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  type="password"
-                  placeholder="Password"
-                  onChange={e => this.setState({ password: e.target.value })}
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("remember", {
-                valuePropName: "checked",
-                initialValue: true
-              })(<Checkbox>Remember me</Checkbox>)}
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-                onClick={() => this.handleSignup()}
-              >
-                Register Now
-              </Button>
-            </Form.Item>
-          </Form>
-        </UI.FormStyle>
-      </UI.FormBackground>
+      <div>
+        <UI.FormBackground>
+          <UI.FormStyle>
+            <h1>Register</h1>
+            <Form onSubmit={this.handleSubmit} className="login-form">
+              <Form.Item>
+                {getFieldDecorator("name", {
+                  rules: [
+                    { required: true, message: "Please input your name!" }
+                  ]
+                })(
+                  <Input
+                    prefix={
+                      <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    placeholder="Name"
+                    onChange={e => this.setState({ name: e.target.value })}
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator("email", {
+                  rules: [
+                    { required: true, message: "Please input your email!" }
+                  ]
+                })(
+                  <Input
+                    prefix={
+                      <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    placeholder="Email"
+                    onChange={e => this.setState({ email: e.target.value })}
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator("password", {
+                  rules: [
+                    { required: true, message: "Please input your Password!" }
+                  ]
+                })(
+                  <Input
+                    prefix={
+                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    type="password"
+                    placeholder="Password"
+                    onChange={e => this.setState({ password: e.target.value })}
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator("remember", {
+                  valuePropName: "checked",
+                  initialValue: true
+                })(<Checkbox>Remember me</Checkbox>)}
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button"
+                  onClick={() => this.handleSignup()}
+                >
+                  Register Now
+                </Button>
+              </Form.Item>
+            </Form>
+          </UI.FormStyle>
+        </UI.FormBackground>
+        <AntFooter></AntFooter>
+      </div>
     );
   }
 }

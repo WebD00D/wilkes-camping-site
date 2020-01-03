@@ -7,6 +7,8 @@ import styled from "@emotion/styled";
 import { PageContainer, PageHeader, PageBody, Button } from "../UI";
 import * as UI from "../UI";
 
+import AntFooter from "../components/AntFooter";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -35,19 +37,22 @@ class Dashboard extends Component {
     }
 
     return (
-      <UI.PageContainer>
-        <UI.PageHeader>
-          <h1>Dashboard</h1>
-          <h4>{name}</h4>
-          <h4>{email}</h4>
-          <img src={profilePhoto} />
-        </UI.PageHeader>
-        <UI.Button>
-          <Link to="/Profile">Profile</Link>
-          <Link to="/EditPost">Change Campsite Info</Link>
-        </UI.Button>
-        <button onClick={() => this.signOutHandle()}>Sign Out</button>
-      </UI.PageContainer>
+      <div>
+        <UI.FormBackground>
+          <UI.PageHeader>
+            <h1>Dashboard</h1>
+            <h4>{name}</h4>
+            <h4>{email}</h4>
+            <img src={profilePhoto} />
+          </UI.PageHeader>
+          <UI.Button>
+            <Link to="/Profile">Profile</Link>
+            <Link to="/EditPost">Change Campsite Info</Link>
+          </UI.Button>
+          <button onClick={() => this.signOutHandle()}>Sign Out</button>
+        </UI.FormBackground>
+        <AntFooter></AntFooter>
+      </div>
     );
   }
 }

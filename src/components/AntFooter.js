@@ -8,6 +8,7 @@ import {
   Button as AntButton,
   Layout
 } from "antd";
+import { Redirect, Link } from "react-router-dom";
 
 import * as UI from "../UI";
 //import { AntFooterStyle } from "../UI";
@@ -25,7 +26,11 @@ export default class AntFooter extends Component {
     return (
       <UI.AntFooterStyle>
         <Layout>
-          <Footer style={{ position: "sticky", bottom: "0" }}>Footer</Footer>
+          <Footer style={{ position: "sticky", bottom: "0" }}>
+            <Link to="/Home">Home</Link>
+            <li>Contact</li>
+            <li>Legal</li>
+          </Footer>
         </Layout>
       </UI.AntFooterStyle>
     );

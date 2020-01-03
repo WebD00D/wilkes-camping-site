@@ -6,6 +6,8 @@ import { WithAuth } from "../contexts/AuthContext";
 import { PageContainer, FormBackground, FormStyle } from "../UI";
 import * as UI from "../UI";
 
+import AntFooter from "../components/AntFooter";
+
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 
 class Login extends Component {
@@ -59,57 +61,62 @@ class Login extends Component {
     }
 
     return (
-      <UI.FormBackground>
-        <UI.FormStyle>
-          <h1>Log In</h1>
-          <Form onSubmit={this.handleSubmit} className="login-form">
-            <Form.Item>
-              {getFieldDecorator("email", {
-                rules: [{ required: true, message: "Please input your email!" }]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="Email"
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("password", {
-                rules: [
-                  { required: true, message: "Please input your Password!" }
-                ]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  type="password"
-                  placeholder="Password"
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("remember", {
-                valuePropName: "checked",
-                initialValue: true
-              })(<Checkbox>Remember me</Checkbox>)}
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Log in
-              </Button>
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
-              <a href="/Signup">Register Now </a>
-            </Form.Item>
-          </Form>
-        </UI.FormStyle>
-      </UI.FormBackground>
+      <div>
+        <UI.FormBackground>
+          <UI.FormStyle>
+            <h1>Log In</h1>
+            <Form onSubmit={this.handleSubmit} className="login-form">
+              <Form.Item>
+                {getFieldDecorator("email", {
+                  rules: [
+                    { required: true, message: "Please input your email!" }
+                  ]
+                })(
+                  <Input
+                    prefix={
+                      <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    placeholder="Email"
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator("password", {
+                  rules: [
+                    { required: true, message: "Please input your Password!" }
+                  ]
+                })(
+                  <Input
+                    prefix={
+                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    type="password"
+                    placeholder="Password"
+                  />
+                )}
+              </Form.Item>
+              <Form.Item>
+                {getFieldDecorator("remember", {
+                  valuePropName: "checked",
+                  initialValue: true
+                })(<Checkbox>Remember me</Checkbox>)}
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button"
+                >
+                  Log in
+                </Button>
+                <a className="login-form-forgot" href="">
+                  Forgot password
+                </a>
+                <a href="/Signup">Register Now </a>
+              </Form.Item>
+            </Form>
+          </UI.FormStyle>
+        </UI.FormBackground>
+        <AntFooter></AntFooter>
+      </div>
     );
   }
 }

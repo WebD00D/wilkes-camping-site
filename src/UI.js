@@ -5,9 +5,8 @@ export const PageContainer = styled("div")`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  // margin-bottom: 50px;
   padding-top: 20px;
-
+  // height: calc(100vh - 96px);
   background-color: white;
 
   button {
@@ -192,6 +191,7 @@ export const FormStyle = styled("div")`
   h1 {
     text-decoration: underline;
     text-decoration-color: ${T.theme.colors.primary};
+    text-align: center;
   }
 
   a {
@@ -211,6 +211,50 @@ export const FormStyle = styled("div")`
 
 export const FormBackground = styled("div")`
   background-color: #f7f7f7;
+  // padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+  min-height: calc(100vh - 96px);
+`;
+
+export const ProfileStyle = styled("div")`
+  height: 100%;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 24px;
+  background-color: #fff;
+  // border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.65);
+  padding-left: auto;
+  padding-right: auto;
+
+  h1 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+    text-align: center;
+  }
+
+  h3 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+  }
+
+  a {
+    color: ${T.theme.colors.primary};
+  }
+
+  .login-form {
+    max-width: 500px;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .login-form-button {
+    width: 100%;
+  }
 `;
 
 export const MapContainer = styled("div")`
@@ -252,10 +296,12 @@ export const MapContainer = styled("div")`
 
 export const CampsitePageContainer = styled("div")`
   max-width: 1000px;
-  // height: 100%;
+  height: 100%;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: -20px;
+  margin-bottom: -20px;
   padding: 20px;
   text-align: left;
   background-color: white;
@@ -520,7 +566,7 @@ export const ReviewSection = styled("div")`
 
 export const AntFixes = styled("div")`
   .ant-layout-header {
-    height: 5px;
+    // height: 5px;
     // change this ^ later
     padding: 0;
     line-height: 24px;
@@ -539,15 +585,33 @@ export const AntFixes = styled("div")`
 `;
 
 export const AntFooterStyle = styled("div")`
-  height: 48px;
-
   .ant-layout-footer {
     height: 48px;
-    padding: 8px;
     background-color: ${T.theme.colors.primary};
     color: white;
-    position: sticky;
-    bottom: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    align-items: center;
+    border-top: 1px solid black;
+  }
+
+  // .ant-layout-footer ul {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   background-color: red;
+  //   border: none;
+  //   margin: 0;
+  //   width: 100%;
+  // }
+
+  li:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  a {
+    margin-right: 8px;
   }
 `;
 
