@@ -119,11 +119,11 @@ export default class Home extends Component {
             </UI.PageBody>
 
             <AntButton>
-              <Link to="/NewCampsite">New Campsite</Link>
+              <Link to="/newcampsite">New Campsite</Link>
             </AntButton>
           </UI.PageContainer>
         </Content>
-        <AntFooter></AntFooter>
+        <AntFooter />
       </Layout>
     );
   }

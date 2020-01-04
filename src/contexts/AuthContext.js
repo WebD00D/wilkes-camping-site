@@ -16,7 +16,7 @@ export class AuthProvider extends Component {
       name: false,
       password: "",
       profilePhoto: null,
-      isAuthenticated: false
+      isAuthenticated: true
     };
 
     this.actions = {
@@ -31,6 +31,7 @@ export class AuthProvider extends Component {
 
   componentDidMount() {
     const { userId, profilePhoto, email, name } = CHECK_FOR_CURRENT_USER();
+    console.log("USER", userId, profilePhoto, email, name)
     this.setState({
       name,
       userId,

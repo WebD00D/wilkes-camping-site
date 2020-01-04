@@ -53,7 +53,9 @@ class NewCampsite extends Component {
     });
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("NEW CAMPSITE MOUNTED")
+  }
 
   getCamp() {
     firebase
@@ -94,7 +96,8 @@ class NewCampsite extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { isAuthenticated } = this.props.authContext;
-
+    
+    console.log("NEW CAMPSITE", isAuthenticated)
     if (!isAuthenticated) {
       return <Redirect to="/login" />;
     }
