@@ -17,8 +17,17 @@ import {
 } from "../UI";
 import * as UI from "../UI";
 
-import { Form, Icon, Input, Button as AntButton, Upload, Checkbox } from "antd";
+import {
+  Form,
+  Icon,
+  Input,
+  Button as AntButton,
+  Upload,
+  Checkbox,
+  Select
+} from "antd";
 import AntFooter from "../components/AntFooter";
+const { Option } = Select;
 
 class Profile extends Component {
   constructor(props) {
@@ -57,7 +66,7 @@ class Profile extends Component {
     }
 
     const { getFieldDecorator } = this.props.form;
-
+    const { Option } = Select;
     return (
       <div>
         {/* <UI.FormBackground>
@@ -172,37 +181,48 @@ class Profile extends Component {
                 })(
                   <Input
                     prefix={
-                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                      <Icon type="form" style={{ color: "rgba(0,0,0,.25)" }} />
                     }
                     type="text"
                     placeholder="Tagline"
                   />
                 )}
               </Form.Item>
-              <Form.Item>
-                {getFieldDecorator("password", {
-                  rules: [{ required: false, message: "I Travel...." }]
+
+              <Form.Item label="" hasFeedback>
+                {getFieldDecorator("select", {
+                  rules: [{ required: false, message: "I Travel" }]
                 })(
-                  <Input
-                    prefix={
-                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                    }
-                    type="text"
-                    placeholder="I travel...Checkbox"
-                  />
+                  <Select placeholder="I travel">
+                    <Option value="full-time">Full Time</Option>
+                    <Option value="seasonally">Seasonally</Option>
+                    <Option value="weekend">Weekends and Holidays</Option>
+                  </Select>
                 )}
               </Form.Item>
-              <Form.Item>
-                {getFieldDecorator("password", {
-                  rules: [{ required: true, message: "Type of Rig" }]
+
+              <Form.Item label="" hasFeedback>
+                {getFieldDecorator("select", {
+                  rules: [{ required: false, message: "My Rig" }]
                 })(
-                  <Input
-                    prefix={
-                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                    }
-                    type="text"
-                    placeholder="My Rig is...checkbox"
-                  />
+                  <Select placeholder="My Rig">
+                    <Option value="(RV)ClassA">(RV) Class A</Option>
+                    <Option value="(RV)ClassB">(RV) Class B</Option>
+                    <Option value="(RV)ClassC">(RV) Class C</Option>
+                    <Option value="(RV)5thWheel">(RV) Fifth Wheel</Option>
+                    <Option value="(RV)Trailer">(RV) Trailer</Option>
+                    <Option value="(RV)Skoolie">(RV) Skoolie</Option>
+                    <Option value="(RV)PassengerVehicle">
+                      (RV) Passenger Vehicle
+                    </Option>
+                    <Option value="(RV)PopUpTrailer">(RV)Pop-Up Trailer</Option>
+                    <Option value="(Tent)Bicycle">(Tent) Bicycle</Option>
+                    <Option value="(Tent)Feet">(Tent) Feet</Option>
+                    <Option value="(Tent)Motorcycle">(Tent) Motorcycle</Option>
+                    <Option value="(Tent)PassengerVehicle">
+                      (Tent) Passenger Vehicle
+                    </Option>
+                  </Select>
                 )}
               </Form.Item>
 
@@ -215,7 +235,10 @@ class Profile extends Component {
                 })(
                   <Input
                     prefix={
-                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                      <Icon
+                        type="facebook"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                      />
                     }
                     type="link"
                     placeholder="Facebook"
@@ -230,7 +253,10 @@ class Profile extends Component {
                 })(
                   <Input
                     prefix={
-                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                      <Icon
+                        type="instagram"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                      />
                     }
                     type="link"
                     placeholder="Instagram"
@@ -245,7 +271,10 @@ class Profile extends Component {
                 })(
                   <Input
                     prefix={
-                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                      <Icon
+                        type="twitter"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                      />
                     }
                     type="link"
                     placeholder="Twitter"

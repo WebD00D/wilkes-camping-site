@@ -14,7 +14,16 @@ import styled from "@emotion/styled";
 
 import AntFooter from "../components/AntFooter";
 
-import { Layout, Form, Icon, Input, Button as AntButton, Checkbox } from "antd";
+import {
+  Layout,
+  Form,
+  Icon,
+  Input,
+  Button as AntButton,
+  Checkbox,
+  Rate,
+  Radio
+} from "antd";
 
 class NewCampsite extends Component {
   constructor(props) {
@@ -83,8 +92,8 @@ class NewCampsite extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props.authContext;
     const { getFieldDecorator } = this.props.form;
+    const { isAuthenticated } = this.props.authContext;
 
     if (!isAuthenticated) {
       return <Redirect to="/login" />;
@@ -92,59 +101,74 @@ class NewCampsite extends Component {
 
     return (
       <Layout>
-        <UI.PageContainer>
-          <UI.PageHeader>
+        <UI.FormBackground>
+          <UI.FormStyle>
             <h1>Add A Campsite</h1>
-          </UI.PageHeader>
+            <Form onSubmit={this.addCamp} className="login-form">
+              <Form.Item>
+                {getFieldDecorator("name", {
+                  rules: [
+                    { required: true, message: "Please input your email!" }
+                  ]
+                })(
+                  <Input
+                    prefix={
+                      <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    placeholder="Campsite Name"
+                  />
+                )}
+              </Form.Item>
 
-          <h1>Log In</h1>
-          <Form onSubmit={this.addCamp} className="login-form">
-            <Form.Item>
-              {getFieldDecorator("", {
-                rules: [{ required: true, message: "Please input your email!" }]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="Email"
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("password", {
-                rules: [
-                  { required: true, message: "Please input your Password!" }
-                ]
-              })(
-                <Input
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  type="password"
-                  placeholder="Password"
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator("remember", {
-                valuePropName: "checked",
-                initialValue: true
-              })(<Checkbox>Remember me</Checkbox>)}
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Log in
-              </Button>
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
-              <a href="/Signup">Register Now </a>
-            </Form.Item>
-          </Form>
-        </UI.PageContainer>
+              <Form.Item>
+                {getFieldDecorator("description", {
+                  rules: [
+                    { required: true, message: "Please input your Password!" }
+                  ]
+                })(
+                  <Input
+                    prefix={
+                      <Icon type="form" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    type="text"
+                    placeholder="Description"
+                  />
+                )}
+              </Form.Item>
+
+              <Form.Item label="Rate">
+                {getFieldDecorator("rate", {
+                  initialValue: 3.5
+                })(<Rate />)}
+              </Form.Item>
+
+              <Form.Item label="Radio.Group">
+                {getFieldDecorator("radio-group")(
+                  <Radio.Group>
+                    <Radio value="a">- $10</Radio>
+                    <Radio value="b">$10-$20</Radio>
+                    <Radio value="c">+ $20</Radio>
+                  </Radio.Group>
+                )}
+              </Form.Item>
+
+              <Form.Item>
+                {getFieldDecorator("remember", {
+                  valuePropName: "checked",
+                  initialValue: true
+                })(<Checkbox>Remember me</Checkbox>)}
+                <AntButton
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button"
+                >
+                  Add it!
+                </AntButton>
+              </Form.Item>
+            </Form>
+          </UI.FormStyle>
+        </UI.FormBackground>
+
         <AntFooter></AntFooter>
       </Layout>
     );
@@ -157,7 +181,7 @@ const WrappedNewCampsite = Form.create({ name: "new_campsite" })(
 
 // ReactDOM.render(<WrappedLogin />, mountNode);
 
-export default NewCampsite;
+export default WrappedNewCampsite;
 
 // "</UI.PageHeader>
 //         <div>{this.state.userId}</div>

@@ -29,7 +29,6 @@ export const PageContainer = styled("div")`
 `;
 
 export const NavBar = styled("div")`
-
   ul {
     height: 48px;
     width: 100%;
