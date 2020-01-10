@@ -19,6 +19,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "antd/dist/antd.css";
 
 import AntFooter from "./components/AntFooter";
+import AntHeader from "./components/AntFooter";
 
 import { Icon, Layout } from "antd";
 import { isUserWhitespacable, isPatternLike } from "@babel/types";
@@ -32,11 +33,10 @@ function App() {
   return (
     <div>
       <UI.AntFixes>
-        <div>
-          Put a header component here.. 
-          this should render the links and all that.. 
-        </div>
-        <Routes />
+        <Routes>
+          <AntHeader></AntHeader>
+          <AntFooter></AntFooter>
+        </Routes>
       </UI.AntFixes>
     </div>
   );

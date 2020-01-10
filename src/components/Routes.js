@@ -37,40 +37,6 @@ export default class AntHeader extends Component {
             <Router>
               <UI.NavBar>
                 <div className="App">
-                  <ul>
-                    <Icon type="menu" className="mobile" />
-                    <li className="NavLeft">
-                      <Link to="/">Home</Link>
-                    </li>
-                    <li className="NavLeft">
-                      <Link to="/campsite">Campsite</Link>
-                    </li>
-                    <li className="NotInNav">
-                      <Link to="/newcampsite">New Campsite</Link>
-                    </li>
-                    <li className="NotInNav">
-                      <Link to="/editpost">Edit Post</Link>
-                    </li>
-                    {/* <li>
-              <Link to="/database">Data Store</Link>
-            </li>
-            <li>
-              <Link to="/Numbers">Numbers</Link>
-            </li> */}
-                    <li className="NotInNav">
-                      <Link to="/profile">Profile</Link>
-                    </li>
-                    <li className="NavRight">
-                      <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li className="NavRight">
-                      <Link to="/login">Log In</Link>
-                    </li>
-                    <li className="NavRight">
-                      <Link to="/signup">Sign Up</Link>
-                    </li>
-                  </ul>
-
                   <Route path="/" exact component={Home} />
                   {/* <Route path="/campsite/:campsiteId" exact component={Campsite} /> */}
                   <Route path="/campsite" exact component={Campsite} />
