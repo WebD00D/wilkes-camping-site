@@ -77,9 +77,9 @@ export const NavBar = styled("div")`
     }
   }
 
-  .NotInNav {
-    display: none;
-  }
+  // .NotInNav {
+  //   display: none;
+  // }
 
   @media (min-width: 600px) {
     .mobile {
@@ -565,7 +565,7 @@ export const ReviewSection = styled("div")`
 
 export const AntFixes = styled("div")`
   .ant-layout-header {
-    // height: 5px;
+    // height: 50px;
     // change this ^ later
     padding: 0;
     line-height: 24px;
@@ -590,20 +590,15 @@ export const AntFooterStyle = styled("div")`
     color: white;
     margin: 0;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     padding: 8px;
     align-items: center;
     border-top: 1px solid black;
   }
 
-  // .ant-layout-footer ul {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   background-color: red;
-  //   border: none;
-  //   margin: 0;
-  //   width: 100%;
-  // }
+  li {
+    list-style: none;
+  }
 
   li:not(:last-child) {
     margin-right: 8px;
@@ -611,7 +606,11 @@ export const AntFooterStyle = styled("div")`
 
   a {
     margin-right: 8px;
+    color: white;
   }
 `;
 
-export const AntHeaderStyle = styled("div")``;
+export const AntHeaderStyle = styled("div")`
+  background-color: red;
+  height: 100px;
+`;

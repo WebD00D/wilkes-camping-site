@@ -88,43 +88,45 @@ export default class Home extends Component {
     const { Panel } = Collapse;
     const { Header, Footer, Content } = Layout;
     return (
-      <Layout>
-        <Content>
-          <UI.PageContainer>
-            <UI.PageHeader>
-              <h1>Free Camping</h1>
-              <h4>We've Got You Covered</h4>
-              {/* <Alert
+      <div>
+        <Layout>
+          <Content>
+            <UI.PageContainer>
+              <UI.PageHeader>
+                <h1>Free Camping</h1>
+                <h4>We've Got You Covered</h4>
+                {/* <Alert
             showIcon
             message="Hello, you need to sign up to view more."
             type="warning"
           /> */}
-            </UI.PageHeader>
+              </UI.PageHeader>
 
-            {/* <Hook /> */}
-            <UI.PageBody>
-              <HideDesktop>
-                <Collapse accordion>
-                  <Panel header="About Us" key="1" id="HomeCollapse">
-                    {this.renderAboutContent()}
-                  </Panel>
-                </Collapse>
-              </HideDesktop>
+              {/* <Hook /> */}
+              <UI.PageBody>
+                <HideDesktop>
+                  <Collapse accordion>
+                    <Panel header="About Us" key="1" id="HomeCollapse">
+                      {this.renderAboutContent()}
+                    </Panel>
+                  </Collapse>
+                </HideDesktop>
 
-              <HideMobile>{this.renderAboutContent()}</HideMobile>
+                <HideMobile>{this.renderAboutContent()}</HideMobile>
 
-              <UI.MapContainer id="mapbox-container">
-                <Mapbox />
-              </UI.MapContainer>
-            </UI.PageBody>
+                <UI.MapContainer id="mapbox-container">
+                  <Mapbox />
+                </UI.MapContainer>
+              </UI.PageBody>
 
-            <AntButton>
-              <Link to="/newcampsite">New Campsite</Link>
-            </AntButton>
-          </UI.PageContainer>
-        </Content>
-        <AntFooter />
-      </Layout>
+              <AntButton>
+                <Link to="/newcampsite">New Campsite</Link>
+              </AntButton>
+            </UI.PageContainer>
+          </Content>
+          <AntFooter />
+        </Layout>
+      </div>
     );
   }
 }

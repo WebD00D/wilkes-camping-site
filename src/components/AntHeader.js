@@ -20,34 +20,37 @@ export default class AntHeader extends Component {
 
   render() {
     const { Header } = Layout;
+    {
+      console.log("header comp loaded");
+    }
     return (
       <UI.AntHeaderStyle>
-        <Layout>
-          <Header>
-            <UI.NavBar>
-              <div className="App">
-                <ul>
-                  <Icon type="menu" className="mobile" />
-                  <li className="NavLeft">
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li className="NavLeft">
-                    <Link to="/campsite">Campsite</Link>
-                  </li>
-                  <li className="NavRight">
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                  <li className="NavRight">
-                    <Link to="/login">Log In</Link>
-                  </li>
-                  <li className="NavRight">
-                    <Link to="/signup">Sign Up</Link>
-                  </li>
-                </ul>
-              </div>
-            </UI.NavBar>
-          </Header>
-        </Layout>
+        {/* <Layout>
+          <Header> */}
+        {/* <UI.NavBar>
+          <div className="App">
+            <ul>
+              <Icon type="menu" className="mobile" />
+              <li className="NavLeft">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="NavLeft">
+                <Link to="/campsite">Campsite</Link>
+              </li>
+              <li className="NavRight">
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li className="NavRight">
+                <Link to="/login">Log In</Link>
+              </li>
+              <li className="NavRight">
+                <Link to="/signup">Sign Up</Link>
+              </li>
+            </ul>
+          </div>
+        </UI.NavBar> */}
+        {/* </Header>
+        </Layout> */}
       </UI.AntHeaderStyle>
     );
   }

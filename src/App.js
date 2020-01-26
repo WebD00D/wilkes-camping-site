@@ -18,13 +18,12 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import "antd/dist/antd.css";
 
+import Routes from "./components/Routes";
 import AntFooter from "./components/AntFooter";
-import AntHeader from "./components/AntFooter";
+import AntHeader from "./components/AntHeader";
 
 import { Icon, Layout } from "antd";
 import { isUserWhitespacable, isPatternLike } from "@babel/types";
-
-import Routes from "./components/Routes";
 
 function App() {
   // const { getProfilePhoto } = this.props.authContext;
@@ -32,12 +31,12 @@ function App() {
 
   return (
     <div>
-      <UI.AntFixes>
-        <Routes>
-          <AntHeader></AntHeader>
-          <AntFooter></AntFooter>
-        </Routes>
-      </UI.AntFixes>
+      {/* <UI.AntFixes> */}
+      <Routes>
+        <AntHeader>{console.log("app.js header loaded")}</AntHeader>
+        <AntFooter></AntFooter>
+      </Routes>
+      {/* </UI.AntFixes> */}
     </div>
   );
 }
