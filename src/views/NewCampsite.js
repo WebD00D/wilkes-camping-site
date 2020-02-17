@@ -20,9 +20,10 @@ import {
   Icon,
   Input,
   Button as AntButton,
-  Checkbox,
   Rate,
-  Radio
+  Radio,
+  Upload,
+  DatePicker
 } from "antd";
 
 class NewCampsite extends Component {
@@ -37,8 +38,6 @@ class NewCampsite extends Component {
       numberOfSpots: null,
       state: null
     };
-
-    const { Header, Footer, Content } = Layout;
   }
 
   handleSubmit = e => {
@@ -54,7 +53,7 @@ class NewCampsite extends Component {
   };
 
   componentDidMount() {
-    console.log("NEW CAMPSITE MOUNTED")
+    console.log("NEW CAMPSITE MOUNTED");
   }
 
   getCamp() {
@@ -93,11 +92,22 @@ class NewCampsite extends Component {
       });
   }
 
+  onChange = e => {
+    console.log("radio checked", e.target.value);
+    this.setState({
+      value: e.target.value
+    });
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const { isAuthenticated } = this.props.authContext;
-    
-    console.log("NEW CAMPSITE", isAuthenticated)
+    const { TextArea } = Input;
+    const { RangePicker } = DatePicker;
+
+    const { value } = this.state;
+
+    console.log("NEW CAMPSITE", isAuthenticated);
     if (!isAuthenticated) {
       return <Redirect to="/login" />;
     }
@@ -105,48 +115,49 @@ class NewCampsite extends Component {
     return (
       <Layout>
         <UI.FormBackground>
-          <UI.FormStyle>
+          <UI.AddCampsite>
             <h1>Add A Campsite</h1>
             <Form onSubmit={this.addCamp} className="login-form">
               <Form.Item>
                 {getFieldDecorator("name", {
-                  rules: [
-                    { required: true, message: "Please input your email!" }
-                  ]
+                  rules: [{ required: true, message: "Please input a name" }]
                 })(
                   <Input
                     prefix={
-                      <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                      <Icon
+                        type="pushpin"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                      />
                     }
                     placeholder="Campsite Name"
                   />
                 )}
-              </Form.Item>
-
-              <Form.Item>
                 {getFieldDecorator("description", {
                   rules: [
-                    { required: true, message: "Please input your Password!" }
+                    { required: true, message: "Please input a description" }
                   ]
                 })(
-                  <Input
-                    prefix={
-                      <Icon type="form" style={{ color: "rgba(0,0,0,.25)" }} />
-                    }
-                    type="text"
-                    placeholder="Description"
+                  <TextArea
+                    value={value}
+                    onChange={this.onChange}
+                    placeholder="Controlled autosize"
+                    autoSize={{ minRows: 5, maxRows: 8 }}
+                    style={{ height: 75 }}
                   />
                 )}
               </Form.Item>
 
               <Form.Item label="Rate">
                 {getFieldDecorator("rate", {
-                  initialValue: 3.5
+                  initialValue: 3.5,
+                  rules: [{ required: true, message: "Please input a rating" }]
                 })(<Rate />)}
               </Form.Item>
 
               <Form.Item label="Radio.Group">
-                {getFieldDecorator("radio-group")(
+                {getFieldDecorator("radio-group", {
+                  rules: [{ required: true, message: "Please input a price" }]
+                })(
                   <Radio.Group>
                     <Radio value="a">- $10</Radio>
                     <Radio value="b">$10-$20</Radio>
@@ -155,11 +166,168 @@ class NewCampsite extends Component {
                 )}
               </Form.Item>
 
+              <Form.Item label="Ownership?">
+                {getFieldDecorator("radio-group", {
+                  rules: [
+                    { required: true, message: "Please input the ownership" }
+                  ]
+                })(
+                  <Radio.Group>
+                    <Radio value="a">Private</Radio>
+                    <Radio value="b">Public</Radio>
+                  </Radio.Group>
+                )}
+              </Form.Item>
+
+              <Form.Item label="Officialy Approved?">
+                {getFieldDecorator("radio-group", {
+                  rules: [
+                    { required: true, message: "Please input the approval" }
+                  ]
+                })(
+                  <Radio.Group>
+                    <Radio value="a">Yes</Radio>
+                    <Radio value="b">No</Radio>
+                  </Radio.Group>
+                )}
+              </Form.Item>
+
+              <Form.Item label="Pictues">
+                {getFieldDecorator("dragger", {
+                  valuePropName: "fileList",
+                  getValueFromEvent: this.normFile
+                })(
+                  <Upload.Dragger name="files" action="/upload.do">
+                    <p className="ant-upload-drag-icon">
+                      <Icon type="inbox" />
+                    </p>
+                    <p className="ant-upload-text">
+                      Click or drag file to this area to upload
+                    </p>
+                    <p className="ant-upload-hint">
+                      Support for a single or bulk upload.
+                    </p>
+                  </Upload.Dragger>
+                )}
+              </Form.Item>
+
+              <h3>Details</h3>
+              <h5>Optional</h5>
+
               <Form.Item>
-                {getFieldDecorator("remember", {
-                  valuePropName: "checked",
-                  initialValue: true
-                })(<Checkbox>Remember me</Checkbox>)}
+                {getFieldDecorator("name", {
+                  rules: [{ required: false }]
+                })(
+                  <Input
+                    prefix={
+                      <Icon
+                        type="pushpin"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                      />
+                    }
+                    placeholder="Maximum Allowed Stay"
+                  />
+                )}
+                {getFieldDecorator("name", {
+                  rules: [{ required: false }]
+                })(
+                  <Input
+                    prefix={
+                      <Icon
+                        type="pushpin"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                      />
+                    }
+                    placeholder="Estimated Dates Open"
+                  />
+                )}
+              </Form.Item>
+
+              <Form.Item label="How Many Campsites?">
+                {getFieldDecorator("radio-group")(
+                  <Radio.Group>
+                    <Radio value="a">1-5</Radio>
+                    <Radio value="b">5-10</Radio>
+                    <Radio value="b">10-20</Radio>
+                    <Radio value="b">20+</Radio>
+                  </Radio.Group>
+                )}
+              </Form.Item>
+
+              <Form.Item label="Maximum RV Length?">
+                {getFieldDecorator("radio-group")(
+                  <Radio.Group>
+                    <Radio value="a">15 feet</Radio>
+                    <Radio value="b">25 feet</Radio>
+                    <Radio value="b">35 feet</Radio>
+                    <Radio value="b">45 feet</Radio>
+                    <Radio value="b">Unlimited</Radio>
+                  </Radio.Group>
+                )}
+              </Form.Item>
+
+              <Form.Item label="Road Type?">
+                {getFieldDecorator("radio-group")(
+                  <Radio.Group>
+                    <Radio value="a">Paved</Radio>
+                    <Radio value="b">Gravel</Radio>
+                    <Radio value="b">Dirt</Radio>
+                    <Radio value="b">4x4</Radio>
+                  </Radio.Group>
+                )}
+              </Form.Item>
+
+              <h3>Contact Information</h3>
+              <h5>Optional</h5>
+
+              <Form.Item>
+                {getFieldDecorator("name", {
+                  rules: [
+                    { required: false, message: "Please input your email!" }
+                  ]
+                })(
+                  <>
+                    <Input
+                      prefix={
+                        <Icon
+                          type="pushpin"
+                          style={{ color: "rgba(0,0,0,.25)" }}
+                        />
+                      }
+                      placeholder="Name"
+                    />
+                    <Input
+                      prefix={
+                        <Icon
+                          type="pushpin"
+                          style={{ color: "rgba(0,0,0,.25)" }}
+                        />
+                      }
+                      placeholder="Street Address"
+                    />
+                    <Input
+                      prefix={
+                        <Icon
+                          type="pushpin"
+                          style={{ color: "rgba(0,0,0,.25)" }}
+                        />
+                      }
+                      placeholder="Phone"
+                    />
+                    <Input
+                      prefix={
+                        <Icon
+                          type="pushpin"
+                          style={{ color: "rgba(0,0,0,.25)" }}
+                        />
+                      }
+                      placeholder="Email"
+                    />
+                  </>
+                )}
+              </Form.Item>
+
+              <Form.Item>
                 <AntButton
                   type="primary"
                   htmlType="submit"
@@ -169,9 +337,8 @@ class NewCampsite extends Component {
                 </AntButton>
               </Form.Item>
             </Form>
-          </UI.FormStyle>
+          </UI.AddCampsite>
         </UI.FormBackground>
-
         <AntFooter></AntFooter>
       </Layout>
     );

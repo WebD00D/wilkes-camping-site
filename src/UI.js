@@ -6,7 +6,7 @@ export const PageContainer = styled("div")`
   margin-right: auto;
   text-align: center;
   padding-top: 20px;
-  // height: calc(100vh - 96px);
+  padding-bottom: 40px;
   background-color: white;
 
   button {
@@ -90,6 +90,8 @@ export const NavBar = styled("div")`
 
 export const PageHeader = styled("div")`
   width: 100%;
+  padding-left: auto;
+  padding-right: auto;
 
   h1 {
     margin-top: 0;
@@ -114,6 +116,7 @@ export const PageHeader = styled("div")`
     color: ${T.theme.colors.dark};
     margin-bottom: 0.5em;
     margin-top: 0;
+    text-align: center;
   }
 
   a {
@@ -133,12 +136,20 @@ export const PageHeader = styled("div")`
     line-height: 50%;
   }
 
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 200px;
+    background-color: red;
+  }
+
   @media (min-width: 600px) and (max-width: 950px) {
     h1 {
       max-width: 750px;
       margin-left: auto;
       margin-right: auto;
     }
+
   }
 `;
 
@@ -178,7 +189,6 @@ export const Button = styled("button")`
 `;
 
 export const FormStyle = styled("div")`
-  height: 500px;
   width: 400px;
   margin-left: auto;
   margin-right: auto;
@@ -206,13 +216,19 @@ export const FormStyle = styled("div")`
   .login-form-button {
     width: 100%;
   }
+
+  .ant-btn-primary {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export const FormBackground = styled("div")`
   background-color: #f7f7f7;
-  // padding: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  //  padding: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   margin-bottom: 0;
   margin-top: 0;
   min-height: calc(100vh - 96px);
@@ -302,6 +318,7 @@ export const CampsitePageContainer = styled("div")`
   margin-top: -20px;
   margin-bottom: -20px;
   padding: 20px;
+  border: 1px solid black;
   text-align: left;
   background-color: white;
 
@@ -397,7 +414,6 @@ export const CampTitle = styled("div")`
     margin-left: auto;
     margin-right: auto;
   }
-
 `;
 
 export const CampInfo = styled("div")`
@@ -560,6 +576,50 @@ export const ReviewSection = styled("div")`
     .ant-card {
       max-width: 100%;
     }
+  }
+`;
+
+export const AddCampsite = styled("div")`
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  // display: flex;
+  // align-content: center;
+  padding: 24px;
+  background-color: #fff;
+  // border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.65);
+
+  h1 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+    text-align: center;
+  }
+
+  h3 {
+    text-decoration: underline;
+    text-decoration-color: ${T.theme.colors.primary};
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  h5 {
+    text-align: center;
+    font-style: oblique;
+  }
+
+  a {
+    color: ${T.theme.colors.primary};
+  }
+
+  .login-form {
+    max-width: 500px;
+  }
+  .login-form-forgot {
+    float: right;
+  }
+  .login-form-button {
+    width: 100%;
   }
 `;
 

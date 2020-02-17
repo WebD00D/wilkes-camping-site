@@ -5,16 +5,16 @@ import { WithAuth } from "../contexts/AuthContext";
 
 import { CHECK_FOR_CURRENT_USER } from "../utils/UserAuth";
 
-import styled from "@emotion/styled";
-import {
-  PageContainer,
-  PageHeader,
-  PageBody,
-  Button,
-  FormStyle,
-  FormBackground,
-  ProfileStyle
-} from "../UI";
+// import styled from "@emotion/styled";
+// import {
+//   PageContainer,
+//   PageHeader,
+//   PageBody,
+//   Button,
+//   FormStyle,
+//   FormBackground,
+//   ProfileStyle
+// } from "../UI";
 import * as UI from "../UI";
 
 import {
@@ -69,38 +69,6 @@ class Profile extends Component {
     const { Option } = Select;
     return (
       <div>
-        {/* <UI.FormBackground>
-          <UI.FormStyle>
-            <h1>Profile</h1>
-            <div>{this.state.userId}</div>
-            <InputField placeholder="First Name" inputType="text" />
-            <InputField placeholder="Last Name" inputType="text" />
-            <InputField placeholder="Username" inputType="text" />
-            display name
-            <h1>Social Media</h1>
-            <InputField placeholder="Website" inputType="link" />
-            <InputField placeholder="Twitter" inputType="link" />
-            <InputField placeholder="Facebook" inputType="link" />
-            <InputField placeholder="Instagram" inputType="link" />
-            <InputField placeholder="Pinterest" inputType="link" />
-        <InputField placeholder="LinkedIn" inputType="link" />
-            <h1>Profile</h1>
-            <InputField placeholder="Bio" inputType="text" />
-            <InputField placeholder="I go to..." inputType="text" />
-            <InputField placeholder="Rig Type" inputType="text" />
-            fix this ^ need selector bar
-            <h1>Preferences</h1>
-            <button type="radio">Receive Email Udates</button>
-            why doesnt this work???
-            <button onClick=<Link to="/">Home</Link>> hello </button>
-            fix this
-            <h1>Change Password</h1>
-            <InputField placeholder="Old Password" inputType="password" />
-            <InputField placeholder="New Password" inputType="password" />
-            is this correct?
-          </UI.FormStyle>
-        </UI.FormBackground> */}
-
         <UI.FormBackground>
           <UI.ProfileStyle>
             <h1>Profile</h1>

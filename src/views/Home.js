@@ -16,13 +16,13 @@ import NewCampsite from "../views/NewCampsite";
 // import GenericButton from "../components/GenericButton";
 // import Geosuggest from "react-geosuggest";
 
-import {
-  PageContainer,
-  PageHeader,
-  PageBody,
-  Button,
-  MapContainer
-} from "../UI";
+// import {
+//   PageContainer,
+//   PageHeader,
+//   PageBody,
+//   Button,
+//   MapContainer
+// } from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
 import Mapbox from "../components/Mapbox";
@@ -119,8 +119,8 @@ export default class Home extends Component {
                 </UI.MapContainer>
               </UI.PageBody>
 
-              <AntButton>
-                <Link to="/newcampsite">New Campsite</Link>
+              <AntButton type="primary">
+                <Link to="/NewCampsite">New Campsite</Link>
               </AntButton>
             </UI.PageContainer>
           </Content>

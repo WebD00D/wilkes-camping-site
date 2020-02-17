@@ -4,10 +4,20 @@ import firebase from "../datastore";
 import { WithAuth } from "../contexts/AuthContext";
 
 import styled from "@emotion/styled";
-import { PageContainer, PageHeader, PageBody, Button } from "../UI";
 import * as UI from "../UI";
+import {
+  Layout,
+  Form,
+  Icon,
+  Input,
+  Button as AntButton,
+  Rate,
+  Radio,
+  Upload,
+  DatePicker
+} from "antd";
 
-import AntFooter from "../components/AntFooter";
+// import AntFooter from "../components/AntFooter";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -38,20 +48,26 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <UI.FormBackground>
-          <UI.PageHeader>
-            <h1>Dashboard</h1>
-            <h4>{name}</h4>
-            <h4>{email}</h4>
-            <img src={profilePhoto} />
-          </UI.PageHeader>
-          <UI.Button>
-            <Link to="/Profile">Profile</Link>
-            <Link to="/EditPost">Change Campsite Info</Link>
-          </UI.Button>
-          <button onClick={() => this.signOutHandle()}>Sign Out</button>
-        </UI.FormBackground>
-        <AntFooter></AntFooter>
+        <Layout>
+          <UI.FormBackground>
+            <UI.FormStyle>
+              <UI.PageHeader>
+                <h1>Dashboard</h1>
+                <img src={profilePhoto} />
+                <h4>{name}</h4>
+              </UI.PageHeader>
+              <AntButton type="link">
+                <Link to="/Profile">Edit Profile</Link>
+              </AntButton>
+              <AntButton type="link">
+                <Link to="/EditPost">Change Campsite Info</Link>
+              </AntButton>
+              <AntButton type="primary" onClick={() => this.signOutHandle()}>
+                Sign Out
+              </AntButton>
+            </UI.FormStyle>
+          </UI.FormBackground>
+        </Layout>
       </div>
     );
   }
