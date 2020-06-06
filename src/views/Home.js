@@ -7,22 +7,6 @@ import AntFooter from "../components/AntFooter";
 
 import NewCampsite from "../views/NewCampsite";
 
-// import BigButton from "../components/BigButton";
-
-// import LittleButton from "../components/LittleButton";
-
-// import InputField from "../components/InputField";
-// import NameDisplay from "../components/NameDisplay";
-// import GenericButton from "../components/GenericButton";
-// import Geosuggest from "react-geosuggest";
-
-// import {
-//   PageContainer,
-//   PageHeader,
-//   PageBody,
-//   Button,
-//   MapContainer
-// } from "../UI";
 import * as UI from "../UI";
 import styled from "@emotion/styled";
 import Mapbox from "../components/Mapbox";
